@@ -1,0 +1,43 @@
+body {
+	margin: 0;
+}
+
+.NavContainer {
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2rem 2rem;
+}
+
+.NavIcon {
+	margin-right: 2rem;
+}
+
+.NavIcon img {
+	height: 3.5rem;
+	width: auto;
+}
+
+.Navbar {
+	display: flex;
+	align-items: center;
+}
+
+.NavList {
+	list-style: none;
+	display: flex;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	font-size: 1rem;
+}
+
+.NavList li {
+	margin-right: 20px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
