@@ -1,8 +1,9 @@
-import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import perrito from '../../assets/Paula/descarga.jpeg'
-import perritoFeliz from '../../assets/Paula/ilustracion.avif'
-
+import celeste from '../../assets/Paula/cele.jpg'
+import paula from '../../assets/Paula/pau.jpg'
+import leonel from '../../assets/Paula/leo.jpg'
+import gian from '../../assets/Paula/gian.jpg'
+import './css/quienessomos.css'
 const QuienesSomos = () => {
   return (
     <Container>
@@ -16,37 +17,37 @@ const QuienesSomos = () => {
       <Row>
         <Col md={3}>
           <Card>
-            <Card.Img variant="top" src={perrito} />
+            <Card.Img className='image' variant="top" src={celeste} />
             <Card.Body>
-              <Card.Title>Integrante 1</Card.Title>
-              <Card.Text>Descripción breve del integrante 1.</Card.Text>
+              <Card.Title>Developer</Card.Title>
+              <Card.Text> Celeste Lara 23 años.</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
           <Card>
-            <Card.Img variant="top" src={perritoFeliz} />
+            <Card.Img className='image' variant="top" src={paula} />
             <Card.Body>
-              <Card.Title>Integrante 2</Card.Title>
-              <Card.Text>Descripción breve del integrante 2.</Card.Text>
+              <Card.Title>Developer</Card.Title>
+              <Card.Text>Paula Roldan 32 años</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
           <Card>
-            <Card.Img variant="top" src="https://via.placeholder.com/150" />
+            <Card.Img className='image' variant="top" src={leonel} />
             <Card.Body>
-              <Card.Title>Integrante 3</Card.Title>
-              <Card.Text>Descripción breve del integrante 3.</Card.Text>
+              <Card.Title>Developer</Card.Title>
+              <Card.Text>Leonardo Balbastro 33 años</Card.Text>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
           <Card>
-            <Card.Img variant="top" src="https://via.placeholder.com/150" />
+            <Card.Img className='image' variant="top" src={gian} />
             <Card.Body>
-              <Card.Title>Integrante 4</Card.Title>
-              <Card.Text>Descripción breve del integrante 4.</Card.Text>
+              <Card.Title>Scrum Developer</Card.Title>
+              <Card.Text>Gianluca Sanguinetti 24 años</Card.Text>
             </Card.Body>
           </Card>
         </Col>
