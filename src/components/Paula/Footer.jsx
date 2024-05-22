@@ -2,6 +2,10 @@
 
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+
 
 const Footer = () => {
   return (
@@ -9,8 +13,8 @@ const Footer = () => {
       <Container>
         <Row>
           <Col md="4">
-            <h5>Facebook.com</h5>
-            <h5>instagram.com</h5>
+            <a href="http://facebook.com"><FontAwesomeIcon icon={faFacebook} style={{height:"3rem",marginRight:"1rem"}} /></a> 
+            <a href='http://instagram.com'><FontAwesomeIcon icon={faInstagram} style={{height:"3rem"}} /></a>
           </Col>
           <Col md="4">
             <h5>Contactanos al: 3813212353</h5>
