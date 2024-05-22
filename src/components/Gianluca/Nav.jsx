@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../css/Nav.css';
+import '../../css/Gianluca/Nav.css';
 import Logo from '../../assets/Gianluca/GoldenLux.png';
 // import '@fortawesome/fontawesome-free/css/all.css';
 

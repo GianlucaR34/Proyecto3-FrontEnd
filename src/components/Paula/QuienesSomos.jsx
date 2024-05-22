@@ -3,7 +3,7 @@ import celeste from '../../assets/Paula/cele.jpg'
 import paula from '../../assets/Paula/pau.jpg'
 import leonel from '../../assets/Paula/leo.jpg'
 import gian from '../../assets/Paula/gian.jpg'
-import './css/quienessomos.css'
+import '../../css/Paula/quienessomos.css'
 const QuienesSomos = () => {
   return (
     <Container>

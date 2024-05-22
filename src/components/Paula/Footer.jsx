@@ -1,4 +1,5 @@
 // src/components/Footer.js
+// import '../../css/Paula/Footer'
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook,faInstagram } from '@fortawesome/free-brands-svg-icons';

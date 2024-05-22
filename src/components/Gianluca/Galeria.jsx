@@ -1,4 +1,4 @@
-// import './css/Galeria.css';
+import '../../css/Gianluca/Galeria.css'
 import HotelPicBanner from '../../assets/Gianluca/imagen de prueba.jpg';
 /*imagenes de cuartos*/
 import RoomPic1 from '../../assets/Gianluca/1.jpg';

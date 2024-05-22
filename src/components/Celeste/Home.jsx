@@ -1,5 +1,5 @@
 
-import './home.css';
+import '../../css/Celeste/home.css';
 import MyCard from './MyCard';
 import Carrusel from './Carrusel';
 const Home = () => {

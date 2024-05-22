@@ -1,6 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { Card } from 'react-bootstrap';
-import './MyCard.css';
+import '../../css/Celeste/MyCard.css';
+// import './MyCard.css';
 
 const MyCard = ({ imageSrc, title, description }) => {
 	return (
