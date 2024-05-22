@@ -1,0 +1,48 @@
+.tituloBoton {
+	margin-top: 50px;
+	font-family: 'Cardo', serif;
+	font-size: 30px;
+}
+.cardd {
+	width: 25%;
+	height: 300px;
+	overflow: hidden;
+	position: relative;
+}
+.buttonCard {
+	color: rgb(254, 252, 252);
+	background-color: transparent;
+	border: solid 0.5px white;
+	font-family: 'Cardo', serif;
+	font-size: 18px;
+	padding: 10px 50px 10px 50px;
+	margin-top: 5px;
+}
+.titulo {
+	margin-top: 50px;
+	font-family: 'Cardo', serif;
+	font-size: 20px;
+	text-align: center;
+}
+
+.image-container {
+	overflow: hidden; /* Asegura que la imagen no sobresalga del contenedor */
+	transition: transform 0.3s ease; /* Aplica una transición suave al agrandar la imagen */
+	position: relative;
+}
+
+.image-container:hover {
+	transform: scale(1.1); /* Aumenta el tamaño de la imagen al pasar el mouse */
+}
+
+.card-image {
+	transition: transform 0.3s ease; /* Aplica una transición suave al agrandar la imagen */
+}
+
+.image-container:hover .card-image {
+	transform: scale(1.1); /* Aumenta el tamaño de la imagen al pasar el mouse */
+}
+.titulo1 {
+	position: absolute;
+	margin-left: 100px;
+}
