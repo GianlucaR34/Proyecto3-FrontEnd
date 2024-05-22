@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import celeste from '../../assets/Paula/cele.jpg'
 import paula from '../../assets/Paula/pau.jpg'
