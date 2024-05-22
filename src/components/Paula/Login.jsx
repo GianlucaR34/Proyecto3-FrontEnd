@@ -34,6 +34,7 @@ const Login = () => {
       handleMessage(error.response.data.msg,error.response.data.type)
       setEmail('')
       setPassword('')
+      setErrors(error)
       return
     }
   }

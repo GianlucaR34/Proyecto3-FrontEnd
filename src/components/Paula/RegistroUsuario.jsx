@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2'
+import hotelAPI from '../../api/hotelAPI';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
@@ -42,14 +44,41 @@ const RegisterForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (emailError || passwordError || confirmPasswordError) {
-      return;
+      handleMessage('Los campos no pueden estar vacios',"error")
     }
-    console.log({ email, password });
+    if (confirmPasswordError) return handleMessage(confirmPasswordError,"error")
+    if (passwordError) return handleMessage(passwordError,"error")
+    if (emailError) return handleMessage(emailError,"error")
+
+    //consumo API para el registro de usuario
+    try {
+      const resp = await hotelAPI.post('/user/createUser',{
+        mail:email,
+        password:password
+      })
+  
+      handleMessage(resp.data.msg,resp.data.type)
+      return location.replace('/login')
+      
+    } catch (error) {
+      handleMessage(error.response.data.msg,error.response.data.type)
+    }finally{
+      setEmail('')
+      setPassword('')
+      setConfirmPassword('')
+    }
+
   };
 
+  const handleMessage = (msg,type)=>{
+    Swal.fire({
+      icon: type,
+      text: msg
+    })
+  }
   return (
     <Form className='container mt-3' onSubmit={handleSubmit}>
       <Form.Group controlId="formEmail">
@@ -60,7 +89,6 @@ const RegisterForm = () => {
           value={email}
           onChange={handleEmailChange}
           isInvalid={!!emailError}
-          required
         />
         {emailError && (
           <Form.Control.Feedback type="invalid">
@@ -77,7 +105,6 @@ const RegisterForm = () => {
           value={password}
           onChange={handlePasswordChange}
           isInvalid={!!passwordError}
-          required
         />
         {passwordError && (
           <Form.Control.Feedback type="invalid">
@@ -94,7 +121,6 @@ const RegisterForm = () => {
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
           isInvalid={!!confirmPasswordError}
-          required
         />
         {confirmPasswordError && (
           <Form.Control.Feedback type="invalid">

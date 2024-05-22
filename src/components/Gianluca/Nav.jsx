@@ -14,8 +14,6 @@ export const Nav = () => {
 	const loginAsAdmin = () => {
 		localStorage.getItem('isAdmin') ? setIsAdmin(true) : setIsAdmin(false)
 		localStorage.getItem('TokenJWT') ? setIsLoggedIn(true):setIsLoggedIn(false)
-		
-		console.log(isAdmin)
 	};
 
 	const toggleMenu = () => {
