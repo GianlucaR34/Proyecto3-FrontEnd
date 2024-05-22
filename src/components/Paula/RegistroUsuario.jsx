@@ -9,7 +9,7 @@ const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/;
 
   const handleEmailChange = (e) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './home.css';
 import MyCard from './MyCard';
 import Carrusel from './Carrusel';

@@ -1,14 +1,15 @@
-import { AppRouter } from "./routes/AppRouter"
-
+import { Nav } from './components/Gianluca/Nav';
+import { AppRouter } from './routes/AppRouter';
+import Footer from './components/Paula/Footer';
 
 function App() {
-  return (
-    <>
-    <AppRouter>
-      
-    </AppRouter>
-    </>
-  )
+	return (
+		<>
+			<Nav />
+			<	AppRouter />
+			<Footer/>
+		</>
+	);
 }
 
-export default App
+export default App;
