@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../../css/Gianluca/Nav.css';
 import Logo from '../../assets/Gianluca/GoldenLux.png';
 // import '@fortawesome/fontawesome-free/css/all.css';
+import { NavLink } from "react-router-dom";
 
 export const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false); // variable de estado para determinar si esta expandido o no el toggle menu
@@ -33,35 +34,35 @@ export const Nav = () => {
 			<nav className={`Navbar ${isOpen ? 'active' : ''}`}>
 				<ol className="NavList">
 					<li>
-						<a href="">HOME</a>
+						<NavLink to='/'>HOME</NavLink>
 					</li>
 					<li>
-						<a href="">CONTACTO</a>
+						<NavLink to='/contact'>CONTACTO</NavLink>
 					</li>
 					<li>
-						<a href="">RESERVA</a>
+						<NavLink to='/404'>RESERVA</NavLink>
 					</li>
 					<li>
-						<a href="">GALERIA</a>
+						<NavLink to='/galery'>GALERIA</NavLink>
 					</li>
 					<li>
-						<a href="">QUIENES SOMOS</a>
+						<NavLink to='/about'>QUIENES SOMOS</NavLink>
 					</li>
 					{isLoggedIn &&
 						isAdmin && ( // Mostrar solo si el usuario está logeado y es administeador
 							<li>
-								<a href="">ADMINISTRACION</a>
+								<NavLink to='/404'>ADMINISTRACION</NavLink>
 							</li>
 						)}
 					{!isLoggedIn && ( // Mostrar solo si el usuario no está logeado
 						<React.Fragment>
 							<li>
-								<a href="">REGISTRO</a>
+								<NavLink to='/register'>REGISTRO</NavLink>
 							</li>
 							<li>
-								<a href="" onClick={loginAsAdmin}>
+								<NavLink to='/login' onClick={loginAsAdmin}>
 									LOG IN
-								</a>{' '}
+								</NavLink>{' '}
 								{/* Simular login de usuario administrador */}
 							</li>
 						</React.Fragment>
