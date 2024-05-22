@@ -1,14 +1,12 @@
-import Footer from "./components/Paula/Footer"
-import QuienesSomos from "./components/Paula/QuienesSomos"
-import RegistroUsuario from "./components/Paula/RegistroUsuario"
+import { AppRouter } from "./routes/AppRouter"
 
 
 function App() {
   return (
     <>
-      <RegistroUsuario/>
+    <AppRouter>
       
-      <Footer/>
+    </AppRouter>
     </>
   )
 }
