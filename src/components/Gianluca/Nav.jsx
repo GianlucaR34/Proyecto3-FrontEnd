@@ -4,6 +4,7 @@ import Logo from '../../assets/Gianluca/GoldenLux.png';
 // import '@fortawesome/fontawesome-free/css/all.css';
 import { NavLink } from "react-router-dom";
 
+
 export const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false); // variable de estado para determinar si esta expandido o no el toggle menu
 	const [isLoggedIn, setIsLoggedIn] = useState(false); // Variable de estado para controlar si el usuario está autenticado
@@ -11,8 +12,10 @@ export const Nav = () => {
 
 	// prueba para saber como se comporta el nav segun el usuario que este registrado
 	const loginAsAdmin = () => {
-		setIsLoggedIn(true);
-		setIsAdmin(true);
+		localStorage.getItem('isAdmin') ? setIsAdmin(true) : setIsAdmin(false)
+		localStorage.getItem('TokenJWT') ? setIsLoggedIn(true):setIsLoggedIn(false)
+		
+		console.log(isAdmin)
 	};
 
 	const toggleMenu = () => {
@@ -20,7 +23,7 @@ export const Nav = () => {
 	};
 
 	return (
-		<div className="NavContainer">
+		<div className="NavContainer mb-5">
 			<div className="NavIcon">
 				<img src={Logo} alt="Golden Lux Icon" />
 			</div>
@@ -34,34 +37,34 @@ export const Nav = () => {
 			<nav className={`Navbar ${isOpen ? 'active' : ''}`}>
 				<ol className="NavList">
 					<li>
-						<NavLink to='/'>HOME</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/'>HOME</NavLink>
 					</li>
 					<li>
-						<NavLink to='/contact'>CONTACTO</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/contact'>CONTACTO</NavLink>
 					</li>
 					<li>
-						<NavLink to='/404'>RESERVA</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/404'>RESERVA</NavLink>
 					</li>
 					<li>
-						<NavLink to='/galery'>GALERIA</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/galery'>GALERIA</NavLink>
 					</li>
 					<li>
-						<NavLink to='/about'>QUIENES SOMOS</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/about'>QUIENES SOMOS</NavLink>
 					</li>
 					{isLoggedIn &&
-						isAdmin && ( // Mostrar solo si el usuario está logeado y es administeador
+						isAdmin&&( // Mostrar solo si el usuario está logeado y es administeador
 							<li>
-								<NavLink to='/404'>ADMINISTRACION</NavLink>
+								<NavLink className='text-decoration-none text-white' to='/404'>ADMINISTRACION</NavLink>
 							</li>
 						)}
 					{!isLoggedIn && ( // Mostrar solo si el usuario no está logeado
 						<React.Fragment>
 							<li>
-								<NavLink to='/register'>REGISTRO</NavLink>
+								<NavLink className='text-decoration-none text-white' to='/register'>REGISTRO</NavLink>
 							</li>
 							<li>
-								<NavLink to='/login' onClick={loginAsAdmin}>
-									LOG IN
+								<NavLink className='text-decoration-none text-white' to='/login' onClick={loginAsAdmin}>
+									{isLoggedIn ? 'LOG OUT' : 'LOG IN'}
 								</NavLink>{' '}
 								{/* Simular login de usuario administrador */}
 							</li>

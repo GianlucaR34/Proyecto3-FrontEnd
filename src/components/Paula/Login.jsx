@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
+import '../../css/Leo/login.css'
+import hotelAPI from '../../api/hotelAPI';
+import Swal from 'sweetalert2'
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -7,49 +10,44 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/;
-
-  const validate = () => {
-    let valid = true;
-    let errors = {};
-
-    if (!email) {
-      errors.email = 'El email es requerido';
-      valid = false;
-    } else if (!emailRegex.test(email)) {
-      errors.email = 'El email no es válido';
-      valid = false;
-    }
-
-    if (!password) {
-      errors.password = 'La contraseña es requerida';
-      valid = false;
-    } else if (!passwordRegex.test(password)) {
-      errors.password = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial';
-      valid = false;
-    }
-
-    setErrors(errors);
-    return valid;
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      setIsSubmitting(true);
-      setTimeout(() => {
-        console.log('Email:', email);
-        console.log('Password:', password);
-        setIsSubmitting(false);
-      }, 2000);
-    }
+    loginBackend(email,password)
   };
 
+  const loginBackend = async(email,password)=>{
+    try {
+      setIsSubmitting(true)
+      const resp = await hotelAPI.post('/user/loginUser',{
+        mail:email,
+        password:password
+      })
+      
+      handleMessage(resp.data.msg,resp.data.type)
+      const token = resp.data.token;
+      localStorage.setItem('TokenJWT',token)
+      resp.data.isAdmin ? localStorage.setItem('isAdmin',resp.data.isAdmin) : localStorage.setItem('isAdmin',resp.data.isAdmin)
+      return location.replace('/')
+    } catch (error) {
+      setIsSubmitting(false)
+      handleMessage(error.response.data.msg,error.response.data.type)
+      setEmail('')
+      setPassword('')
+      return
+    }
+  }
+  const handleMessage = (msg,type)=>{
+    Swal.fire({
+      icon: type,
+      text: msg
+    })
+  }
+
   return (
-    <Container>
-      <Row className="justify-content-md-center">
-        <Col md={6}>
+    <Container className='w-50 d-flex p-5'>
+      <Row className="align-items-center justify-content-center w-100">
+        <Col md={6} className='m-auto'>
           <h2 className="text-center">Iniciar Sesión</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
@@ -74,7 +72,7 @@ const Login = () => {
                 placeholder="Contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                isInvalid={!!errors.password}
+                isInvalid={!errors.password}
                 disabled={isSubmitting}
               />
               <Form.Control.Feedback type="invalid">
