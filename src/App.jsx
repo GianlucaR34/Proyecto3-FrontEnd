@@ -1,10 +1,9 @@
-import { Nav } from './Nav';
+import { AppRouter } from './routes/AppRouter';
 
 function App() {
 	return (
 		<>
-			<Nav />
-			<h1>Hola</h1>
+			<	AppRouter />
 		</>
 	);
 }

@@ -1,0 +1,5 @@
+.container {
+    height: 60vh;
+    justify-content: center !important;
+    align-items: center !important;
+}

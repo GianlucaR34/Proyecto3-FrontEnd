@@ -1,0 +1,121 @@
+body {
+	margin: 0;
+}
+
+.NavContainer {
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2rem 2rem;
+	position: relative;
+}
+
+.NavIcon {
+	margin-right: 2rem;
+}
+
+.NavIcon img {
+	height: 3.5rem;
+	width: auto;
+}
+
+.Navbar {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.NavList {
+	list-style: none;
+	display: flex;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0;
+}
+
+.NavList li {
+	margin-right: 20px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+/*toggle menu*/
+.Navbar.active {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background-color: black;
+	padding-top: 20px;
+	width: 100%;
+	z-index: 1;
+	flex-direction: column;
+}
+
+.NavList li {
+	margin: 1 0;
+	padding: 1rem;
+}
+
+/*toggle menu boton*/
+.menu-icon {
+	display: none;
+}
+
+/*media query para mobile*/
+@media screen and (max-width: 768px) {
+	.menu-icon {
+		display: block;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		color: white;
+		cursor: pointer;
+		z-index: 2;
+	}
+
+	.menu-icon i {
+		font-size: 1.5rem;
+	}
+
+	.Navbar {
+		display: none;
+	}
+
+	.NavContainer {
+		flex-direction: column;
+	}
+
+	.Navbar.active {
+		display: flex;
+		position: relative;
+	}
+
+	.NavList {
+		margin: 0;
+		padding: 0;
+		flex-direction: column;
+	}
+	.NavList li {
+		margin: 0;
+		padding: 0.9rem;
+		margin-right: 12rem;
+		display: block;
+	}
+}
+/*media query para tablets*/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.NavIcon img {
+		height: 2rem;
+	}
+	.NavList li {
+		font-size: 0.8rem;
+		margin-right: 0;
+	}
+}
