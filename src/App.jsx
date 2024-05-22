@@ -1,11 +1,11 @@
-
+import AdminPanel from './components/Celeste/AdminPanel.jsx';
 
 function App() {
-  return (
-    <>
-      
-    </>
-  )
+	return (
+		<>
+			<AdminPanel />
+		</>
+	);
 }
 
-export default App
+export default App;
