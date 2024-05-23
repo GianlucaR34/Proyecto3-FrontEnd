@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import QuienesSomos from '../components/Paula/QuienesSomos';
-import { Nav } from '../components/Gianluca/Nav';
-import Footer from '../components/Paula/Footer';
-import RegistroUsuario from '../components/Paula/RegistroUsuario';
-import Login from '../components/Paula/Login';
-import Home from '../components/Celeste/Home';
-import Galeria from '../components/Gianluca/Galeria';
-import Contactos from '../components/Gianluca/Contactos';
-import ErrorPage from '../components/Leo/ErrorPage';
+import QuienesSomos from './Paula/QuienesSomos';
+import { Nav } from './Gianluca/Nav';
+import Footer from './Paula/Footer';
+import RegistroUsuario from './Paula/RegistroUsuario';
+import Login from './Paula/Login';
+import Home from './Celeste/Home';
+import Galeria from './Gianluca/Galeria';
+import Contactos from './Gianluca/Contactos';
+import ErrorPage from './Leo/ErrorPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const AppRouter = () => {

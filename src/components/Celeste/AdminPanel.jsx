@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 
 const UserTable = ({ users }) => {

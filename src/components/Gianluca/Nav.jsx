@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../css/Gianluca/Nav.css';
 import Logo from '../../assets/Gianluca/GoldenLux.png';
 // import '@fortawesome/fontawesome-free/css/all.css';
@@ -10,15 +10,37 @@ export const Nav = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false); // Variable de estado para controlar si el usuario está autenticado
 	const [isAdmin, setIsAdmin] = useState(false); // Variable de estado para controlar si el usuario es administrador
 
-	// prueba para saber como se comporta el nav segun el usuario que este registrado
-	const loginAsAdmin = () => {
-		localStorage.getItem('isAdmin') ? setIsAdmin(true) : setIsAdmin(false)
-		localStorage.getItem('TokenJWT') ? setIsLoggedIn(true):setIsLoggedIn(false)
-	};
-
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
+	const handleLogout = () => {
+		// borrar datos del localStorage
+		localStorage.removeItem('isLoggedIn');
+		localStorage.removeItem('isAdmin');
+		// Actualizar estados
+		setIsLoggedIn(false);
+		setIsAdmin(false);
+		// Redirigir al usuario a la página de inicio si todo sale bien y diosito quiere
+		window.location.href = '/';
+	};
+	const handleLogin = () => {
+		// Simular login de usuario administrador
+		setIsLoggedIn(true);
+		setIsAdmin(true);
+		// Guardar estado de autenticación en localStorage
+		localStorage.setItem('isLoggedIn', 'true');
+		localStorage.setItem('isAdmin', 'true');
+	};
+	// Comprobar el estado de autenticación al cargar la página
+	useEffect(() => {
+		const loggedIn = localStorage.getItem('isLoggedIn');
+		const admin = localStorage.getItem('isAdmin');
+		if (loggedIn && admin) {
+		setIsLoggedIn(true);
+		setIsAdmin(true);
+		}
+	}, []);	
+		
 
 	return (
 		<div className="NavContainer mb-5">
@@ -55,19 +77,24 @@ export const Nav = () => {
 								<NavLink className='text-decoration-none text-white' to='/404'>ADMINISTRACION</NavLink>
 							</li>
 						)}
-					{!isLoggedIn && ( // Mostrar solo si el usuario no está logeado
+					{isLoggedIn ? (
+						<li>
+							<a href="#" onClick={handleLogout}>
+								LOG OUT
+							</a>
+						</li>
+						) : (
 						<React.Fragment>
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/register'>REGISTRO</NavLink>
+								<a href="">REGISTRO</a>
 							</li>
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/login' onClick={loginAsAdmin}>
-									{isLoggedIn ? 'LOG OUT' : 'LOG IN'}
-								</NavLink>{' '}
-								{/* Simular login de usuario administrador */}
+								<a href="#" onClick={handleLogin}>
+									LOG IN
+								</a>
 							</li>
 						</React.Fragment>
-					)}
+						)}
 				</ol>
 			</nav>
 		</div>
