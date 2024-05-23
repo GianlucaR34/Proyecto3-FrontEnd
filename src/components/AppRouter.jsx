@@ -5,6 +5,7 @@ import Footer from './Paula/Footer';
 import RegistroUsuario from './Paula/RegistroUsuario';
 import Login from './Paula/Login';
 import Home from './Celeste/Home';
+import AdminPanel from './Celeste/AdminPanel';
 import Galeria from './Gianluca/Galeria';
 import Contactos from './Gianluca/Contactos';
 import ErrorPage from './Leo/ErrorPage';
@@ -17,6 +18,7 @@ export const AppRouter = () => {
 
 			<Routes>
 				<Route path="/404" element={<ErrorPage />} />
+				<Route path="/panel-admin" element={<AdminPanel />} />
 				<Route path="/" element={<Home />} />
 				<Route path="/about" element={<QuienesSomos />} />
 				<Route path="/register" element={<RegistroUsuario />} />

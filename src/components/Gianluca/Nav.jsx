@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../../css/Gianluca/Nav.css';
 import Logo from '../../assets/Gianluca/GoldenLux.png';
-// import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 import { NavLink } from "react-router-dom";
 
 
@@ -71,7 +71,7 @@ export const Nav = () => {
 					{isLoggedIn &&
 						isAdmin&&( // Mostrar solo si el usuario está logeado y es administeador
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/404'>ADMINISTRACION</NavLink>
+								<NavLink className='text-decoration-none text-white' to='/panel-admin'>ADMINISTRACION</NavLink>
 							</li>
 						)}
 					{isLoggedIn ? (
