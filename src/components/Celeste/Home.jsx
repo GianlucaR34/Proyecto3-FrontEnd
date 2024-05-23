@@ -1,6 +1,7 @@
 import '../../css/Celeste/home.css';
 import MyCard from './MyCard';
 import Carrusel from './Carrusel';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	return (
@@ -43,7 +44,9 @@ const Home = () => {
 							arte; relájese en el mejor spa de Buenos Aires y deléitese con
 							experiencias memorables en inspiradores jardines.
 						</p>
-						<button className="botonConozca">CONOZCA EL HOTEL</button>
+						<Link to="/404">
+							<button className="botonConozca">CONOZCA EL HOTEL</button>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -67,7 +70,10 @@ const Home = () => {
 
 			<div className="d-flex flex-column justify-content-center align-items-center  ">
 				<img src="src\assets\Celeste\img\SPAA2.png" alt="" className="fotoSpa" />
-				<button className="conozca mt-4">CONOZCA LA PROPUESTA</button>
+				<Link to="/404">
+					{' '}
+					<button className="conozca mt-4">CONOZCA LA PROPUESTA</button>
+				</Link>
 			</div>
 
 			<img

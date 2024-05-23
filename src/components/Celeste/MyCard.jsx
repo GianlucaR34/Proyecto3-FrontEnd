@@ -1,7 +1,7 @@
 // import React from 'react';
 import { Card } from 'react-bootstrap';
 import '../../css/Celeste/MyCard.css';
-
+import { Link } from 'react-router-dom';
 const MyCard = ({ imageSrc, title }) => {
 	return (
 		<Card className="my-card">
@@ -11,7 +11,9 @@ const MyCard = ({ imageSrc, title }) => {
 
 			<Card.Body className=" titulo1 ">
 				<Card.Title className="titulo text-white ">{title}</Card.Title>
-				<button className="buttonCard">Ver Más</button>
+				<Link to="/404">
+					<button className="buttonCard">Ver Más</button>
+				</Link>
 			</Card.Body>
 		</Card>
 	);
