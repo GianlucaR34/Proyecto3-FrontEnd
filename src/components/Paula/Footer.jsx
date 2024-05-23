@@ -23,7 +23,7 @@ const Footer = () => {
         </Row>
         <Row>
           <Col>
-            <p className="mt-3">&copy; {new Date().getFullYear()} Palacio Duhau</p>
+            <p className="mt-3">&copy; {new Date().getFullYear()} Golden Lux</p>
           </Col>
         </Row>
       </Container>
