@@ -1,5 +1,5 @@
 // src/components/Footer.js
-// import '../../css/Paula/Footer'
+import '../../css/Paula/Footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook,faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -7,8 +7,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white mt-5 p-4 text-center">
-      <Container>
+    <footer className="bg-dark text-white mt-5 p-4 text-center" style={{maxHeight:"9rem"}}>
+      <Container className='container-footer'>
         <Row>
           <Col md="4">
             <a href="http://facebook.com"><FontAwesomeIcon icon={faFacebook} style={{height:"3rem",marginRight:"1rem"}} /></a> 
@@ -23,7 +23,7 @@ const Footer = () => {
         </Row>
         <Row>
           <Col>
-            <p className="mt-3">&copy; {new Date().getFullYear()} Mi Sitio Web</p>
+            <p className="mt-3">&copy; {new Date().getFullYear()} Palacio Duhau</p>
           </Col>
         </Row>
       </Container>
