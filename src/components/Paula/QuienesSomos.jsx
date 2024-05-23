@@ -6,7 +6,7 @@ import gian from '../../assets/Paula/gian.jpg'
 import '../../css/Paula/quienessomos.css'
 const QuienesSomos = () => {
   return (
-    <Container>
+    <Container className='container-quien'>
       <h1 className="my-4">Acerca de nosotros</h1>
       <p>
         Somos un equipo de profesionales dedicados a la gestión de hoteles, con amplia
