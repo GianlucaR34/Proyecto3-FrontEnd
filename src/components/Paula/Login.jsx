@@ -46,7 +46,7 @@ const Login = () => {
   }
 
   return (
-    <Container className='w-50 d-flex p-5'>
+    <Container className='w-50 d-flex p-5 container-login'>
       <Row className="align-items-center justify-content-center w-100">
         <Col md={6} className='m-auto'>
           <h2 className="text-center">Iniciar Sesión</h2>
