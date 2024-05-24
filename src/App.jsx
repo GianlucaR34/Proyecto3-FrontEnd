@@ -1,11 +1,11 @@
-
+import { AppRouter } from './components/AppRouter';
 
 function App() {
-  return (
-    <>
-      
-    </>
-  )
+	return (
+		<>
+			<AppRouter />
+		</>
+	);
 }
 
-export default App
+export default App;
