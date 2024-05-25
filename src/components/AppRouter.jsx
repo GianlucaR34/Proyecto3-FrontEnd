@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import QuienesSomos from './Paula/QuienesSomos';
-import { Nav } from './Gianluca/Nav';
-import Footer from './Paula/Footer';
-import RegistroUsuario from './Paula/RegistroUsuario';
-import Login from './Paula/Login';
-import Home from './Celeste/Home';
-import AdminPanel from './Celeste/AdminPanel';
-import Galeria from './Gianluca/Galeria';
-import Contactos from './Gianluca/Contactos';
-import ErrorPage from './Leo/ErrorPage';
+import QuienesSomos from './QuienesSomos';
+import { Nav } from './Nav';
+import Footer from './Footer';
+import RegistroUsuario from './RegistroUsuario';
+import Login from './Login';
+import Home from './Home';
+import AdminPanel from './AdminPanel';
+import Galeria from './Galeria';
+import Contactos from './Contactos';
+import ErrorPage from './ErrorPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const AppRouter = () => {
