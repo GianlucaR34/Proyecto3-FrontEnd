@@ -1,15 +1,15 @@
-import '../../css/Galeria.css'
-import HotelPicBanner from '../../assets/Gianluca/imagen de prueba.jpg';
+import '../css/Galeria.css'
+import HotelPicBanner from '../assets/imagen de prueba.jpg';
 /*imagenes de cuartos*/
-import RoomPic1 from '../../assets/Gianluca/1.jpg';
-import RoomPic2 from '../../assets/Gianluca/2.jpg';
-import RoomPic3 from '../../assets/Gianluca/3.jpg';
-import RoomPic4 from '../../assets/Gianluca/4.jpg';
-import RoomPic5 from '../../assets/Gianluca/5.jpg';
-import RoomPic6 from '../../assets/Gianluca/6.jpg';
-import RoomPic7 from '../../assets/Gianluca/7.jpg';
-import RoomPic8 from '../../assets/Gianluca/8.jpg';
-import RoomPic9 from '../../assets/Gianluca/9.jpg';
+import RoomPic1 from '../assets/1.jpg';
+import RoomPic2 from '../assets/2.jpg';
+import RoomPic3 from '../assets/3.jpg';
+import RoomPic4 from '../assets/4.jpg';
+import RoomPic5 from '../assets/5.jpg';
+import RoomPic6 from '../assets/6.jpg';
+import RoomPic7 from '../assets/7.jpg';
+import RoomPic8 from '../assets/8.jpg';
+import RoomPic9 from '../assets/9.jpg';
 
 const Galeria = () => {
 	return (

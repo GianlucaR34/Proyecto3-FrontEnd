@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../../css/Nav.css';
-import Logo from '../../assets/GoldenLux.png';
+import '../css/Nav.css';
+import Logo from '../assets/GoldenLux.png';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { NavLink } from "react-router-dom";
 
@@ -54,7 +54,7 @@ export const Nav = () => {
 			<nav className={`Navbar ${isOpen ? 'active' : ''}`}>
 				<ol className="NavList">
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/'>HOME</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/'>INICIO</NavLink>
 					</li>
 					<li>
 						<NavLink className='text-decoration-none text-white' to='/contact'>CONTACTO</NavLink>
@@ -76,7 +76,7 @@ export const Nav = () => {
 						)}
 					{isLoggedIn ? (
 						<li>
-							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogout}>LOG OUT</NavLink>
+							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogout}>CERRAR SESIÓN</NavLink>
 						</li>
 						) : (
 						<React.Fragment>
@@ -84,7 +84,7 @@ export const Nav = () => {
 								<NavLink className='text-decoration-none text-white' to='/register'>REGISTRO</NavLink>
 							</li>
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/login'>LOGIN</NavLink>
+								<NavLink className='text-decoration-none text-white' to='/login'>INICIAR SESIÓN</NavLink>
 							</li>
 						</React.Fragment>
 						)}

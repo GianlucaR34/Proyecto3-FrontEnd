@@ -1,9 +1,9 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import celeste from '../../assets/cele.jpg'
-import paula from '../../assets/pau.jpg'
-import leonel from '../../assets/leo.jpg'
-import gian from '../../assets/gian.jpg'
-import '../../css/quienessomos.css'
+import celeste from '../assets/cele.jpg'
+import paula from '../assets/pau.jpg'
+import leonel from '../assets/leo.jpg'
+import gian from '../assets/gian.jpg'
+import '../css/quienessomos.css'
 const QuienesSomos = () => {
   return (
     <Container className='container-quien'>

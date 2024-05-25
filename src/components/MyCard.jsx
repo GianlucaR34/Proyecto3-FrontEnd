@@ -1,6 +1,6 @@
 // import React from 'react';
 import { Card } from 'react-bootstrap';
-import '../../css/MyCard.css';
+import '../css/MyCard.css';
 import { Link } from 'react-router-dom';
 const MyCard = ({ imageSrc, title }) => {
 	return (

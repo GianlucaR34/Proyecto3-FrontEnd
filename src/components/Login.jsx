@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
-import '../../css/login.css'
+import '../css/login.css'
 import hotelAPI from '../api/hotelAPI';
 import Swal from 'sweetalert2'
 
