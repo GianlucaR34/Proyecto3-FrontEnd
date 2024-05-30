@@ -54,10 +54,12 @@
 /*media query para mobile*/
 @media screen and (max-width: 768px) {
 	.contact-form {
-		width: 19rem;
+		margin-top: 2rem;
+		margin-left: 2rem;
+		margin-right: 2rem;
 	}
 	.contact-form button {
-		width: 21rem;
+		width: 10rem;
 	}
 	.contact-form-container {
 		height: 50rem;
