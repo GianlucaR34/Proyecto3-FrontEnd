@@ -10,14 +10,15 @@ import Galeria from './Galeria';
 import Contactos from './Contactos';
 import ErrorPage from './ErrorPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Reservas from './Reservas';
 
 export const AppRouter = () => {
 	return (
 		<BrowserRouter>
 			<Nav />
-
 			<Routes>
 				<Route path="/404" element={<ErrorPage />} />
+				<Route path="/reserves" element={<Reservas />} />
 				<Route path="/panel-admin" element={<AdminPanel />} />
 				<Route path="/" element={<Home />} />
 				<Route path="/about" element={<QuienesSomos />} />

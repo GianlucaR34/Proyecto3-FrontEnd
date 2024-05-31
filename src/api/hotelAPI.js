@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const hotelAPI = axios.create({
-    baseURL: 'https://proyecto3-backend.onrender.com'
+    baseURL: 'http://localhost:9099'
 })
 
 hotelAPI.interceptors.request.use((config) => {

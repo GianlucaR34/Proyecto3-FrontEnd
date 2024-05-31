@@ -1,7 +1,13 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
+import { APIProvider, Map, Marker, AdvancedMarker, useAdvancedMarkerRef, InfoWindow } from '@vis.gl/react-google-maps';
+import { Container } from 'react-bootstrap';
 
 const Contactos = () => {
+	const direccionExacta = { lat: -26.837042, lng: -65.210010 }; // Coordenadas de la Torre Eiffel
+	const [markerRef, marker] = useAdvancedMarkerRef();
+
+
 	const [formData, setFormData] = useState({
 		nombre: '',
 		apellido: '',
@@ -9,7 +15,6 @@ const Contactos = () => {
 		propuesta: '',
 		telefono: '',
 	});
-
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
@@ -60,7 +65,9 @@ const Contactos = () => {
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
 	};
-
+	const mapOptions = {
+		draggable: false
+	}
 	const isValidEmail = (email) => {
 		// Una simple validación de email, puedes usar una expresión regular más robusta si lo prefieres
 		return /\S+@\S+\.\S+/.test(email);
@@ -112,7 +119,7 @@ const Contactos = () => {
 						{errors.email && <span>{errors.email}</span>}
 					</div>
 					<div>
-						<label htmlFor="propuesta">Propuesta de interés:</label>
+						<label htmlFor="propuesta">Mensaje:</label>
 						<textarea
 							id="propuesta"
 							name="propuesta"
@@ -137,6 +144,20 @@ const Contactos = () => {
 					<button type="submit">CONSULTAR</button>
 				</form>
 			</div>
+			<Container className=''>
+				<APIProvider apiKey={"AIzaSyAXppTvrk8qqIHGpx8H6xqnC5T-wShozfs"}>
+					<Map
+						style={{ width: '50vw', height: '70vh' }}
+						defaultCenter={direccionExacta}
+						defaultZoom={17}
+						gestureHandling={'greedy'}
+						disableDefaultUI={false}
+						options={mapOptions}
+					/>
+					<Marker position={direccionExacta} />
+					{/* <InfoWindow anchor={marker}>Infowindow Content</InfoWindow> */}
+				</APIProvider>
+			</Container>
 		</div>
 	);
 };

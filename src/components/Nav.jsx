@@ -29,18 +29,18 @@ export const Nav = () => {
 		const loggedIn = localStorage.getItem('TokenJWT');
 		const admin = localStorage.getItem('isAdmin');
 		if (loggedIn) {
-		setIsLoggedIn(true);
-			if(admin=='true'){
+			setIsLoggedIn(true);
+			if (admin == 'true') {
 				setIsAdmin(true)
-			}else{
+			} else {
 				setIsAdmin(false)
 			}
 		}
-	}, []);	
-		
+	}, []);
+
 
 	return (
-		<div className="NavContainer mb-5">
+		<div className="NavContainer">
 			<div className="NavIcon">
 				<img src={Logo} alt="Golden Lux Icon" />
 			</div>
@@ -60,7 +60,7 @@ export const Nav = () => {
 						<NavLink className='text-decoration-none text-white' to='/contact'>CONTACTO</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/404'>RESERVA</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/reserves'>RESERVA</NavLink>
 					</li>
 					<li>
 						<NavLink className='text-decoration-none text-white' to='/galery'>GALERIA</NavLink>
@@ -69,7 +69,7 @@ export const Nav = () => {
 						<NavLink className='text-decoration-none text-white' to='/about'>QUIENES SOMOS</NavLink>
 					</li>
 					{isLoggedIn &&
-						isAdmin&&( // Mostrar solo si el usuario está logeado y es administeador
+						isAdmin && ( // Mostrar solo si el usuario está logeado y es administeador
 							<li>
 								<NavLink className='text-decoration-none text-white' to='/panel-admin'>ADMINISTRACION</NavLink>
 							</li>
@@ -78,7 +78,7 @@ export const Nav = () => {
 						<li>
 							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogout}>CERRAR SESIÓN</NavLink>
 						</li>
-						) : (
+					) : (
 						<React.Fragment>
 							<li>
 								<NavLink className='text-decoration-none text-white' to='/register'>REGISTRO</NavLink>
@@ -87,7 +87,7 @@ export const Nav = () => {
 								<NavLink className='text-decoration-none text-white' to='/login'>INICIAR SESIÓN</NavLink>
 							</li>
 						</React.Fragment>
-						)}
+					)}
 				</ol>
 			</nav>
 		</div>

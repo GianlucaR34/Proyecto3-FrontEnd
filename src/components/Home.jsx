@@ -2,7 +2,6 @@ import '../css/home.css';
 import MyCard from './MyCard';
 import Carrusel from './Carrusel';
 import { Link } from 'react-router-dom';
-import { Image } from 'react-bootstrap';
 import Palacio from '../assets/Staying at the Palacio Duhau _ Travelgal Nicole.jfif';
 import ESTADÍA from '../assets/foto1.png'
 import SPA from '../assets/foto2.png'
