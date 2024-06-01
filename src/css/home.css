@@ -1,5 +1,5 @@
 .bienvenida {
-	background-image: url('/src/assets/Celeste/img/3PORTADA.png');
+	background-image: url('/src/assets/3PORTADA.png');
 	height: 709px;
 	background-image: cover;
 }
@@ -25,6 +25,7 @@
 }
 .texto1 {
 	font-family: 'Cardo', serif;
+	margin-top: 50px;
 	width: 400px;
 }
 .botonConozca {
@@ -36,6 +37,7 @@
 }
 .parrafo {
 	font-size: 18px;
+	margin-top: 10px;
 }
 .parrafo1 {
 	font-size: 30px;
@@ -86,30 +88,3 @@
 		margin-left: 25px;
 	}
 }
-/* @media (min-width: 390px) {
-	.bienvenida {
-		background-image: url('/src/assets/Celeste/img/3PORTADA.png');
-	}
-
-	.palacio {
-		font-size: 60px;
-		font-family: Cardo, 'Cardo Fallback';
-	}
-	.palacio1 {
-		font-size: 30px;
-		font-family: Cardo, 'Cardo Fallback';
-	}
-	.descubra {
-		font-family: Cardo, 'Cardo Fallback';
-
-		font-style: italic;
-		font-size: 50px;
-		margin-top: 20px;
-		margin-bottom: 100px;
-	}
-
-	.texto1 {
-		font-family: 'Cardo', serif;
-		width: 400px;
-	}
-} */

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import '../../css/Nav.css';
-import Logo from '../../assets/GoldenLux.png';
+import '../css/Nav.css';
+import Logo from '../assets/GoldenLux.png';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { NavLink } from "react-router-dom";
-
+import { NavLink } from 'react-router-dom';
 
 export const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false); // variable de estado para determinar si esta expandido o no el toggle menu
@@ -29,15 +28,14 @@ export const Nav = () => {
 		const loggedIn = localStorage.getItem('TokenJWT');
 		const admin = localStorage.getItem('isAdmin');
 		if (loggedIn) {
-		setIsLoggedIn(true);
-			if(admin=='true'){
-				setIsAdmin(true)
-			}else{
-				setIsAdmin(false)
+			setIsLoggedIn(true);
+			if (admin == 'true') {
+				setIsAdmin(true);
+			} else {
+				setIsAdmin(false);
 			}
 		}
-	}, []);	
-		
+	}, []);
 
 	return (
 		<div className="NavContainer mb-5">
@@ -54,40 +52,65 @@ export const Nav = () => {
 			<nav className={`Navbar ${isOpen ? 'active' : ''}`}>
 				<ol className="NavList">
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/'>HOME</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/">
+							HOME
+						</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/contact'>CONTACTO</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/contact">
+							CONTACTO
+						</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/404'>RESERVA</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/404">
+							RESERVA
+						</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/galery'>GALERIA</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/galery">
+							GALERIA
+						</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/about'>QUIENES SOMOS</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/about">
+							QUIENES SOMOS
+						</NavLink>
 					</li>
 					{isLoggedIn &&
-						isAdmin&&( // Mostrar solo si el usuario está logeado y es administeador
+						isAdmin && ( // Mostrar solo si el usuario está logeado y es administeador
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/panel-admin'>ADMINISTRACION</NavLink>
+								<NavLink
+									className="text-decoration-none text-white"
+									to="/panel-admin"
+								>
+									ADMINISTRACION
+								</NavLink>
 							</li>
 						)}
 					{isLoggedIn ? (
 						<li>
-							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogout}>LOG OUT</NavLink>
+							<NavLink
+								className="text-decoration-none text-white"
+								to="/"
+								onClick={handleLogout}
+							>
+								LOG OUT
+							</NavLink>
 						</li>
-						) : (
+					) : (
 						<React.Fragment>
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/register'>REGISTRO</NavLink>
+								<NavLink className="text-decoration-none text-white" to="/register">
+									REGISTRO
+								</NavLink>
 							</li>
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/login'>LOGIN</NavLink>
+								<NavLink className="text-decoration-none text-white" to="/login">
+									LOGIN
+								</NavLink>
 							</li>
 						</React.Fragment>
-						)}
+					)}
 				</ol>
 			</nav>
 		</div>

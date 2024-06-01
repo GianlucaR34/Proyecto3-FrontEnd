@@ -1,49 +1,83 @@
-.tituloBoton {
-	margin-top: 50px;
-	font-family: 'Cardo', serif;
-	font-size: 30px;
-}
-.cardd {
+.my-card {
 	width: 25%;
-	height: 300px;
+	height: 450px;
+	position: relative;
 	overflow: hidden;
-	position: relative;
+	padding: 0px;
+	border: none;
 }
-.buttonCard {
-	color: rgb(254, 252, 252);
-	background-color: transparent;
-	border: solid 0.5px white;
-	font-family: 'Cardo', serif;
-	font-size: 18px;
-	padding: 10px 50px 10px 50px;
-	margin-top: 5px;
-}
-.titulo {
-	margin-top: 50px;
-	font-family: 'Cardo', serif;
-	font-size: 20px;
-	text-align: center;
-}
-
 .image-container {
-	overflow: hidden; /* Asegura que la imagen no sobresalga del contenedor */
-	transition: transform 0.3s ease; /* Aplica una transición suave al agrandar la imagen */
-	position: relative;
+	overflow: hidden;
+	transition: transform 0.3s ease;
+	height: 450px;
+	display: block;
 }
 
 .image-container:hover {
-	transform: scale(1.1); /* Aumenta el tamaño de la imagen al pasar el mouse */
+	transform: scale(1);
 }
 
 .card-image {
-	transition: transform 0.3s ease; /* Aplica una transición suave al agrandar la imagen */
+	transition: transform 0.2s ease-out;
+	border: none;
 }
 
 .image-container:hover .card-image {
-	transform: scale(1.1); /* Aumenta el tamaño de la imagen al pasar el mouse */
+	transform: scale(1.1);
 }
-.titulo1 {
+.bodycard {
 	position: absolute;
-	margin-left: 100px;
-	bottom: 20px;
+	margin-left: 130px;
+	bottom: 15px;
+	flex-direction: column;
+	padding: 0px;
+}
+.titulo {
+	/* margin-top: 50px; */
+	font-family: 'Cardo', serif;
+	font-size: 20px;
+	text-align: center;
+	margin-bottom: 20px !important;
+}
+
+.buttonCard {
+	color: rgb(254, 252, 252);
+	background-color: transparent;
+	border: solid 0.5px white !important;
+	font-weight: 600;
+	font-family: 'Cardo', serif !important;
+	font-size: 15px;
+	padding: 10px 50px 10px 50px;
+	/* margin-top: 10px; */
+	left: 180px;
+	cursor: pointer !important;
+	transition: background-color 0.1s;
+}
+
+.buttonCard:hover {
+	background-color: #d5be95c6;
+	box-shadow: 0px 0px 20px -18px;
+}
+.buttonCard:active {
+	transform: scale(0.95);
+}
+
+@media only screen and (max-width: 768px) {
+	.my-card {
+		width: 100%;
+		height: 400px;
+		position: relative;
+		overflow: hidden;
+		padding: 0px;
+		border: none;
+	}
+	.card-image {
+		background-size: cover;
+	}
+	.image-container {
+		height: 350px;
+	}
+	.bodycard {
+		margin-left: 100px;
+	}
 }

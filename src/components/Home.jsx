@@ -1,9 +1,19 @@
-import '../../css/home.css';
-import MyCard from './MyCard';
+import React, { useState } from 'react';
+import '../css/home.css';
 import Carrusel from './Carrusel';
 import { Link } from 'react-router-dom';
-
+import MyCard from './MyCard';
 const Home = () => {
+	const [showModal, setShowModal] = useState(false);
+
+	const handleShowModal = (type) => {
+		setShowModal(true);
+	};
+
+	const handleCloseModal = () => {
+		setShowModal(false);
+	};
+
 	return (
 		<div>
 			<div className="bienvenida text-center">
@@ -14,7 +24,7 @@ const Home = () => {
 				</div>
 			</div>
 			<img
-				src="src\assets\Celeste\img\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
+				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
 				alt=""
 				className="w-100 "
 			/>
@@ -23,7 +33,7 @@ const Home = () => {
 				<div className="d-flex justify-content-center ">
 					<div className="fotopalacio">
 						<img
-							src="src\assets\Celeste\img\Staying at the Palacio Duhau _ Travelgal Nicole.jfif"
+							src="src\assets\Staying at the Palacio Duhau _ Travelgal Nicole.jfif"
 							alt=""
 							width={400}
 						/>
@@ -33,6 +43,7 @@ const Home = () => {
 							Disfrute de un lujoso edificio histórico con elegantes suites en Buenos
 							Aires
 						</h3>
+
 						<br />
 						<p className="parrafo">
 							GoldenLux - Park Hyatt Buenos Aires es un hotel de lujo ubicado en el
@@ -44,9 +55,6 @@ const Home = () => {
 							arte; relájese en el mejor spa de Buenos Aires y deléitese con
 							experiencias memorables en inspiradores jardines.
 						</p>
-						<Link to="/404">
-							<button className="botonConozca">CONOZCA EL HOTEL</button>
-						</Link>
 					</div>
 				</div>
 			</div>
@@ -57,32 +65,47 @@ const Home = () => {
 			<br />
 
 			<div className="d-flex justify-content-around palacio3">
-				<MyCard imageSrc="src\assets\Celeste\img\foto1.png" title="ESTADÍA" />
-				<MyCard imageSrc="src\assets\Celeste\img\foto2.png" title="SPA" />
-				<MyCard imageSrc="src\assets\Celeste\img\foto3.png" title="EVENTOS " />
-				<MyCard imageSrc="src\assets\Celeste\img\foto4.png" title="GASTRONOMÍA" />
+				<MyCard
+					title="ESTADÍA"
+					imageSrc="src\assets\Estadía.jpg"
+					modalTitle="Estadías"
+					description="Nuestros paquetes de estadía son una invitación a crear nuevos recuerdos compartidos, experimentando la hospitalidad, la alta gastronomía y el arte de la atención al detalle de Park Hyatt."
+				/>
+				<MyCard
+					title="SPA"
+					imageSrc="src\assets\Spa.jpg"
+					modalTitle="AhínWellness & Spa"
+					description="Ahín significa “Ceremonia o Ritual de Bienvenida que se ofrece para honrar a un huésped”, según la lengua mapuche.
+					Para una experiencia de verdadero placer, Park Hyatt Buenos Aires le da la bienvenida a Ahín Wellness & Spa, con una combinación de tratamientos, rituales y ceremonias basados ​​en los conocimientos ancestrales de esta milenaria cultura."
+				/>
+				<MyCard
+					title="EVENTOS"
+					imageSrc="src\assets\Eventos.jpg"
+					modalTitle="Eventos"
+					description="Todas las semanas, música en vivo y experiencias gastronómicas en nuestros restaurantes. Cena con Enólogos, Five O'Clock Tea, Martes Botánicos, Viernes de Jazz y mucho más."
+				/>
+				<MyCard
+					title="GASTRONOMÍA"
+					imageSrc="src\assets\Gastronomía.jpg"
+					modalTitle="Restaurantes & Bar"
+					description="Encuentre propuestas gastronómicas deliciosas en nuestros sofisticados ambientes junto a un excelente servicio."
+				/>
 			</div>
 
 			<br />
 			<br />
 			<br />
 			<br />
-
-			<div className="d-flex flex-column justify-content-center align-items-center  ">
-				<img src="src\assets\Celeste\img\SPAA2.png" alt="" className="fotoSpa" />
-				<Link to="/404">
-					{' '}
-					<button className="conozca mt-4">CONOZCA LA PROPUESTA</button>
-				</Link>
-			</div>
 
 			<img
-				src="src\assets\Celeste\img\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
+				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
 				alt=""
 				className="w-100 "
 			/>
+
 			<div className="text-center testimonios mt-5">
-				<h2>Testimonios</h2>
+				<h2 className="mb-5">Testimonios</h2>
+
 				<Carrusel />
 			</div>
 		</div>
