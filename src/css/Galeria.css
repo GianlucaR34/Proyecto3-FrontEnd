@@ -65,13 +65,17 @@
 }
 /*media query para tablets*/
 @media screen and (min-width: 768px) and (max-width: 820px) {
+	.main-image {
+		width: 50rem;
+		height: auto;
+	}
 	.big-image {
-		width: 14rem;
-		height: 14rem;
+		width: 13rem;
+		height: 13rem;
 	}
 	.small-image {
-		width: 14rem;
-		height: 14rem;
+		width: 13rem;
+		height: 13rem;
 	}
 }
 @media screen and (min-width: 1024px) and (max-width: 1024px) {
