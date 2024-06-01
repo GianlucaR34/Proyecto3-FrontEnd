@@ -59,9 +59,6 @@ const Reservas = () => {
         isDisable = true;
       }
     })
-    // Deshabilitar el 2 de junio del año actual
-    // const currentYear = new Date().getFullYear();
-
     return isDisable
   };
 
