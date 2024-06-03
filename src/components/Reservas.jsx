@@ -11,6 +11,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from 'dayjs';
 import axios from 'axios';
 import hotelAPI from '../api/hotelAPI';
+import { parse } from 'date-fns';
 
 const Reservas = () => {
   const [initialDate, setInitialDate] = useState(new Date());
@@ -18,6 +19,11 @@ const Reservas = () => {
   const [isSearching, setIsSearching] = useState(false)
   const [datesDisabled, setDatesDisables] = useState([])
   const minDate = dayjs().startOf('day').toDate()
+  const [Nombre, setNombre] = useState('')
+  const [Apellido, setApellido] = useState('')
+  const [dni, setDni] = useState('')
+  const [memberCount, setMemberCount] = useState(0)
+
   let formattedDatesDisabled = []
   // Función para manejar el cambio de fecha
   const handleDateChange = async (date) => {
@@ -28,7 +34,6 @@ const Reservas = () => {
 
     // Verifica si la fecha es válida
     if (date instanceof Date && !isNaN(date)) {
-      // Actualiza el estado con la nueva fecha
       const selectedDate = date.toISOString();
       setInitialDate(selectedDate);
       setFinalDate(selectedDate);
@@ -53,7 +58,6 @@ const Reservas = () => {
       const dateFormatted = new Date(rawDate);
       let currentMonth = dateFormatted.getMonth()
       let currentDay = dateFormatted.getDate()
-      // console.log(currentDay)
 
       if (year === currentYear && month === currentMonth && day === currentDay) {
         isDisable = true;
@@ -62,6 +66,17 @@ const Reservas = () => {
     return isDisable
   };
 
+  //funcion para buscar habitaciones y hacer la reserva
+  const fetchRooms = async (quantityGuest) => {
+    const rooms = await hotelAPI.patch('/roomReservation/roomReserve', (res) => {
+      console.log(res)
+    })
+
+    console.log(rooms)
+  }
+  // const handleQueryRoom = async (initialDate, finalDate, firstname, surname, dni, quantityGuest) => {
+
+  // }
   //fetch de las reservas
   useEffect(() => {
     const fetchData = async () => {
@@ -93,22 +108,22 @@ const Reservas = () => {
                 </LocalizationProvider>
 
                 <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
-                  <Form.Control type="text" className='mb-3' placeholder="Juan" />
+                  <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value)} placeholder="Juan" />
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
-                  <Form.Control type="text" className='mb-3' placeholder="Perez" />
+                  <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value)} placeholder="Perez" />
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
-                  <Form.Control type="text" className='mb-3' placeholder="95955955" />
+                  <Form.Control type="text" className='mb-3' onChange={(e) => setDni(e.target.value)} placeholder="95955955" />
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
-                  <Form.Select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3+">3+</option>
+                  <Form.Select onChange={(e) => setMemberCount(parseInt(e.target.value))}>
+                    <option value="1" >1</option>
+                    <option value="2" >2</option>
+                    <option value="3+" >3+</option>
                   </Form.Select>
                 </FloatingLabel>
-                <Button className='btn-secondary border border-3 rounded border-secondary' >Buscar reservas</Button>
+                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} >Buscar reservas</Button>
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2'>
                 <Row lg={3} className='bg-transparent'>
