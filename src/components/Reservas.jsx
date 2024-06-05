@@ -1,42 +1,38 @@
 import { useState, useEffect } from 'react'
 import "react-datepicker/dist/react-datepicker.css";
+import { createRoot } from 'react-dom/client'
 import { Button, Col, Container, FloatingLabel, Form, Row, Tab, Tabs } from 'react-bootstrap';
 import '../css/Reservas.css'
-import MyCard from './MyCard';
-import test from '../assets/spa-duhau-1-1024x683.jpg'
 import ReservasCard from './ReservasCard';
 import { DatePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import dayjs from 'dayjs';
-import axios from 'axios';
 import hotelAPI from '../api/hotelAPI';
-import { parse } from 'date-fns';
 
 const Reservas = () => {
   const [initialDate, setInitialDate] = useState(new Date());
   const [finalDate, setFinalDate] = useState(new Date());
   const [isSearching, setIsSearching] = useState(false)
+  const [roomsLoaded, setRoomsLoaded] = useState(false)
   const [datesDisabled, setDatesDisables] = useState([])
-  const minDate = dayjs().startOf('day').toDate()
   const [Nombre, setNombre] = useState('')
   const [Apellido, setApellido] = useState('')
-  const [dni, setDni] = useState('')
-  const [memberCount, setMemberCount] = useState(0)
+  const [DNI, setDNI] = useState('')
+  const [memberCount, setMemberCount] = useState(1)
 
   let formattedDatesDisabled = []
   // Función para manejar el cambio de fecha
   const handleDateChange = async (date) => {
     let newInitialDate = new Date(date)
+    setInitialDate(newInitialDate)
     let newFinalDate = new Date(date)
     setFinalDate(newFinalDate)
-    setInitialDate(newInitialDate)
+
 
     // Verifica si la fecha es válida
     if (date instanceof Date && !isNaN(date)) {
       const selectedDate = date.toISOString();
       setInitialDate(selectedDate);
-      setFinalDate(selectedDate);
     }
   }
   datesDisabled.forEach(fecha => {
@@ -45,7 +41,6 @@ const Reservas = () => {
     const yearToDate = fecha.substr(0, 4)
     const fechaFormated = new Date(yearToDate, monthToDate, dayToDate)
     const correctDate = new Date(fechaFormated)
-
     formattedDatesDisabled.push(correctDate)
   })
   const shouldDisableDate = (date) => {
@@ -67,12 +62,34 @@ const Reservas = () => {
   };
 
   //funcion para buscar habitaciones y hacer la reserva
-  const fetchRooms = async (quantityGuest) => {
-    const rooms = await hotelAPI.patch('/roomReservation/roomReserve', (res) => {
-      console.log(res)
-    })
+  const fetchRooms = async () => {
+    const sectionTargets = document.getElementsByClassName('fetchDiv');
+    // Eliminar elementos anteriores
+    Array.from(sectionTargets).forEach((target) => {
+      target.innerHTML = '';
+      setRoomsLoaded(false)
+    });
 
-    console.log(rooms)
+    const rooms = (await hotelAPI.get('/roomReservation/roomList')).data
+
+    rooms.forEach((room) => {
+      const { number, type, numberOfGuestMax, price, description, bath, meals, photo } = room;
+      Array.from(sectionTargets).forEach((target) => {
+        // Crear un nuevo elemento div para cada ReservasCard
+        const reservasCardContainer = document.createElement('div');
+        // console.log(memberCount)
+        // Renderizar el componente ReservasCard en el contenedor
+        if (numberOfGuestMax == memberCount) {
+          const root = createRoot(reservasCardContainer);
+          root.render(<ReservasCard type={type} numberOfGuestMax={memberCount} price={price} photo={photo} description={description} bath={bath} meals={meals} reservationInfo={{ roomNumber: number, initialDate, finalDate, Nombre, Apellido, DNI }} />);
+        }
+
+        // Agregar el contenedor al target
+        target.appendChild(reservasCardContainer);
+      });
+    });
+    setRoomsLoaded(true)
+    setIsSearching(true)
   }
   // const handleQueryRoom = async (initialDate, finalDate, firstname, surname, dni, quantityGuest) => {
 
@@ -92,55 +109,49 @@ const Reservas = () => {
 
   //codigo
   return (
-    <Container className='mh-max container-main'>
-
-      <Tabs
-        defaultActiveKey="onlyOne"
-        id="uncontrolled-tab-example"
-        className="mb-3"
-      >
-        <Tab eventKey="onlyOne" title="Visita">
+    <Container className='h-100 py-5 '>
+      <Tabs defaultActiveKey="onlyOne" id="uncontrolled-tab-example" className="mb-3">
+        <Tab eventKey="onlyOne" title="Reserva Individual">
           <Container fluid>
             <Row>
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker onChange={handleDateChange} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" />
+                  <DatePicker onChange={handleDateChange} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} required />
                 </LocalizationProvider>
-
-                <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
-                  <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value)} placeholder="Juan" />
-                </FloatingLabel>
-                <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
-                  <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value)} placeholder="Perez" />
-                </FloatingLabel>
-                <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
-                  <Form.Control type="text" className='mb-3' onChange={(e) => setDni(e.target.value)} placeholder="95955955" />
-                </FloatingLabel>
-                <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
-                  <Form.Select onChange={(e) => setMemberCount(parseInt(e.target.value))}>
-                    <option value="1" >1</option>
-                    <option value="2" >2</option>
-                    <option value="3+" >3+</option>
-                  </Form.Select>
-                </FloatingLabel>
+                <Form.Group controlId="nombre">
+                  <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
+                    <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value)} placeholder="Juan" disabled={isSearching ? true : false} />
+                    <Form.Control.Feedback type="invalid"> Por favor ingrese su nombre. </Form.Control.Feedback>
+                  </FloatingLabel>
+                </Form.Group>
+                <Form.Group controlId="apellido">
+                  <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
+                    <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value)} placeholder="Perez" disabled={isSearching ? true : false} />
+                  </FloatingLabel>
+                </Form.Group>
+                <Form.Group controlId="dni">
+                  <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
+                    <Form.Control type="text" className='mb-3' onChange={(e) => setDNI(e.target.value)} placeholder="95955955" disabled={isSearching ? true : false} />
+                  </FloatingLabel>
+                </Form.Group>
+                <Form.Group controlId="Quantity">
+                  <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
+                    <Form.Select onChange={(e) => setMemberCount(parseInt(e.target.value))} disabled={true}>
+                      <option value="1" >1</option>
+                    </Form.Select>
+                  </FloatingLabel>
+                </Form.Group>
                 <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} >Buscar reservas</Button>
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2'>
-                <Row lg={3} className='bg-transparent'>
-                  <ReservasCard type='Viaje de negocios' imagen={test} precio={350} />
-                  <ReservasCard type='Visita a familiares' imagen={test} precio={350} />
-                  <ReservasCard type='Presentacion a examenes universitarios' imagen={test} precio={350} />
-                  <ReservasCard type='Turismo' imagen={test} precio={350} />
-                  <ReservasCard type='algo' imagen={test} precio={350} />
-                  <ReservasCard type='algo' imagen={test} precio={350} />
-                </Row>
+                <Row lg={3} className='bg-transparent fetchDiv'></Row>
               </Col>
             </Row>
           </Container>
         </Tab>
         <Tab eventKey="fewOnes" title="Temporal">
         </Tab>
-        <Tab eventKey="vip-section" title="VIP" disabled>
+        <Tab eventKey="vip-section" title="VIP" >
           SECCION VIP CON NUESTRAS MEJORES HABITACIONES
         </Tab>
       </Tabs>
