@@ -17,8 +17,8 @@ const ReservasCard = ({ type, price, description, bath, meals, photo, reservatio
         await hotelAPI.patch('/roomReservation/roomReserve/', datoReserva)
         let timerInterval;
         Swal.fire({
-            title: "Auto close alert!",
-            html: "I will close in <b></b> segundos.",
+            title: "Reserva creada correctamente!",
+            html: "Sera redirigido al inicio de la pagina en <b></b> segundos.",
             timer: waitingTime,
             didOpen: () => {
                 Swal.showLoading();
@@ -29,7 +29,7 @@ const ReservasCard = ({ type, price, description, bath, meals, photo, reservatio
             },
             willClose: () => {
                 clearInterval(timerInterval);
-                window.location.reload()
+                window.location.href('/')
             }
         })
 
