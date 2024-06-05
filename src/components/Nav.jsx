@@ -3,7 +3,8 @@ import '../css/Nav.css';
 import Logo from '../assets/GoldenLux.png';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { NavLink } from "react-router-dom";
-
+import hotelAPI from '../api/hotelAPI';
+import { isValid } from 'date-fns';
 
 export const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false); // variable de estado para determinar si esta expandido o no el toggle menu
@@ -26,17 +27,27 @@ export const Nav = () => {
 
 	// Comprobar el estado de autenticación al cargar la página
 	useEffect(() => {
-		const loggedIn = localStorage.getItem('TokenJWT');
-		const admin = localStorage.getItem('isAdmin');
-		if (loggedIn) {
-			setIsLoggedIn(true);
-			if (admin == 'true') {
-				setIsAdmin(true)
-			} else {
-				setIsAdmin(false)
+		if (isLoggedIn) {
+
+			const checkTokenValidity = async () => {
+				const isValidTokenRequest = await hotelAPI.get('/user/isValidToken')
+				const isValidToken = isValidTokenRequest.data
+				console.log(isValidToken)
+				if (!isValidToken) {
+					// console.log(isValidToken)
+
+					handleLogout()
+				}
 			}
+			checkTokenValidity();
+
+			// Comprobación periódica del token cada 5 minutos
+			const intervalId = setInterval(checkTokenValidity, 60000);
+
+			// Limpieza del temporizador cuando el componente se desmonta
+			return () => clearInterval(intervalId);
 		}
-	}, []);
+	}, [isLoggedIn]);
 
 	return (
 		<div className="NavContainer">
