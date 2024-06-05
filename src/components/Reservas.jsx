@@ -8,10 +8,11 @@ import { DatePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import hotelAPI from '../api/hotelAPI';
+import Swal from 'sweetalert2';
 
 const Reservas = () => {
-  const [initialDate, setInitialDate] = useState(new Date());
-  const [finalDate, setFinalDate] = useState(new Date());
+  const [initialDate, setInitialDate] = useState(null);
+  const [finalDate, setFinalDate] = useState(null);
   const [isSearching, setIsSearching] = useState(false)
   const [roomsLoaded, setRoomsLoaded] = useState(false)
   const [datesDisabled, setDatesDisables] = useState([])
@@ -19,7 +20,7 @@ const Reservas = () => {
   const [Apellido, setApellido] = useState('')
   const [DNI, setDNI] = useState('')
   const [memberCount, setMemberCount] = useState(1)
-
+  const [formCompletted, setFormCompletted] = useState(false)
   let formattedDatesDisabled = []
   // Función para manejar el cambio de fecha
   const handleDateChange = async (date) => {
@@ -60,9 +61,30 @@ const Reservas = () => {
     })
     return isDisable
   };
-
+  //funcion para obtener datos basicos del usuario:
+  const getUser = async () => {
+    if (!localStorage.getItem('TokenJWT')) {
+      setNombre('')
+      setApellido('')
+      setDNI('')
+      return
+    }
+    const fetchData = await hotelAPI.get('user/getUserLoggedIn')
+    const { nombre, apellido, dni } = fetchData.data
+    setNombre(nombre)
+    setApellido(apellido)
+    setDNI(dni)
+  }
   //funcion para buscar habitaciones y hacer la reserva
   const fetchRooms = async () => {
+    if (!formCompletted) {
+      Swal.fire({
+        icon: "error",
+        title: "Todos los campos son obligatorios",
+        text: "Recuerda rellenar correctamente los campos"
+      });
+      return
+    }
     const sectionTargets = document.getElementsByClassName('fetchDiv');
     // Eliminar elementos anteriores
     Array.from(sectionTargets).forEach((target) => {
@@ -94,16 +116,24 @@ const Reservas = () => {
   // const handleQueryRoom = async (initialDate, finalDate, firstname, surname, dni, quantityGuest) => {
 
   // }
-  //fetch de las reservas
+  //useEffects para las distintas cosas necesarias
+  useEffect(() => {
+    if (initialDate == null || !Nombre || !Apellido || !DNI) {
+      setFormCompletted(false);
+    } else {
+      setFormCompletted(true);
+    }
+
+  }, [initialDate, Nombre, Apellido, DNI]);
   useEffect(() => {
     const fetchData = async () => {
       const response = await hotelAPI.get('/roomReservation/disableDates')
       const responseDates = response.data
-
       // console.log(typeof responseDates)
       setDatesDisables(responseDates)
     }
     fetchData()
+    getUser()
   }, [])
 
 
@@ -120,28 +150,28 @@ const Reservas = () => {
                 </LocalizationProvider>
                 <Form.Group controlId="nombre">
                   <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value)} placeholder="Juan" disabled={isSearching ? true : false} />
+                    <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value.trim())} placeholder="Juan" disabled={isSearching ? true : false} value={Nombre} />
                     <Form.Control.Feedback type="invalid"> Por favor ingrese su nombre. </Form.Control.Feedback>
                   </FloatingLabel>
                 </Form.Group>
                 <Form.Group controlId="apellido">
                   <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value)} placeholder="Perez" disabled={isSearching ? true : false} />
+                    <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value.trim())} placeholder="Perez" disabled={isSearching ? true : false} value={Apellido} />
                   </FloatingLabel>
                 </Form.Group>
                 <Form.Group controlId="dni">
                   <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setDNI(e.target.value)} placeholder="95955955" disabled={isSearching ? true : false} />
+                    <Form.Control type="text" className='mb-3' onChange={(e) => setDNI(parseInt(e.target.value.trim()))} placeholder="95955955" disabled={isSearching ? true : false} value={DNI} />
                   </FloatingLabel>
                 </Form.Group>
                 <Form.Group controlId="Quantity">
                   <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
-                    <Form.Select onChange={(e) => setMemberCount(parseInt(e.target.value))} disabled={true}>
+                    <Form.Select onChange={(e) => setMemberCount(parseInt(e.target.value.trim()))} disabled={true}>
                       <option value="1" >1</option>
                     </Form.Select>
                   </FloatingLabel>
                 </Form.Group>
-                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} >Buscar reservas</Button>
+                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} disabled={!formCompletted}>Buscar reservas</Button>
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2'>
                 <Row lg={3} className='bg-transparent fetchDiv'></Row>

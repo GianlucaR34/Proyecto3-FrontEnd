@@ -38,7 +38,6 @@ export const Nav = () => {
 		}
 	}, []);
 
-
 	return (
 		<div className="NavContainer">
 			<div className="NavIcon">

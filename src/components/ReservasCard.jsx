@@ -4,18 +4,35 @@ import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { Button, Card, CardBody, Col, Container, Modal, Row } from 'react-bootstrap';
 import hotelAPI from '../api/hotelAPI';
+import Swal from 'sweetalert2';
 
 const ReservasCard = ({ type, price, description, bath, meals, photo, reservationInfo }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const waitingTime = 3000
 
     const makeReservation = async () => {
         const datoReserva = reservationInfo
         await hotelAPI.patch('/roomReservation/roomReserve/', datoReserva)
-        setTimeout(() => {
-            window.location.reload()
-        }, 5000);
+        let timerInterval;
+        Swal.fire({
+            title: "Auto close alert!",
+            html: "I will close in <b></b> segundos.",
+            timer: waitingTime,
+            didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                    timer.textContent = `${parseInt(Swal.getTimerLeft() / 1000)}`;
+                }, 100);
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+                window.location.reload()
+            }
+        })
+
     }
 
     return (
