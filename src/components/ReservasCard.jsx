@@ -11,7 +11,6 @@ const ReservasCard = ({ type, price, description, bath, meals, photo, reservatio
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const waitingTime = 3000
-
     const makeReservation = async () => {
         const datoReserva = reservationInfo
         await hotelAPI.patch('/roomReservation/roomReserve/', datoReserva)
@@ -29,7 +28,7 @@ const ReservasCard = ({ type, price, description, bath, meals, photo, reservatio
             },
             willClose: () => {
                 clearInterval(timerInterval);
-                window.location.href('/')
+                window.location.href = '/'
             }
         })
 

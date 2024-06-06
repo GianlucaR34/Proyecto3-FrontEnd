@@ -27,6 +27,33 @@ const Reservas = () => {
   let formattedDatesDisabled = []
   const selectRefTab1 = useRef(null);
   const selectRefTab2 = useRef(null);
+  const datePickerOnlyOne = useRef(null);
+  const datePickerForAnyone = useRef(null);
+
+  const buttonActions = () => {
+    if (finalDate) {
+      handleDateReserve(initialDate, finalDate)
+    } else {
+      handleDateReserve(initialDate, initialDate)
+    }
+    try {
+      fetchRooms()
+    } catch (error) {
+      const handleLogout = () => {
+        // borrar datos del localStorage
+        localStorage.removeItem('TokenJWT');
+        localStorage.removeItem('isAdmin');
+        // Actualizar estados
+        // setIsLoggedIn(false);
+        // setIsAdmin(false);
+        // Redirigir al usuario a la página de inicio si todo sale bien y diosito quiere
+        window.location.href = '/';
+      };
+      handleLogout
+    }
+  }
+
+
   // Función para manejar el cambio de fecha
   const handleTabChange = (selectedTab) => {
     let selectedOptionValue;
@@ -37,34 +64,30 @@ const Reservas = () => {
     }
     setMemberCount(parseInt(selectedOptionValue))
     // setIsSearching(false)
-  }
-  const handleInitialDate = async (initialDate) => {
-    if (currentTabValue == 'onlyOne') {
-      let newInitialDate = new Date(initialDate)
-      setInitialDate(newInitialDate)
-      let newFinalDate = new Date(initialDate)
-      setFinalDate(newFinalDate)
-
-
-      // Verifica si la fecha es válida
-      if (initialDate instanceof Date && !isNaN(initialDate)) {
-        const selectedDate = initialDate.toISOString();
-        setInitialDate(selectedDate);
-        setFinalDate(selectedDate)
-      }
-    }
+    console.log(datePickerOnlyOne)
+    setIsSearching(false)
+    setInitialDate(dayjs(new Date()))
+    setFinalDate(dayjs(new Date()))
+    const sectionTargets = document.getElementsByClassName('fetchDiv');
+    // Eliminar elementos anteriores
+    Array.from(sectionTargets).forEach((target) => {
+      target.innerHTML = '';
+      setRoomsLoaded(false)
+    });
   }
 
-  const handleFinalDate = async (finalDate) => {
-    if (currentTabValue == 'fewOnes') {
-      let newInitialDate = new Date(finalDate)
-      setInitialDate(newInitialDate)
+  const handleDateReserve = async (initialDate, finalDate) => {
+    let newInitialDate = new Date(initialDate)
+    setInitialDate(newInitialDate)
+    let newFinalDate = new Date(finalDate)
+    setFinalDate(newFinalDate)
 
-      // Verifica si la fecha es válida
-      if (finalDate instanceof Date && !isNaN(finalDate)) {
-        const selectedDate = finalDate.toISOString();
-        setFinalDate(selectedDate)
-      }
+
+    // Verifica si la fecha es válida
+    if (initialDate instanceof Date && !isNaN(initialDate)) {
+      const selectedDate = initialDate.toISOString();
+      setInitialDate(selectedDate);
+      setFinalDate(selectedDate)
     }
   }
 
@@ -142,7 +165,7 @@ const Reservas = () => {
         }
         if (numberOfGuestMax > memberCount && memberCount != 1) {
           const root = createRoot(reservasCardContainer);
-          root.render(<ReservasCard type={type} numberOfGuestMax={memberCount} price={price} photo={photo} description={description} bath={bath} meals={meals} reservationInfo={{ roomNumber: number, initialDate, finalDate, Nombre, Apellido, DNI }} />);
+          root.render(<ReservasCard type={type} numberOfGuestMax={memberCount} price={price} photo={photo} description={description} bath={bath} meals={meals} reservationInfo={{ roomNumber: number, initialDate, finalDate: finalDate || initialDate, Nombre, Apellido, DNI }} />);
           // Agregar el contenedor al target
           target.appendChild(reservasCardContainer);
           return
@@ -183,7 +206,7 @@ const Reservas = () => {
             <Row>
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker onChange={handleInitialDate} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                  <DatePicker ref={datePickerOnlyOne} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
                 </LocalizationProvider>
                 <Form.Group controlId="nombre">
                   <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
@@ -224,10 +247,10 @@ const Reservas = () => {
             <Row>
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker onChange={handleInitialDate} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                  <DatePicker ref={datePickerForAnyone} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
                 </LocalizationProvider>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker onChange={handleFinalDate} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a finalizar" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                  <DatePicker ref={datePickerForAnyone} onChange={(e) => setFinalDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a finalizar" disabled={isSearching ? true : false} value={dayjs(date)} required />
                 </LocalizationProvider>
                 <Form.Group controlId="nombre">
                   <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
@@ -255,7 +278,7 @@ const Reservas = () => {
                     </Form.Select>
                   </FloatingLabel>
                 </Form.Group>
-                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} disabled={!formCompletted}>Buscar reservas</Button>
+                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={buttonActions} disabled={!formCompletted}>Buscar reservas</Button>
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2'>
                 <Row lg={3} className='bg-transparent fetchDiv'></Row>
@@ -263,7 +286,7 @@ const Reservas = () => {
             </Row>
           </Container>
         </Tab>
-        <Tab eventKey="vip-section" title="VIP" >
+        <Tab eventKey="vip-section" title="VIP" disabled>
           SECCION VIP CON NUESTRAS MEJORES HABITACIONES
         </Tab>
       </Tabs>

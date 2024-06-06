@@ -18,6 +18,7 @@ export const Nav = () => {
 		// borrar datos del localStorage
 		localStorage.removeItem('TokenJWT');
 		localStorage.removeItem('isAdmin');
+		setIsLoggedIn(false)
 		// Actualizar estados
 		// setIsLoggedIn(false);
 		// setIsAdmin(false);
@@ -27,6 +28,10 @@ export const Nav = () => {
 
 	// Comprobar el estado de autenticación al cargar la página
 	useEffect(() => {
+		const isLogged = localStorage.getItem('TokenJWT')
+		if (isLogged) {
+			setIsLoggedIn(true)
+		}
 		if (isLoggedIn) {
 
 			const checkTokenValidity = async () => {
@@ -47,7 +52,7 @@ export const Nav = () => {
 			// Limpieza del temporizador cuando el componente se desmonta
 			return () => clearInterval(intervalId);
 		}
-	}, [isLoggedIn]);
+	}, []);
 
 	return (
 		<div className="NavContainer">
