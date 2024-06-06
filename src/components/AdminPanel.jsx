@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
+import '../css/admin.css';
 
 const UserTable = ({ users }) => {
 	const [showModifyModal, setShowModifyModal] = useState(false);
@@ -81,8 +82,12 @@ const UserTable = ({ users }) => {
 	};
 	return (
 		<div>
-			<Button onClick={handleAddUser}>Agregar Usuario</Button>
-			<Table striped bordered hover>
+			<button className="botonAgregarU" onClick={handleAddUser}>
+				Agregar Usuario
+			</button>
+			<br />
+			<br />
+			<Table striped bordered hover className="tabla">
 				<thead>
 					<tr>
 						<th>Nombre</th>
@@ -96,9 +101,15 @@ const UserTable = ({ users }) => {
 							<td>{user.name}</td>
 							<td>{user.email}</td>
 							<td>
-								<Button onClick={() => handleModifyUser(user)}>Modificar</Button>
-								<Button onClick={() => handleDeleteUser(user)}>Eliminar</Button>
-								<Button onClick={() => handleViewUser(user)}>Ver</Button>
+								<button className="botones" onClick={() => handleModifyUser(user)}>
+									Modificar
+								</button>
+								<button className="botones" onClick={() => handleDeleteUser(user)}>
+									Eliminar
+								</button>
+								<button className="botones" onClick={() => handleViewUser(user)}>
+									Ver
+								</button>
 							</td>
 						</tr>
 					))}
@@ -247,7 +258,7 @@ const UserTable = ({ users }) => {
 
 const RoomTable = ({ rooms }) => {
 	return (
-		<Table striped bordered hover>
+		<Table striped bordered hover className="tabla">
 			<thead>
 				<tr>
 					<th>Número</th>
@@ -267,8 +278,8 @@ const RoomTable = ({ rooms }) => {
 						<td>{room.availability}</td>
 						<td>{room.photo}</td>
 						<td>
-							<Button>Modificar</Button>
-							<Button>Eliminar</Button>
+							<button className="botones">Modificar</button>
+							<button className="botones">Eliminar</button>
 						</td>
 					</tr>
 				))}
@@ -304,10 +315,16 @@ const AdminPanel = () => {
 
 	return (
 		<div>
-			<h1 className="titulo">Administración de Hotel</h1>
-			<h2>Usuarios</h2>
+			<div className="tituloAdmin">
+				<h1 className="titulo">Administración de Hotel</h1>
+			</div>
+			<br />
+			<h2 className="text-center subtitulos">Usuarios</h2>
 			<UserTable users={users} />
-			<h2>Habitaciones</h2>
+			<br />
+			<br />
+			<h2 className="text-center subtitulos">Habitaciones</h2>
+			<br />
 			<RoomTable rooms={rooms} />
 		</div>
 	);
