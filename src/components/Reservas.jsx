@@ -291,9 +291,10 @@ const Reservas = () => {
             </Row>
           </Container>
         </Tab>
+        {/* TODO: 
         <Tab eventKey="vip-section" title="VIP" disabled>
           SECCION VIP CON NUESTRAS MEJORES HABITACIONES
-        </Tab>
+        </Tab> */}
       </Tabs>
     </Container >
   )
