@@ -43,10 +43,16 @@ const Reservas = () => {
         // borrar datos del localStorage
         localStorage.removeItem('TokenJWT');
         localStorage.removeItem('isAdmin');
+        Swal.fire({
+          title: "Sesión expirada!",
+          text: "La sesión se ha cerrado.",
+          icon: "danger"
+        });
         // Actualizar estados
         // setIsLoggedIn(false);
         // setIsAdmin(false);
         // Redirigir al usuario a la página de inicio si todo sale bien y diosito quiere
+
         window.location.href = '/';
       };
       handleLogout
@@ -64,7 +70,6 @@ const Reservas = () => {
     }
     setMemberCount(parseInt(selectedOptionValue))
     // setIsSearching(false)
-    console.log(datePickerOnlyOne)
     setIsSearching(false)
     setInitialDate(dayjs(new Date()))
     setFinalDate(dayjs(new Date()))

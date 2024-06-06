@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import { NavLink } from "react-router-dom";
 import hotelAPI from '../api/hotelAPI';
 import { isValid } from 'date-fns';
+import Swal from 'sweetalert2';
 
 export const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false); // variable de estado para determinar si esta expandido o no el toggle menu
@@ -14,8 +15,30 @@ export const Nav = () => {
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
+	const handleLogoutFromButton = () => {
+		Swal.fire({
+			title: "Estas seguro de querer cerrar sesión?",
+			text: "Tendras que volver a iniciar sesión en caso de que desees continuar",
+			icon: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			cancelButtonText: "Cancelar",
+			confirmButtonText: "Cerrar Sesión"
+		}).then((result) => {
+			if (result.isConfirmed) {
+				handleLogout()
+			}
+			return
+		});
+	}
 	const handleLogout = () => {
 		// borrar datos del localStorage
+		Swal.fire({
+			title: "Sesión expirada!",
+			text: "La sesión se ha cerrado.",
+			icon: "success"
+		});
 		localStorage.removeItem('TokenJWT');
 		localStorage.removeItem('isAdmin');
 		setIsLoggedIn(false)
@@ -33,20 +56,17 @@ export const Nav = () => {
 			setIsLoggedIn(true)
 		}
 		if (isLoggedIn) {
-
 			const checkTokenValidity = async () => {
+				console.log("haciendo el check")
 				const isValidTokenRequest = await hotelAPI.get('/user/isValidToken')
 				const isValidToken = isValidTokenRequest.data
-				console.log(isValidToken)
 				if (!isValidToken) {
-					// console.log(isValidToken)
-
 					handleLogout()
 				}
 			}
 			checkTokenValidity();
 
-			// Comprobación periódica del token cada 5 minutos
+			// Comprobación periódica del token cada minuto
 			const intervalId = setInterval(checkTokenValidity, 60000);
 
 			// Limpieza del temporizador cuando el componente se desmonta
@@ -91,7 +111,7 @@ export const Nav = () => {
 						)}
 					{isLoggedIn ? (
 						<li>
-							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogout}>CERRAR SESIÓN</NavLink>
+							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogoutFromButton}>CERRAR SESIÓN</NavLink>
 						</li>
 					) : (
 						<React.Fragment>
