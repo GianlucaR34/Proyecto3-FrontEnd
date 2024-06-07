@@ -6,10 +6,14 @@
 	height: 55rem;
 }
 
+.content-container {
+	margin: 3rem;
+	display: flex;
+	justify-content: space-between;
+}
 .contact-form {
-	margin-right: 35rem;
-	margin-left: 35rem;
-	margin-top: 5rem;
+	width: 45%;
+	margin-left: 1rem;
 }
 
 .contact-form div {
@@ -34,7 +38,7 @@
 }
 
 .contact-form button {
-	width: 49rem;
+	width: 51rem;
 	padding: 2rem;
 	background-color: #000000;
 	color: #fff;
@@ -42,6 +46,7 @@
 	border-radius: 1rem;
 	cursor: pointer;
 	font-size: 1rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .contact-form button:hover {

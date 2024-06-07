@@ -1,7 +1,9 @@
 .map-container {
-	height: 100vh; /* Establece la altura del contenedor del mapa para ocupar toda la altura de la ventana */
+	height: 85vh; /* Establece la altura del contenedor del mapa para ocupar toda la altura de la ventana */
 	width: 50%; /* Establece el ancho del contenedor del mapa al 50% de la ventana */
 	float: right; /* Hace que el contenedor del mapa flote a la derecha */
 	box-sizing: border-box; /* Incluye el borde y el padding en el ancho y la altura del elemento */
-	border-left: 1px solid #ccc; /* Añade un borde izquierdo para separar el mapa del contenido */
+	border: 4px solid #dfdfdf; /* Añade un borde izquierdo para separar el mapa del contenido */
+	border-radius: 10px;
+	box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
