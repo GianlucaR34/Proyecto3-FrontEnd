@@ -10,6 +10,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import hotelAPI from '../api/hotelAPI';
 import Swal from 'sweetalert2';
 import dayjs from 'dayjs';
+import { Style } from '@mui/icons-material';
 
 const Reservas = () => {
   const [initialDate, setInitialDate] = useState(null);
@@ -30,14 +31,9 @@ const Reservas = () => {
   const [active, setActive] = useState(0)
   let formattedDatesDisabled = []
 
-  const buttonActions = () => {
-    if (finalDate) {
-      handleDateReserve(initialDate, finalDate)
-    } else {
-      handleDateReserve(initialDate, initialDate)
-    }
-    setIsSearching(true)
-  }
+  useEffect(() => {
+    fetchRooms()
+  }, [active])
 
   // Función para manejar el cambio de fecha
   const handleTabChange = (selectedTab) => {
@@ -142,13 +138,13 @@ const Reservas = () => {
     });
     const roomsFetch = (await hotelAPI.get(`/roomReservation/roomList/?page=${active}`))
     const rooms = roomsFetch.data
+    console.log(rooms)
     rooms.forEach((room) => {
       const { number, type, numberOfGuestMax, price, description, bath, meals, photo } = room;
       Array.from(sectionTargets).forEach((target) => {
         // Crear un nuevo elemento div para cada ReservasCard
         const reservasCardContainer = document.createElement('div');
         // Renderizar el componente ReservasCard en el contenedor
-
         if (numberOfGuestMax <= memberCount && memberCount == 1) {
           const root = createRoot(reservasCardContainer);
           root.render(<ReservasCard type={type} numberOfGuestMax={memberCount} price={price} photo={photo} description={description} bath={bath} meals={meals} reservationInfo={{ roomNumber: number, initialDate, finalDate, Nombre, Apellido, DNI }} />);
@@ -165,6 +161,7 @@ const Reservas = () => {
         }
       });
     });
+    setIsSearching(true)
     setRoomsLoaded(true)
   }
   // const handleQueryRoom = async (initialDate, finalDate, firstname, surname, dni, quantityGuest) => {
@@ -192,9 +189,9 @@ const Reservas = () => {
 
   //codigo
   return (
-    <Container className='h-100 py-5 '>
-      <Tabs defaultActiveKey="onlyOne" id="uncontrolled-tab-example" className="mb-3" onSelect={handleTabChange}>
-        <Tab eventKey="onlyOne" title="Reserva Individual">
+    <Container className='containerTab my-4 rounded p-2'>
+      <Tabs defaultActiveKey="onlyOne" id="uncontrolled-tab-example" className="mb-3 " justify onSelect={handleTabChange}>
+        <Tab eventKey="onlyOne" title="Reserva Individual" >
           <Container fluid>
             <Row>
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
@@ -232,10 +229,10 @@ const Reservas = () => {
                 </Form>
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2 position-relative'>
-                <Row lg={3} className='bg-transparent fetchDiv h-50 mb-2'>
+                <Row lg={3} className='bg-transparent fetchDiv mb-2'>
 
                 </Row>
-                <Col lg={12}>
+                {isSearching && (<Col lg={12} className=''>
                   <Pagination className='d-flex justify-content-center align-items-center text-center'>
                     <Pagination.Item active onClick={handlePagination}>
                       0
@@ -247,15 +244,16 @@ const Reservas = () => {
                       2
                     </Pagination.Item>
                   </Pagination>
-                </Col>
+                </Col>)}
+
               </Col>
             </Row>
           </Container>
         </Tab>
-        <Tab eventKey="fewOnes" title="Reserva Grupal">
+        <Tab eventKey="fewOnes" title="Reserva Grupal" className='border-3'>
           <Container fluid>
-            <Row>
-              <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
+            <Row lg={12} >
+              <Col lg={2} className='text-center rounded datePicker p-2'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker ref={datePickerForAnyone} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
                 </LocalizationProvider>
@@ -288,18 +286,20 @@ const Reservas = () => {
                     </Form.Select>
                   </FloatingLabel>
                 </Form.Group>
-                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={buttonActions} disabled={!formCompletted}>Buscar reservas</Button>
+                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} disabled={!formCompletted || isSearching}>Buscar reservas</Button>
               </Col>
-              <Col lg={9} className='text-center rounded datePicker mt-2'>
+              <Col lg={9} className='text-center rounded datePicker mt-2 mx-2'>
                 <Row lg={3} className='bg-transparent fetchDiv'></Row>
-                <Pagination>
-                  <Pagination.Item onClick={handlePagination}>
-                    0
-                  </Pagination.Item>
-                  <Pagination.Item onClick={handlePagination}>
-                    1
-                  </Pagination.Item>
-                </Pagination>
+                <Row lg={12} >
+                  <Pagination className='d-flex justify-content-center'>
+                    <Pagination.Item onClick={handlePagination}>
+                      0
+                    </Pagination.Item>
+                    <Pagination.Item onClick={handlePagination}>
+                      1
+                    </Pagination.Item>
+                  </Pagination>
+                </Row>
               </Col>
             </Row>
           </Container>

@@ -6,7 +6,16 @@
     font-style: normal;
 }
 
+.activeTab:active {
+    background-color: rgba(0, 0, 0, 0.218);
+}
 
+.containerTab {
+    height: 90vh;
+    border: 0.25vh;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.218);
+}
 
 .cardo-bold {
     font-family: "Cardo", serif;
@@ -49,6 +58,11 @@
 .botonPrecio {
     background-color: rgb(95, 95, 95);
     color: white;
+}
+
+.fetchDiv {
+    background-color: white;
+    height: 75vh;
 }
 
 .cardBody {
