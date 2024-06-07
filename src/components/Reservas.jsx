@@ -32,7 +32,10 @@ const Reservas = () => {
   let formattedDatesDisabled = []
 
   useEffect(() => {
-    fetchRooms()
+    if (roomsLoaded) {
+
+      fetchRooms()
+    }
   }, [active])
 
   // Función para manejar el cambio de fecha
@@ -111,7 +114,7 @@ const Reservas = () => {
       return
     }
     try {
-      const fetchData = await hotelAPI.get('user/getUserLoggedIn')
+      const fetchData = await hotelAPI.get('user/getUserLoggedIn').catch((await Swal.fire({ title: "Debe estar logueado para realizar esa accion", type: "error" }), window.location.href = '/login'))
       const { nombre, apellido, dni } = fetchData.data
       setNombre(nombre)
       setApellido(apellido)
@@ -136,9 +139,9 @@ const Reservas = () => {
       target.innerHTML = '';
       setRoomsLoaded(false)
     });
-    const roomsFetch = (await hotelAPI.get(`/roomReservation/roomList/?page=${active}`))
+    const roomsFetch = (await hotelAPI.get(`/roomReservation/roomList/?page=${active}`).catch((await Swal.fire({ title: "Debe estar logueado para realizar esa accion", type: "error" }), window.location.href = '/login')))
     const rooms = roomsFetch.data
-    console.log(rooms)
+    // console.log(rooms)
     rooms.forEach((room) => {
       const { number, type, numberOfGuestMax, price, description, bath, meals, photo } = room;
       Array.from(sectionTargets).forEach((target) => {
@@ -212,7 +215,7 @@ const Reservas = () => {
                   </Form.Group>
                   <Form.Group controlId="dni">
                     <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
-                      <Form.Control type="text" className='mb-3' onChange={(e) => setDNI(parseInt(e.target.value.trim()))} placeholder="95955955" disabled={isSearching ? true : false} value={DNI} />
+                      <Form.Control type="number" className='mb-3' onChange={(e) => setDNI(parseInt(e.target.value.trim()))} placeholder="95955955" disabled={isSearching ? true : false} value={DNI} />
                     </FloatingLabel>
                   </Form.Group>
                   <Form.Group controlId="Quantity">
