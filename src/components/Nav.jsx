@@ -10,6 +10,22 @@ export const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false); // variable de estado para determinar si esta expandido o no el toggle menu
 	const [isLoggedIn, setIsLoggedIn] = useState(false); // Variable de estado para controlar si el usuario está autenticado
 	const [isAdmin, setIsAdmin] = useState(false); // Variable de estado para controlar si el usuario es administrador
+	const handleLogout = () => {
+		// borrar datos del localStorage
+		Swal.fire({
+			title: "Sesión expirada!",
+			text: "La sesión se ha cerrado.",
+			icon: "success"
+		});
+		localStorage.removeItem('TokenJWT');
+		localStorage.removeItem('isAdmin');
+		setIsLoggedIn(false)
+		// Actualizar estados
+		// setIsLoggedIn(false);
+		// setIsAdmin(false);
+		// Redirigir al usuario a la página de inicio si todo sale bien y diosito quiere
+		window.location.href = '/';
+	};
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
@@ -31,29 +47,12 @@ export const Nav = () => {
 			return
 		});
 	}
-	const handleLogout = () => {
-		// borrar datos del localStorage
-		Swal.fire({
-			title: "Sesión expirada!",
-			text: "La sesión se ha cerrado.",
-			icon: "success"
-		});
-		localStorage.removeItem('TokenJWT');
-		localStorage.removeItem('isAdmin');
-		setIsLoggedIn(false)
-		// Actualizar estados
-		// setIsLoggedIn(false);
-		// setIsAdmin(false);
-		// Redirigir al usuario a la página de inicio si todo sale bien y diosito quiere
-		window.location.href = '/';
-	};
 
 	// Comprobar el estado de autenticación al cargar la página
 	useEffect(() => {
 		setIsLoggedIn(localStorage.getItem('TokenJWT') ? true : false)
 		if (isLoggedIn) {
 			const checkTokenValidity = async () => {
-				console.log("loco")
 				const isValidTokenRequest = await hotelAPI.get('/user/isValidToken')
 				const isValidToken = isValidTokenRequest.data
 				if (!isValidToken) {

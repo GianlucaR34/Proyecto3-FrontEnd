@@ -115,7 +115,7 @@ const Reservas = () => {
       return
     }
     try {
-      const fetchData = await hotelAPI.get('user/getUserLoggedIn').catch(handleLogout)
+      const fetchData = await hotelAPI.get('user/getUserLoggedIn')
       const { nombre, apellido, dni } = fetchData.data
       setNombre(nombre)
       setApellido(apellido)
@@ -166,14 +166,10 @@ const Reservas = () => {
       });
     });
     setRoomsLoaded(true)
-    setIsSearching(true)
   }
   // const handleQueryRoom = async (initialDate, finalDate, firstname, surname, dni, quantityGuest) => {
   // }
   //useEffects para las distintas cosas necesarias
-  useEffect(() => {
-    console.log(active)
-  }, [isSearching, active])
 
   useEffect(() => {
     if (initialDate == null || !Nombre || !Apellido || !DNI) {
@@ -232,7 +228,7 @@ const Reservas = () => {
                       </Form.Select>
                     </FloatingLabel>
                   </Form.Group>
-                  <Button className='btn-secondary border border-3 rounded border-secondary' onClick={buttonActions} disabled={!formCompletted || !isSearching}>Buscar reservas</Button>
+                  <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} disabled={!formCompletted || isSearching}>Buscar reservas</Button>
                 </Form>
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2 position-relative'>
@@ -241,7 +237,7 @@ const Reservas = () => {
                 </Row>
                 <Col lg={12}>
                   <Pagination className='d-flex justify-content-center align-items-center text-center'>
-                    <Pagination.Item onClick={handlePagination}>
+                    <Pagination.Item active onClick={handlePagination}>
                       0
                     </Pagination.Item>
                     <Pagination.Item onClick={handlePagination}>
