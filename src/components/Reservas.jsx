@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import "react-datepicker/dist/react-datepicker.css";
 import { createRoot } from 'react-dom/client'
-import { Button, Col, Container, FloatingLabel, Form, Row, Tab, Tabs } from 'react-bootstrap';
+import { Button, Col, Container, FloatingLabel, Form, Pagination, Row, Tab, Tabs } from 'react-bootstrap';
 import '../css/Reservas.css'
 import ReservasCard from './ReservasCard';
 import { DatePicker } from '@mui/x-date-pickers';
@@ -23,12 +23,12 @@ const Reservas = () => {
   const [DNI, setDNI] = useState('')
   const [memberCount, setMemberCount] = useState(1)
   const [formCompletted, setFormCompletted] = useState(false)
-  let currentTabValue = 'onlyOne'
-  let formattedDatesDisabled = []
   const selectRefTab1 = useRef(null);
   const selectRefTab2 = useRef(null);
   const datePickerOnlyOne = useRef(null);
   const datePickerForAnyone = useRef(null);
+  const [active, setActive] = useState(0)
+  let formattedDatesDisabled = []
 
   const buttonActions = () => {
     if (finalDate) {
@@ -36,29 +36,8 @@ const Reservas = () => {
     } else {
       handleDateReserve(initialDate, initialDate)
     }
-    try {
-      fetchRooms()
-    } catch (error) {
-      const handleLogout = () => {
-        // borrar datos del localStorage
-        localStorage.removeItem('TokenJWT');
-        localStorage.removeItem('isAdmin');
-        Swal.fire({
-          title: "Sesión expirada!",
-          text: "La sesión se ha cerrado.",
-          icon: "danger"
-        });
-        // Actualizar estados
-        // setIsLoggedIn(false);
-        // setIsAdmin(false);
-        // Redirigir al usuario a la página de inicio si todo sale bien y diosito quiere
-
-        window.location.href = '/';
-      };
-      handleLogout
-    }
+    setIsSearching(true)
   }
-
 
   // Función para manejar el cambio de fecha
   const handleTabChange = (selectedTab) => {
@@ -121,6 +100,12 @@ const Reservas = () => {
     })
     return isDisable
   };
+  //funcion para manejar la paginacion
+  const handlePagination = (e) => {
+    setActive(parseInt(e.target.innerText))
+    // fetchRooms()
+  }
+
   //funcion para obtener datos basicos del usuario:
   const getUser = async () => {
     if (!localStorage.getItem('TokenJWT')) {
@@ -129,11 +114,15 @@ const Reservas = () => {
       setDNI('')
       return
     }
-    const fetchData = await hotelAPI.get('user/getUserLoggedIn')
-    const { nombre, apellido, dni } = fetchData.data
-    setNombre(nombre)
-    setApellido(apellido)
-    setDNI(dni)
+    try {
+      const fetchData = await hotelAPI.get('user/getUserLoggedIn').catch(handleLogout)
+      const { nombre, apellido, dni } = fetchData.data
+      setNombre(nombre)
+      setApellido(apellido)
+      setDNI(dni)
+    } catch (error) {
+      console.log(error)
+    }
   }
   //funcion para buscar habitaciones y hacer la reserva
   const fetchRooms = async () => {
@@ -151,9 +140,8 @@ const Reservas = () => {
       target.innerHTML = '';
       setRoomsLoaded(false)
     });
-
-    const rooms = (await hotelAPI.get('/roomReservation/roomList')).data
-
+    const roomsFetch = (await hotelAPI.get(`/roomReservation/roomList/?page=${active}`))
+    const rooms = roomsFetch.data
     rooms.forEach((room) => {
       const { number, type, numberOfGuestMax, price, description, bath, meals, photo } = room;
       Array.from(sectionTargets).forEach((target) => {
@@ -168,7 +156,7 @@ const Reservas = () => {
           target.appendChild(reservasCardContainer);
           return
         }
-        if (numberOfGuestMax > memberCount && memberCount != 1) {
+        if (numberOfGuestMax >= memberCount && memberCount != 1) {
           const root = createRoot(reservasCardContainer);
           root.render(<ReservasCard type={type} numberOfGuestMax={memberCount} price={price} photo={photo} description={description} bath={bath} meals={meals} reservationInfo={{ roomNumber: number, initialDate, finalDate: finalDate || initialDate, Nombre, Apellido, DNI }} />);
           // Agregar el contenedor al target
@@ -183,6 +171,10 @@ const Reservas = () => {
   // const handleQueryRoom = async (initialDate, finalDate, firstname, surname, dni, quantityGuest) => {
   // }
   //useEffects para las distintas cosas necesarias
+  useEffect(() => {
+    console.log(active)
+  }, [isSearching, active])
+
   useEffect(() => {
     if (initialDate == null || !Nombre || !Apellido || !DNI) {
       setFormCompletted(false);
@@ -210,39 +202,56 @@ const Reservas = () => {
           <Container fluid>
             <Row>
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker ref={datePickerOnlyOne} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
-                </LocalizationProvider>
-                <Form.Group controlId="nombre">
-                  <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value.trim())} placeholder="Juan" disabled={isSearching ? true : false} value={Nombre} />
-                    <Form.Control.Feedback type="invalid"> Por favor ingrese su nombre. </Form.Control.Feedback>
-                  </FloatingLabel>
-                </Form.Group>
-                <Form.Group controlId="apellido">
-                  <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value.trim())} placeholder="Perez" disabled={isSearching ? true : false} value={Apellido} />
-                  </FloatingLabel>
-                </Form.Group>
-                <Form.Group controlId="dni">
-                  <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setDNI(parseInt(e.target.value.trim()))} placeholder="95955955" disabled={isSearching ? true : false} value={DNI} />
-                  </FloatingLabel>
-                </Form.Group>
-                <Form.Group controlId="Quantity">
-                  <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
-                    <Form.Select ref={selectRefTab1} >
-                      <option value="1" >1</option>
-                      <option value="2" disabled>2</option>
-                      <option value="3" disabled>3</option>
-                      <option value="4" disabled>4+</option>
-                    </Form.Select>
-                  </FloatingLabel>
-                </Form.Group>
-                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} disabled={!formCompletted}>Buscar reservas</Button>
+                <Form className='h-100'>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker ref={datePickerOnlyOne} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                  </LocalizationProvider>
+                  <Form.Group controlId="nombre">
+                    <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
+                      <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value.trim())} placeholder="Juan" disabled={isSearching ? true : false} value={Nombre} />
+                      <Form.Control.Feedback type="invalid"> Por favor ingrese su nombre. </Form.Control.Feedback>
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group controlId="apellido">
+                    <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
+                      <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value.trim())} placeholder="Perez" disabled={isSearching ? true : false} value={Apellido} />
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group controlId="dni">
+                    <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
+                      <Form.Control type="text" className='mb-3' onChange={(e) => setDNI(parseInt(e.target.value.trim()))} placeholder="95955955" disabled={isSearching ? true : false} value={DNI} />
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group controlId="Quantity">
+                    <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
+                      <Form.Select ref={selectRefTab1} >
+                        <option value="1" >1</option>
+                        <option value="2" disabled>2</option>
+                        <option value="3" disabled>3</option>
+                        <option value="4" disabled>4+</option>
+                      </Form.Select>
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Button className='btn-secondary border border-3 rounded border-secondary' onClick={buttonActions} disabled={!formCompletted || !isSearching}>Buscar reservas</Button>
+                </Form>
               </Col>
-              <Col lg={9} className='text-center rounded datePicker mt-2'>
-                <Row lg={3} className='bg-transparent fetchDiv'></Row>
+              <Col lg={9} className='text-center rounded datePicker mt-2 position-relative'>
+                <Row lg={3} className='bg-transparent fetchDiv h-50 mb-2'>
+
+                </Row>
+                <Col lg={12}>
+                  <Pagination className='d-flex justify-content-center align-items-center text-center'>
+                    <Pagination.Item onClick={handlePagination}>
+                      0
+                    </Pagination.Item>
+                    <Pagination.Item onClick={handlePagination}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Item onClick={handlePagination}>
+                      2
+                    </Pagination.Item>
+                  </Pagination>
+                </Col>
               </Col>
             </Row>
           </Container>
@@ -287,6 +296,14 @@ const Reservas = () => {
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2'>
                 <Row lg={3} className='bg-transparent fetchDiv'></Row>
+                <Pagination>
+                  <Pagination.Item onClick={handlePagination}>
+                    0
+                  </Pagination.Item>
+                  <Pagination.Item onClick={handlePagination}>
+                    1
+                  </Pagination.Item>
+                </Pagination>
               </Col>
             </Row>
           </Container>

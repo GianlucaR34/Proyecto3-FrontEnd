@@ -4,7 +4,6 @@ import Logo from '../assets/GoldenLux.png';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { NavLink } from "react-router-dom";
 import hotelAPI from '../api/hotelAPI';
-import { isValid } from 'date-fns';
 import Swal from 'sweetalert2';
 
 export const Nav = () => {
@@ -51,28 +50,24 @@ export const Nav = () => {
 
 	// Comprobar el estado de autenticación al cargar la página
 	useEffect(() => {
-		const isLogged = localStorage.getItem('TokenJWT')
-		if (isLogged) {
-			setIsLoggedIn(true)
-		}
+		setIsLoggedIn(localStorage.getItem('TokenJWT') ? true : false)
 		if (isLoggedIn) {
 			const checkTokenValidity = async () => {
-				console.log("haciendo el check")
+				console.log("loco")
 				const isValidTokenRequest = await hotelAPI.get('/user/isValidToken')
 				const isValidToken = isValidTokenRequest.data
 				if (!isValidToken) {
 					handleLogout()
 				}
 			}
-			checkTokenValidity();
 
 			// Comprobación periódica del token cada minuto
-			const intervalId = setInterval(checkTokenValidity, 60000);
+			const intervalId = setInterval(checkTokenValidity, 30000);
 
 			// Limpieza del temporizador cuando el componente se desmonta
 			return () => clearInterval(intervalId);
 		}
-	}, []);
+	}, [isLoggedIn]);
 
 	return (
 		<div className="NavContainer">
