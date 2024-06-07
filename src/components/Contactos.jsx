@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal'; // Importamos el componente Modal
+import MapContainer from './MapContainer'; // Importamos el componente MapContainer
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
 
 function Contactos() {
@@ -55,7 +56,7 @@ function Contactos() {
 	};
 
 	return (
-		<div>
+		<div className="contact-page">
 			<form onSubmit={handleSubmit} className="contact-form">
 				<div>
 					<label htmlFor="nombre">Nombre:</label>
@@ -113,6 +114,9 @@ function Contactos() {
 				</div>
 				<button type="submit">Enviar</button>
 			</form>
+			<div className="map-container">
+				<MapContainer />
+			</div>
 			{/* Mostrar el modal si showModal es true */}
 			{showModal && <Modal onClose={closeModal} />}
 		</div>
