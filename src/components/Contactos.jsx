@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
 import Modal from './Modal'; // Importamos el componente Modal
+
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
 
 function Contactos() {
