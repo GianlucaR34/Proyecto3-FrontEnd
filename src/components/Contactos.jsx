@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import Modal from './Modal'; // Importamos el componente Modal
+import MapContainer from './MapContainer'; // Importamos el componente MapContainer
 
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
 
@@ -57,64 +58,69 @@ function Contactos() {
 	};
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit} className="contact-form">
-				<div>
-					<label htmlFor="nombre">Nombre:</label>
-					<input
-						id="nombre"
-						type="text"
-						name="nombre"
-						value={formData.nombre}
-						onChange={handleChange}
-						required
-					/>
+		<div className="contact-page">
+			<div className="content-container">
+				<form onSubmit={handleSubmit} className="contact-form">
+					<div>
+						<label htmlFor="nombre">Nombre:</label>
+						<input
+							id="nombre"
+							type="text"
+							name="nombre"
+							value={formData.nombre}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="apellido">Apellido:</label>
+						<input
+							id="apellido"
+							type="text"
+							name="apellido"
+							value={formData.apellido}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="email">Email:</label>
+						<input
+							id="email"
+							type="email"
+							name="email"
+							value={formData.email}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="telefono">Teléfono:</label>
+						<input
+							id="telefono"
+							type="tel"
+							name="telefono"
+							value={formData.telefono}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="message">Mensaje:</label>
+						<textarea
+							id="message"
+							name="message"
+							value={formData.message}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<button type="submit">Enviar</button>
+				</form>
+				<div className="map-container">
+					<MapContainer />
 				</div>
-				<div>
-					<label htmlFor="apellido">Apellido:</label>
-					<input
-						id="apellido"
-						type="text"
-						name="apellido"
-						value={formData.apellido}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<div>
-					<label htmlFor="email">Email:</label>
-					<input
-						id="email"
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<div>
-					<label htmlFor="telefono">Teléfono:</label>
-					<input
-						id="telefono"
-						type="tel"
-						name="telefono"
-						value={formData.telefono}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<div>
-					<label htmlFor="message">Mensaje:</label>
-					<textarea
-						id="message"
-						name="message"
-						value={formData.message}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<button type="submit">Enviar</button>
-			</form>
+			</div>
 			{/* Mostrar el modal si showModal es true */}
 			{showModal && <Modal onClose={closeModal} />}
 		</div>
