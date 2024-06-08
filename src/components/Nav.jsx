@@ -38,7 +38,7 @@ export const Nav = () => {
 	}, []);
 
 	return (
-		<div className="NavContainer mb-5">
+		<div className="NavContainer">
 			<div className="NavIcon">
 				<img src={Logo} alt="Golden Lux Icon" />
 			</div>
@@ -53,7 +53,8 @@ export const Nav = () => {
 				<ol className="NavList">
 					<li>
 						<NavLink className="text-decoration-none text-white" to="/">
-							HOME
+
+							INICIO
 						</NavLink>
 					</li>
 					<li>
@@ -94,7 +95,7 @@ export const Nav = () => {
 								to="/"
 								onClick={handleLogout}
 							>
-								LOG OUT
+								CERRAR SESIÓN
 							</NavLink>
 						</li>
 					) : (
@@ -106,7 +107,8 @@ export const Nav = () => {
 							</li>
 							<li>
 								<NavLink className="text-decoration-none text-white" to="/login">
-									LOGIN
+
+						INICIAR SESIÓN
 								</NavLink>
 							</li>
 						</React.Fragment>

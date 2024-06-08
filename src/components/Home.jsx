@@ -1,8 +1,16 @@
+
 import React, { useState } from 'react';
 import '../css/home.css';
-import Carrusel from './Carrusel';
-import { Link } from 'react-router-dom';
 import MyCard from './MyCard';
+import Carrusel from './Carrusel';
+import { Image } from 'react-bootstrap';
+import Palacio from '../assets/Staying at the Palacio Duhau _ Travelgal Nicole.jfif';
+import ESTADÍA from '../assets/foto1.png';
+import SPA from '../assets/foto2.png';
+import EVENTOS from '../assets/foto3.png';
+import GASTRONOMÍA from '../assets/foto4.png';
+import SPAA2 from '../assets/SPAA2.png';
+import SEPARADOR from '../assets/Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png';
 const Home = () => {
 	const [showModal, setShowModal] = useState(false);
 
@@ -23,20 +31,16 @@ const Home = () => {
 					<h1 className="text-light palacio">Park Hyatt Buenos Aires</h1>
 				</div>
 			</div>
-			<img
-				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
-				alt=""
-				className="w-100 "
-			/>
+
+			<img src={SEPARADOR} alt="" className="w-100" />
+
 			<div className="">
 				<h2 className="descubra  text-center">Descubra expereciencias memorables</h2>
 				<div className="d-flex justify-content-center ">
 					<div className="fotopalacio">
-						<img
-							src="src\assets\Staying at the Palacio Duhau _ Travelgal Nicole.jfif"
-							alt=""
-							width={400}
-						/>
+
+						<img src={Palacio} alt="" width={400} />
+
 					</div>
 					<div className=" texto1 ms-5">
 						<h3 className="parrafo1">
@@ -65,31 +69,12 @@ const Home = () => {
 			<br />
 
 			<div className="d-flex justify-content-around palacio3">
-				<MyCard
-					title="ESTADÍA"
-					imageSrc="src\assets\Estadía.jpg"
-					modalTitle="Estadías"
-					description="Nuestros paquetes de estadía son una invitación a crear nuevos recuerdos compartidos, experimentando la hospitalidad, la alta gastronomía y el arte de la atención al detalle de Park Hyatt."
-				/>
-				<MyCard
-					title="SPA"
-					imageSrc="src\assets\Spa.jpg"
-					modalTitle="AhínWellness & Spa"
-					description="Ahín significa “Ceremonia o Ritual de Bienvenida que se ofrece para honrar a un huésped”, según la lengua mapuche.
-					Para una experiencia de verdadero placer, Park Hyatt Buenos Aires le da la bienvenida a Ahín Wellness & Spa, con una combinación de tratamientos, rituales y ceremonias basados ​​en los conocimientos ancestrales de esta milenaria cultura."
-				/>
-				<MyCard
-					title="EVENTOS"
-					imageSrc="src\assets\Eventos.jpg"
-					modalTitle="Eventos"
-					description="Todas las semanas, música en vivo y experiencias gastronómicas en nuestros restaurantes. Cena con Enólogos, Five O'Clock Tea, Martes Botánicos, Viernes de Jazz y mucho más."
-				/>
-				<MyCard
-					title="GASTRONOMÍA"
-					imageSrc="src\assets\Gastronomía.jpg"
-					modalTitle="Restaurantes & Bar"
-					description="Encuentre propuestas gastronómicas deliciosas en nuestros sofisticados ambientes junto a un excelente servicio."
-				/>
+
+				<MyCard imageSrc={ESTADÍA} title="ESTADÍA" />
+				<MyCard imageSrc={SPA} title="SPA" />
+				<MyCard imageSrc={EVENTOS} title="EVENTOS " />
+				<MyCard imageSrc={GASTRONOMÍA} title="GASTRONOMÍA" />
+
 			</div>
 
 			<br />
@@ -97,12 +82,16 @@ const Home = () => {
 			<br />
 			<br />
 
-			<img
-				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
-				alt=""
-				className="w-100 "
-			/>
 
+			<div className="d-flex flex-column justify-content-center align-items-center  ">
+				<img src={SPAA2} alt="" className="fotoSpa" />
+				<Link to="/404">
+					{' '}
+					<button className="conozca mt-4">CONOZCA LA PROPUESTA</button>
+				</Link>
+			</div>
+
+			<img src={SEPARADOR} alt="" className="w-100 " />
 			<div className="text-center testimonios mt-5">
 				<h2 className="mb-5">Testimonios</h2>
 

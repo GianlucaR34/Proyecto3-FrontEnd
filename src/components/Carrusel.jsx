@@ -10,10 +10,12 @@ import cinco from '../assets/cinco.png';
 import cuatro from '../assets/cuatro.png';
 import cuatroymedia from '../assets/cuatroymedia.png';
 
+
 const Carrusel = () => {
 	return (
 		<Carousel fade>
 			<Carousel.Item>
+    
 				<div className="d-flex container justify-content-around">
 					<div>
 						<div className="card0">
@@ -127,6 +129,7 @@ const Carrusel = () => {
 						</div>
 					</div>
 				</div>
+
 			</Carousel.Item>
 		</Carousel>
 	);

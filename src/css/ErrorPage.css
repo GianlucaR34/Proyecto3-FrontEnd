@@ -1,74 +1,187 @@
-#oopss {
-    background: linear-gradient(-45deg, #ffffff, #000000);
-    position: fixed;
-    left: 0px;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    line-height: 1.5em;
-    z-index: 9999;
+.pagina-error {
+	position: relative;
+	height: 90vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-#oopss #error-text {
-    font-size: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Shabnam', Tahoma, sans-serif;
-    color: #000;
-    direction: rtl;
+.imagen-fondo {
+	margin-bottom: 10rem;
+	position: absolute;
+	width: 40%;
+	height: 70%;
+	background-image: url(../assets/404.png);
+	background-size: cover;
 }
 
-#oopss #error-text img {
-    margin: 85px auto 20px;
-    height: 342px;
+.contenido {
+	margin-top: 60vh;
+	z-index: 1;
+	text-align: center;
+	color: rgb(0, 0, 0);
 }
 
-#oopss #error-text span {
-    position: relative;
-    font-size: 3.3em;
-    font-weight: 900;
-    margin-bottom: 50px;
+.contenido h1 {
+	font-size: 1.5rem;
+	margin-bottom: 30px;
+	margin-top: 80px;
 }
 
-#oopss #error-text p.p-a {
-    font-size: 19px;
-    margin: 30px 0 15px 0;
+.contenido button {
+	padding: 10px 20px;
+	font-size: 1rem;
+	background-color: #000000;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
-#oopss #error-text p.p-b {
-    font-size: 15px;
+.contenido button:hover {
+	background-color: #0056b3;
+}
+/*media querys*/
+
+@media only screen and (max-width: 344px) {
+	.pagina-error {
+		margin: 0rem;
+	}
+	.imagen-fondo {
+		width: 100%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+		margin-left: 0.5rem;
+	}
 }
 
-#oopss #error-text .back {
-    background: #fff;
-    color: #000;
-    font-size: 30px;
-    text-decoration: none;
-    margin: 2em auto 0;
-    padding: .7em 2em;
-    border-radius: 500px;
-    box-shadow: 0 20px 70px 4px rgba(0, 0, 0, 0.1), inset 7px 33px 0 0px #91907c;
-    font-weight: 900;
-    transition: all 300ms ease;
+@media only screen and (min-width: 360px) and (max-width: 360px) {
+	.pagina-error {
+		margin-right: 1rem;
+		margin-left: 2rem;
+	}
+	.imagen-fondo {
+		width: 100%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
 }
 
-#oopss #error-text .back:hover {
-    -webkit-transform: translateY(-13px);
-    transform: translateY(-13px);
-    box-shadow: 0 35px 90px 4px rgba(0, 0, 0, 0.3), inset 0px 0 0 3px #91907c;
+@media only screen and (min-width: 375px) and (max-width: 380px) {
+	.pagina-error {
+		margin-right: 2rem;
+		margin-left: 2rem;
+	}
+	.imagen-fondo {
+		width: 100%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
 }
-
-@font-face {
-    font-family: Shabnam;
-    src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.eot");
-    src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.eot?#iefix") format("embedded-opentype"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.woff") format("woff"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.woff2") format("woff2"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.ttf") format("truetype");
-    font-weight: bold;
+@media screen and (max-width: 768px) {
+	.imagen-fondo {
+		width: 60%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
 }
-
-@font-face {
-    font-family: Shabnam;
-    src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.eot");
-    src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.eot?#iefix") format("embedded-opentype"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.woff") format("woff"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.woff2") format("woff2"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.ttf") format("truetype");
-    font-weight: normal;
+@media only screen and (min-width: 390px) and (max-width: 430px) {
+	.pagina-error {
+		margin: 1rem;
+	}
+	.imagen-fondo {
+		width: 100%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
+}
+@media screen and (max-width: 430px) {
+	.imagen-fondo {
+		width: 100%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
+}
+@media screen and (min-width: 540px) and (max-width: 540px) {
+	.imagen-fondo {
+		width: 60%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
+}
+@media screen and (min-width: 820px) and (max-width: 820px) {
+	.imagen-fondo {
+		width: 70%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
+}
+@media screen and (min-width: 1024px) and (max-width: 1024px) {
+	.imagen-fondo {
+		width: 60%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
+}
+@media only screen and (min-width: 853px) and (max-width: 912px) {
+	.pagina-error {
+		margin: 1rem;
+	}
+	.imagen-fondo {
+		width: 70%;
+		height: 40%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
+}
+@media screen and (min-width: 1024px) and (max-width: 1280px) and (max-height: 800px) {
+	.imagen-fondo {
+		width: 40%;
+		height: 60%;
+	}
+	.contenido h1 {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+		margin-top: 0rem;
+	}
 }

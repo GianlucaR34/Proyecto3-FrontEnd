@@ -1,144 +1,128 @@
-import { useState } from 'react';
+import { useForm, ValidationError, useState } from 'react';
+import Modal from './Modal'; // Importamos el componente Modal
+import MapContainer from './MapContainer'; // Importamos el componente MapContainer
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
 
-const Contactos = () => {
+function Contactos() {
+	const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
 	const [formData, setFormData] = useState({
 		nombre: '',
 		apellido: '',
 		email: '',
-		propuesta: '',
 		telefono: '',
+		message: '',
 	});
 
-	const [errors, setErrors] = useState({});
-
 	const handleChange = (e) => {
-		const { name, value } = e.target;
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			const response = await fetch('https://formspree.io/f/xzbnqlwq', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formData),
+			});
+
+			if (response.ok) {
+				console.log('Formulario enviado exitosamente');
+				setShowModal(true); // Mostrar el modal en caso de que el envío sea exitoso
+				resetForm(); // Limpiar los campos del formulario después de enviarlo
+			}
+		} catch (error) {
+			console.error('Error al enviar el formulario:', error);
+		}
+	};
+
+	const resetForm = () => {
 		setFormData({
-			...formData,
-			[name]: value,
+			nombre: '',
+			apellido: '',
+			email: '',
+			telefono: '',
+			message: '',
 		});
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (formIsValid()) {
-			// Aquí puedes manejar el envío del formulario
-			console.log(formData);
-			setFormData({
-				nombre: '',
-				apellido: '',
-				email: '',
-				propuesta: '',
-				telefono: '',
-			});
-			setErrors({});
-		}
-	};
-
-	const formIsValid = () => {
-		const newErrors = {};
-		if (!formData.nombre.trim()) {
-			newErrors.nombre = 'El nombre es requerido';
-		}
-		if (!formData.apellido.trim()) {
-			newErrors.apellido = 'El apellido es requerido';
-		}
-		if (!formData.email.trim()) {
-			newErrors.email = 'El email es requerido';
-		} else if (!isValidEmail(formData.email)) {
-			newErrors.email = 'Por favor, introduce un email válido';
-		}
-		if (!formData.propuesta.trim()) {
-			newErrors.propuesta = 'La propuesta es requerida';
-		}
-		if (!formData.telefono.trim()) {
-			newErrors.telefono = 'El teléfono es requerido';
-		} else if (!isValidPhoneNumber(formData.telefono)) {
-			newErrors.telefono = 'Por favor, introduce un número de teléfono válido';
-		}
-		setErrors(newErrors);
-		return Object.keys(newErrors).length === 0;
-	};
-
-	const isValidEmail = (email) => {
-		// Una simple validación de email, puedes usar una expresión regular más robusta si lo prefieres
-		return /\S+@\S+\.\S+/.test(email);
-	};
-
-	const isValidPhoneNumber = (phone) => {
-		// Una simple validación de número de teléfono, puedes ajustarla según tus necesidades
-		return /^\d{10}$/.test(phone);
+	const closeModal = () => {
+		console.log('Cerrando el modal');
+		setShowModal(false); // Función para cerrar el modal
+		resetForm(); // Limpiar los campos del formulario al cerrar el modal
 	};
 
 	return (
-		<div className="contact-form-container">
-			<div className="contact-form-wrapper">
+		<div className="contact-page">
+			<div className="content-container">
 				<form onSubmit={handleSubmit} className="contact-form">
 					<div>
 						<label htmlFor="nombre">Nombre:</label>
 						<input
-							type="text"
 							id="nombre"
+							type="text"
 							name="nombre"
 							value={formData.nombre}
 							onChange={handleChange}
 							required
 						/>
-						{errors.nombre && <span>{errors.nombre}</span>}
 					</div>
 					<div>
 						<label htmlFor="apellido">Apellido:</label>
 						<input
-							type="text"
 							id="apellido"
+							type="text"
 							name="apellido"
 							value={formData.apellido}
 							onChange={handleChange}
 							required
 						/>
-						{errors.apellido && <span>{errors.apellido}</span>}
 					</div>
 					<div>
 						<label htmlFor="email">Email:</label>
 						<input
-							type="email"
 							id="email"
+							type="email"
 							name="email"
 							value={formData.email}
 							onChange={handleChange}
 							required
 						/>
-						{errors.email && <span>{errors.email}</span>}
 					</div>
 					<div>
-						<label htmlFor="propuesta">Propuesta de interés:</label>
-						<textarea
-							id="propuesta"
-							name="propuesta"
-							value={formData.propuesta}
-							onChange={handleChange}
-							required
-						/>
-						{errors.propuesta && <span>{errors.propuesta}</span>}
-					</div>
-					<div>
-						<label htmlFor="telefono">Teléfono celular:</label>
+						<label htmlFor="telefono">Teléfono:</label>
 						<input
-							type="tel"
 							id="telefono"
+							type="tel"
 							name="telefono"
 							value={formData.telefono}
 							onChange={handleChange}
 							required
 						/>
-						{errors.telefono && <span>{errors.telefono}</span>}
 					</div>
-					<button type="submit">CONSULTAR</button>
+					<div>
+						<label htmlFor="message">Mensaje:</label>
+						<textarea
+							id="message"
+							name="message"
+							value={formData.message}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<button type="submit">Enviar</button>
 				</form>
+				<div className="map-container">
+					<MapContainer />
+				</div>
 			</div>
+			{/* Mostrar el modal si showModal es true */}
+			{showModal && <Modal onClose={closeModal} />}
 		</div>
 	);
-};
+}
 
 export default Contactos;

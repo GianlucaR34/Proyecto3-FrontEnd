@@ -1,24 +1,19 @@
-// import React from 'react'
-import '../css/ErrorPage.css';
-import { NavLink } from 'react-router-dom';
 
-const ErrorPage = () => {
+import React from 'react';
+import '../css/ErrorPage.css';
+
+const PaginaError = () => {
 	return (
-		<div id="oopss">
-			<div id="error-text">
-				<img
-					src="https://cdn.rawgit.com/ahmedhosna95/upload/1731955f/sad404.svg"
-					alt="404"
-				/>
-				<span>404 PAGE</span>
-				<p className="p-a">. No se encontro la pagina que buscas</p>
-				<p className="p-b">... Por favor vuelve a la pagina principal</p>
-				<NavLink to="/" className="back">
-					Volver a la pagina principal
-				</NavLink>
+		<div className="pagina-error">
+			<div className="imagen-fondo"></div>
+			<div className="contenido">
+				<h1>No pudimos encontrar la página que buscabas</h1>
+				<button onClick={() => (window.location.href = '/')}>
+					Regresar a la página principal
+				</button>
 			</div>
 		</div>
 	);
 };
 
-export default ErrorPage;
+export default PaginaError;
