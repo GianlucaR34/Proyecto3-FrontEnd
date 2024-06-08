@@ -23,20 +23,23 @@ const Home = () => {
 					<h1 className="text-light palacio">Park Hyatt Buenos Aires</h1>
 				</div>
 			</div>
+
 			<img
 				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
 				alt=""
 				className="w-100 "
 			/>
+
 			<div className="">
 				<h2 className="descubra  text-center">Descubra expereciencias memorables</h2>
 				<div className="d-flex justify-content-center ">
-					<div className="fotopalacio">
+
 						<img
 							src="src\assets\Staying at the Palacio Duhau _ Travelgal Nicole.jfif"
 							alt=""
 							width={400}
 						/>
+
 					</div>
 					<div className=" texto1 ms-5">
 						<h3 className="parrafo1">
@@ -65,6 +68,7 @@ const Home = () => {
 			<br />
 
 			<div className="d-flex justify-content-around palacio3">
+
 				<MyCard
 					title="ESTADÍA"
 					imageSrc="src\assets\Estadía.jpg"
@@ -90,6 +94,7 @@ const Home = () => {
 					modalTitle="Restaurantes & Bar"
 					description="Encuentre propuestas gastronómicas deliciosas en nuestros sofisticados ambientes junto a un excelente servicio."
 				/>
+
 			</div>
 
 			<br />
@@ -97,11 +102,13 @@ const Home = () => {
 			<br />
 			<br />
 
+
 			<img
 				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
 				alt=""
 				className="w-100 "
 			/>
+
 
 			<div className="text-center testimonios mt-5">
 				<h2 className="mb-5">Testimonios</h2>
