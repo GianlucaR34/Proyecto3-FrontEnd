@@ -114,7 +114,7 @@ const Reservas = () => {
       return
     }
     try {
-      const fetchData = await hotelAPI.get('user/getUserLoggedIn').catch(Swal.fire({ title: "Debe estar logueado para realizar esa accion", type: "error" }))
+      const fetchData = await hotelAPI.get('user/getUserLoggedIn').catch(Swal.fire({ title: "Debe estar logueado para realizar esa accion" }))
       const { nombre, apellido, dni } = fetchData.data
       setNombre(nombre)
       setApellido(apellido)
