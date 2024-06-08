@@ -114,7 +114,15 @@ const Reservas = () => {
       return
     }
     try {
-      const fetchData = await hotelAPI.get('user/getUserLoggedIn').catch(Swal.fire({ title: "usted debe estar logueado para realizar esta accion" }), window.location.href = '/')
+      const fetchData = await hotelAPI.get('user/getUserLoggedIn').catch((error) => {
+        if (error) {
+          Swal.fire({
+            title: "Necesitas estar logueado para realizar esa acción",
+            type: "error"
+          })
+          window.location.href = '/'
+        }
+      })
       const { nombre, apellido, dni } = fetchData.data
       setNombre(nombre)
       setApellido(apellido)
@@ -139,7 +147,12 @@ const Reservas = () => {
       target.innerHTML = '';
       setRoomsLoaded(false)
     });
-    const roomsFetch = (await hotelAPI.get(`/roomReservation/roomList/?page=${active}`).catch((await Swal.fire({ title: "Debe estar logueado para realizar esa accion", type: "error" }), window.location.href = '/')))
+    const roomsFetch = (await hotelAPI.get(`/roomReservation/roomList/?page=${active}`).catch((error) => {
+      if (error) {
+        Swal.fire({ title: "Debe estar logueado para realizar esa accion", type: "error" })
+        window.location.href = '/'
+      }
+    }))
     const rooms = roomsFetch.data
     // console.log(rooms)
     rooms.forEach((room) => {
