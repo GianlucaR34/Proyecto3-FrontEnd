@@ -7,7 +7,9 @@
 }
 
 .contact-form {
-	width: 50rem;
+	margin-right: 35rem;
+	margin-left: 35rem;
+	margin-top: 5rem;
 }
 
 .contact-form div {
@@ -32,7 +34,7 @@
 }
 
 .contact-form button {
-	width: 52rem;
+	width: 49rem;
 	padding: 2rem;
 	background-color: #000000;
 	color: #fff;
@@ -52,10 +54,12 @@
 /*media query para mobile*/
 @media screen and (max-width: 768px) {
 	.contact-form {
-		width: 19rem;
+		margin-top: 2rem;
+		margin-left: 2rem;
+		margin-right: 2rem;
 	}
 	.contact-form button {
-		width: 21rem;
+		width: 100%;
 	}
 	.contact-form-container {
 		height: 50rem;

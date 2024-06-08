@@ -83,24 +83,37 @@ export const Nav = () => {
 			<nav className={`Navbar ${isOpen ? 'active' : ''}`}>
 				<ol className="NavList">
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/'>INICIO</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/">
+							INICIO
+						</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/contact'>CONTACTO</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/contact">
+							CONTACTO
+						</NavLink>
 					</li>
 					<li>
 						<NavLink className='text-decoration-none text-white' to='/reserves'>RESERVA</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/galery'>GALERIA</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/galery">
+							GALERIA
+						</NavLink>
 					</li>
 					<li>
-						<NavLink className='text-decoration-none text-white' to='/about'>QUIENES SOMOS</NavLink>
+						<NavLink className="text-decoration-none text-white" to="/about">
+							QUIENES SOMOS
+						</NavLink>
 					</li>
 					{isLoggedIn &&
 						isAdmin && ( // Mostrar solo si el usuario está logeado y es administeador
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/panel-admin'>ADMINISTRACION</NavLink>
+								<NavLink
+									className="text-decoration-none text-white"
+									to="/panel-admin"
+								>
+									ADMINISTRACION
+								</NavLink>
 							</li>
 						)}
 					{isLoggedIn ? (
@@ -110,10 +123,14 @@ export const Nav = () => {
 					) : (
 						<React.Fragment>
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/register'>REGISTRO</NavLink>
+								<NavLink className="text-decoration-none text-white" to="/register">
+									REGISTRO
+								</NavLink>
 							</li>
 							<li>
-								<NavLink className='text-decoration-none text-white' to='/login'>INICIAR SESIÓN</NavLink>
+								<NavLink className="text-decoration-none text-white" to="/login">
+									INICIAR SESIÓN
+								</NavLink>
 							</li>
 						</React.Fragment>
 					)}
