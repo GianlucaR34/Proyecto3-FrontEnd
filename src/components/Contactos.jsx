@@ -1,8 +1,6 @@
-
-import React, { useState } from 'react';
+import { useForm, ValidationError, useState } from 'react';
 import Modal from './Modal'; // Importamos el componente Modal
 import MapContainer from './MapContainer'; // Importamos el componente MapContainer
-
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
 
 function Contactos() {
