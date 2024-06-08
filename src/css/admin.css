@@ -1,0 +1,43 @@
+body {
+	font-family: Cardo, 'Cardo Fallback';
+}
+.titulo {
+	font-family: Cardo, 'Cardo Fallback';
+	padding-top: 150px;
+	font-size: 50px;
+	color: rgb(255, 255, 255);
+	margin-top: 0px;
+}
+.tituloAdmin {
+	background-image: url('../assets/admin4.png');
+	height: 400px;
+}
+
+.botonAgregarU {
+	font-size: 16px;
+	padding: 15px 10px 15px 10px;
+	border: solid 1px rgba(184, 157, 126, 0.785);
+	width: 200px;
+	background-color: rgba(184, 157, 126, 0.785);
+	color: rgba(0, 0, 0, 0.785);
+	font-family: Cardo, 'Cardo Fallback';
+	border-radius: 10px;
+	margin-left: 10px;
+}
+.botones {
+	font-size: 16px;
+	padding: 5px 0px 5px 0px;
+	border: solid 1px rgba(184, 157, 126, 0.785);
+	width: 100px;
+	background-color: rgba(184, 157, 126, 0.785);
+	color: rgba(0, 0, 0, 0.785);
+	font-family: Cardo, 'Cardo Fallback';
+	border-radius: 10px;
+	margin-left: 10px;
+}
+.subtitulos {
+	font-family: Cardo, 'Cardo Fallback';
+}
+.tabla {
+	font-family: Cardo, 'Cardo Fallback';
+}

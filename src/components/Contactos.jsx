@@ -1,48 +1,130 @@
-import React from 'react';
-import { useForm, ValidationError } from '@formspree/react';
+import { useForm, ValidationError, useState } from 'react';
+import Modal from './Modal'; // Importamos el componente Modal
+import MapContainer from './MapContainer'; // Importamos el componente MapContainer
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
 import { APIProvider, Map, Marker, AdvancedMarker, useAdvancedMarkerRef, InfoWindow } from '@vis.gl/react-google-maps';
 import { Container } from 'react-bootstrap';
 
-function ContactForm() {
-	const [state, handleSubmit] = useForm('xzbnqlwq');
-	if (state.succeeded) {
-		return <p>¡Gracias por contactarnos!</p>;
-	}
+function Contactos() {
+	const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
+	const [formData, setFormData] = useState({
+		nombre: '',
+		apellido: '',
+		email: '',
+		telefono: '',
+		message: '',
+	});
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			const response = await fetch('https://formspree.io/f/xzbnqlwq', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formData),
+			});
+
+			if (response.ok) {
+				console.log('Formulario enviado exitosamente');
+				setShowModal(true); // Mostrar el modal en caso de que el envío sea exitoso
+				resetForm(); // Limpiar los campos del formulario después de enviarlo
+			}
+		} catch (error) {
+			console.error('Error al enviar el formulario:', error);
+		}
+	};
+
+	const resetForm = () => {
+		setFormData({
+			nombre: '',
+			apellido: '',
+			email: '',
+			telefono: '',
+			message: '',
+		});
+	};
+
+	const closeModal = () => {
+		console.log('Cerrando el modal');
+		setShowModal(false); // Función para cerrar el modal
+		resetForm(); // Limpiar los campos del formulario al cerrar el modal
+	};
+
 	return (
-		<form
-			action="https://formspree.io/f/xzbnqlwq"
-			method="POST"
-			className="contact-form"
-		>
-			<div>
-				<label htmlFor="nombre">Nombre:</label>
-				<input id="nombre" type="text" name="nombre" required />
+		<div className="contact-page">
+			<div className="content-container">
+				<form onSubmit={handleSubmit} className="contact-form">
+					<div>
+						<label htmlFor="nombre">Nombre:</label>
+						<input
+							id="nombre"
+							type="text"
+							name="nombre"
+							value={formData.nombre}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="apellido">Apellido:</label>
+						<input
+							id="apellido"
+							type="text"
+							name="apellido"
+							value={formData.apellido}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="email">Email:</label>
+						<input
+							id="email"
+							type="email"
+							name="email"
+							value={formData.email}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="telefono">Teléfono:</label>
+						<input
+							id="telefono"
+							type="tel"
+							name="telefono"
+							value={formData.telefono}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div>
+						<label htmlFor="message">Mensaje:</label>
+						<textarea
+							id="message"
+							name="message"
+							value={formData.message}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<button type="submit">Enviar</button>
+				</form>
+				<div className="map-container">
+					<MapContainer />
+				</div>
 			</div>
-			<div>
-				<label htmlFor="apellido">Apellido:</label>
-				<input id="apellido" type="text" name="apellido" required />
-			</div>
-			<div>
-				<label htmlFor="email">Email:</label>
-				<input id="email" type="email" name="email" required />
-				<ValidationError prefix="Email" field="email" errors={state.errors} />
-			</div>
-			<div>
-				<label htmlFor="telefono">Teléfono:</label>
-				<input id="telefono" type="tel" name="telefono" required />
-				<ValidationError prefix="Teléfono" field="telefono" errors={state.errors} />
-			</div>
-			<div>
-				<label htmlFor="message">Mensaje:</label>
-				<textarea id="message" name="message" required />
-				<ValidationError prefix="Message" field="message" errors={state.errors} />
-			</div>
-			<button type="submit" disabled={state.submitting}>
-				Enviar
-			</button>
-		</form>
+			{/* Mostrar el modal si showModal es true */}
+			{showModal && <Modal onClose={closeModal} />}
+		</div>
 	);
 }
 
-export default ContactForm;
+export default Contactos;
