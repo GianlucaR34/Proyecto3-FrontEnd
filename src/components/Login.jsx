@@ -10,7 +10,6 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     loginBackend(email,password)
@@ -42,13 +41,13 @@ const Login = () => {
     Swal.fire({
       icon: type,
       text: msg
-    })
-  }
+    });
+  };
 
   return (
-    <Container className='w-50 d-flex p-5 container-login'>
+    <Container className='d-flex p-5 container-login' style={{ minHeight: '100vh' }}>
       <Row className="align-items-center justify-content-center w-100">
-        <Col md={6} className='m-auto'>
+        <Col xs={12} md={8} lg={6} className='m-auto'>
           <h2 className="text-center">Iniciar Sesión</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">

@@ -1,8 +1,8 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import celeste from '../assets/cele.jpg'
-import paula from '../assets/pau.jpg'
+import paula from '../assets/pauuu.jpg'
 import leonel from '../assets/leonardo.jpg'
-import gian from '../assets/gian.jpg'
+import gian from '../assets/giannueva.jpg'
 import '../css/quienessomos.css'
 const QuienesSomos = () => {
   return (
