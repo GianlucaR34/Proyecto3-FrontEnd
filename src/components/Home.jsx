@@ -23,13 +23,9 @@ const Home = () => {
 					<h1 className="text-light palacio">Park Hyatt Buenos Aires</h1>
 				</div>
 			</div>
-			<img
-				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
-				alt=""
-				className="w-100 "
-			/>
-			<div className="">
-				<h2 className="descubra  text-center">Descubra expereciencias memorables</h2>
+
+			<div className="seccionUno">
+				<h2 className="descubra text-center">Descubra expereciencias memorables</h2>
 				<div className="d-flex justify-content-center ">
 					<div className="fotopalacio">
 						<img
@@ -58,11 +54,6 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
 
 			<div className="d-flex justify-content-around palacio3">
 				<MyCard
@@ -92,19 +83,16 @@ const Home = () => {
 				/>
 			</div>
 
-			<br />
-			<br />
-			<br />
-			<br />
+			<div className="text-center testimonios ">
+				<h2 className="fs-1 clientes mb-3 ">Lo que dicen nuestros clientes</h2>
 
-			<img
-				src="src\assets\Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png"
-				alt=""
-				className="w-100 "
-			/>
-
-			<div className="text-center testimonios mt-5">
-				<h2 className="mb-5">Testimonios</h2>
+				<div className="text-center ">
+					<p className="mb-5 valoramos">
+						Valoramos enormemente las relaciones sólidas y hemos visto los beneficios
+						que nos aportan. La retroalimentacion de los clientes es vital para
+						ayudarnos a hacerlo bien.
+					</p>
+				</div>
 
 				<Carrusel />
 			</div>
