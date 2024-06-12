@@ -1,4 +1,5 @@
 import { Carousel } from 'react-bootstrap';
+
 import '../css/testimonio.css';
 import retrato1 from '../assets/retrato1.jpg';
 import retrato2 from '../assets/retrato2.jpg';
@@ -14,6 +15,7 @@ const Carrusel = () => {
 	return (
 		<Carousel fade>
 			<Carousel.Item>
+
 				<div className="d-flex container justify-content-around">
 					<div>
 						<div className="card0">
@@ -127,6 +129,7 @@ const Carrusel = () => {
 						</div>
 					</div>
 				</div>
+
 			</Carousel.Item>
 		</Carousel>
 	);

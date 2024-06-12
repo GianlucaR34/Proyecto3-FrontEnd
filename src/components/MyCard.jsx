@@ -1,4 +1,5 @@
 // import React from 'react';
+
 import { Card, Button } from 'react-bootstrap';
 import '../css/MyCard.css';
 import React, { useState } from 'react';
@@ -14,6 +15,7 @@ const MyCard = ({ imageSrc, title, modalTitle, description }) => {
 	const handleCloseModal = () => {
 		setShowModal(false);
 	};
+
 	return (
 		<Card className="my-card">
 			<div className="image-container">
