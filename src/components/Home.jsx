@@ -26,7 +26,7 @@ const Home = () => {
 
 			<div className="seccionUno">
 				<h2 className="descubra text-center">Descubra expereciencias memorables</h2>
-				<div className="d-flex justify-content-center ">
+				<div className="d-flex justify-content-center divM">
 					<div className="fotopalacio">
 						<img
 							src="src\assets\Staying at the Palacio Duhau _ Travelgal Nicole.jfif"
@@ -34,7 +34,7 @@ const Home = () => {
 							width={400}
 						/>
 					</div>
-					<div className=" texto1 ms-5">
+					<div className=" texto1 ">
 						<h3 className="parrafo1">
 							Disfrute de un lujoso edificio histórico con elegantes suites en Buenos
 							Aires
