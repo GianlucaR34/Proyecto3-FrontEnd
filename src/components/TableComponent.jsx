@@ -4,7 +4,6 @@ import { Button, Form, Modal, Table } from 'react-bootstrap';
 import { faPen, faEye, faCircleXmark, faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import hotelAPI from '../api/hotelAPI';
 import Swal from 'sweetalert2';
-import { createRoot } from 'react-dom/client';
 const TableComponent = ({ info, tag }) => {
     // console.log(info)
     // console.log(tag)
