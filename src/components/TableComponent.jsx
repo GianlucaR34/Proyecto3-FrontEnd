@@ -39,13 +39,13 @@ const TableComponent = ({ info, tag }) => {
                 Swal.fire({
                     title: 'Crear Habitacion',
                     html: `
-                      <input id="type" class="form-control" placeholder="Tipo" required>
-                      <input id="description" class="form-control" placeholder="Descripcion" required>
-                      <input type="number" id="number" class="form-control" placeholder="Numero de Habitacion" required>
-                      <input type="number" id="numberOfGuestMax" class="form-control" placeholder="Capacidad Maxima" required>
-                      <input type="number" id="price" class="form-control" placeholder="Precio de Habitacion" required>
-                      <input type="number" id="bath" class="form-control" placeholder="Baños totales" required>
-                      <input type="number" id="meals" class="form-control" placeholder="Cantidad de comidas" required>
+                      <input id="type" class="form-control mb-2" placeholder="Tipo" required>
+                      <input id="description" class="form-control mb-2" placeholder="Descripcion" required>
+                      <input type="number" id="number" class="form-control mb-2" placeholder="Numero de Habitacion" required>
+                      <input type="number" id="numberOfGuestMax" class="form-control mb-2" placeholder="Capacidad Maxima" required>
+                      <input type="number" id="price" class="form-control mb-2" placeholder="Precio de Habitacion" required>
+                      <input type="number" id="bath" class="form-control mb-2" placeholder="Baños totales" required>
+                      <input type="number" id="meals" class="form-control mb-2" placeholder="Cantidad de comidas" required>
                     `,
                     focusConfirm: false,
                     preConfirm: () => {
@@ -82,11 +82,11 @@ const TableComponent = ({ info, tag }) => {
                 Swal.fire({
                     title: 'Crear Usuario',
                     html: `
-                      <input id="userName" class="form-control" placeholder="Nombre" required>
-                      <input id="userSurname" class="form-control" placeholder="Apellido" required>
-                      <input type="number" id="userDNI" class="form-control" placeholder="DNI" required>
-                      <input type="mail" id="userMail" class="form-control" placeholder="Correo" required>
-                      <input type="password" id="userPassword" class="form-control" placeholder="Contraseña" required>
+                      <input id="userName" class="form-control mb-2" placeholder="Nombre" required>
+                      <input id="userSurname" class="form-control mb-2" placeholder="Apellido" required>
+                      <input type="number" id="userDNI" class="form-control mb-2" placeholder="DNI" required>
+                      <input type="mail" id="userMail" class="form-control mb-2" placeholder="Correo" required>
+                      <input type="password" id="userPassword" class="form-control mb-2" placeholder="Contraseña" required>
                     `,
                     focusConfirm: false,
                     preConfirm: () => {
