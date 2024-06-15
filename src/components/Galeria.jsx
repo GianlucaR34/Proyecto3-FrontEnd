@@ -1,4 +1,4 @@
-import '../css/Galeria.css'
+import '../css/Galeria.css';
 import HotelPicBanner from '../assets/imagen de prueba.jpg';
 /*imagenes de cuartos*/
 import RoomPic1 from '../assets/1.jpg';
@@ -41,4 +41,4 @@ const Galeria = () => {
 	);
 };
 
-export default Galeria
+export default Galeria;

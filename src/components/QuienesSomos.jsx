@@ -1,11 +1,11 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import celeste from '../assets/cele.jpg'
-import paula from '../assets/pauuu.jpg'
+import celeste from '../assets/celesteee.jpg'
+import paula from '../assets/yonueva.jpg'
 import leonel from '../assets/leonardo.jpg'
 import gian from '../assets/giannueva.jpg'
 import '../css/quienessomos.css'
 const QuienesSomos = () => {
-  return (
+  return (  
     <Container className='container-quien'>
       <h1 className="my-4 text">Acerca de nosotros</h1>
       <p className='text'>

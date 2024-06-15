@@ -1,5 +1,6 @@
 .bienvenida {
-	background-image: url('../assets/3PORTADA.png');
+	background-image: url('/src/assets/3PORTADA.png');
+
 	height: 709px;
 	background-image: cover;
 }
@@ -25,13 +26,15 @@
 
 	font-style: italic;
 	font-size: 50px;
-	margin-top: 20px;
-	margin-bottom: 100px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 .texto1 {
 	font-family: 'Cardo', serif;
+	margin-top: 50px;
 	width: 400px;
+	margin-left: 40px;
 }
 
 .botonConozca {
@@ -44,6 +47,7 @@
 
 .parrafo {
 	font-size: 18px;
+	margin-top: 10px;
 }
 
 .parrafo1 {
@@ -62,6 +66,25 @@
 
 .testimonios {
 	font-family: 'Cardo', serif;
+
+	height: 550px;
+}
+
+.seccionUno {
+	padding-bottom: 80px;
+}
+
+.clientes {
+	font-family: 'Cardo', serif;
+	font-weight: 400;
+	font-style: italic;
+	color: rgb(0, 0, 0);
+	padding-top: 80px;
+}
+.valoramos {
+	font-size: 18px;
+}
+.palacio3 {
 }
 
 @media only screen and (max-width: 768px) {
@@ -75,10 +98,9 @@
 		font-family: Cardo, 'Cardo Fallback';
 	}
 
-	.fotopalacio {
-		display: none !important;
+	.divM {
+		flex-direction: column !important;
 	}
-
 	.fotoSpa {
 		width: 350px;
 		height: 150px;
@@ -90,25 +112,25 @@
 
 	.parrafo1 {
 		padding-top: 0px;
+		text-align: center;
 	}
-
-	.descubra {
-		margin-top: 20px;
-		margin-bottom: 50px;
-	}
-
 	.texto1 {
-		padding-right: 15px;
+		margin-left: 15px;
+		padding: 0px 0px 0px 0px;
+		width: 350px;
 	}
 
 	.botonConozca {
 		margin-left: 25px;
 	}
-}
 
-.separador {
-	/* background-color: black; */
-	background-image: url('../assets/Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png');
-	width: 100vw;
-	height: 3rem;
+	.testimonios {
+		display: none;
+	}
+	.seccionUno {
+		padding-bottom: 30px;
+	}
+	.parrafo {
+		font-size: 16px;
+	}
 }

@@ -11,7 +11,7 @@
 }
 
 .containerTab {
-    height: 90vh;
+    height: auto;
     border: 0.25vh;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.218);
@@ -30,24 +30,13 @@
 }
 
 .datePicker {
-    height: 70vh;
+    height: auto
 }
 
 .reservas-card {
     /* background-color: rgba(0, 0, 0, 0.4); */
     height: 13rem;
     /* padding-bottom: 0.7rem; */
-}
-
-.container-main {
-    min-height: calc(100vh - 100px);
-    /* Altura mínima igual al 100% del viewport height menos la altura del footer */
-    padding-bottom: 100px;
-    /* Asegura que haya suficiente espacio para el footer al final del contenedor */
-    overflow-y: auto;
-    /* background-color: rgba(255, 0, 0, 0.7); */
-    width: 100vw !important;
-    /* Permite el desplazamiento vertical si el contenido excede la altura mínima */
 }
 
 .cardHeader {
@@ -62,7 +51,8 @@
 
 .fetchDiv {
     background-color: white;
-    height: 75vh;
+    height: auto;
+    overflow: visible
 }
 
 .cardBody {

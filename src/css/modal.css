@@ -1,0 +1,11 @@
+.titulomodal {
+	font-family: Cardo, 'Cardo Fallback';
+}
+.bodymodal {
+	font-family: Cardo, 'Cardo Fallback';
+	font-size: 18px;
+}
+
+.modal {
+	background-color: rgba(0, 0, 0, 0.5);
+}
