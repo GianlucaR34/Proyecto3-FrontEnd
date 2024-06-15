@@ -67,6 +67,10 @@ export const Nav = () => {
 			return () => clearInterval(intervalId);
 		}
 	}, [isLoggedIn]);
+	useEffect(() => {
+		setIsAdmin(localStorage.getItem('isAdmin') == 'true' ? true : false)
+	}, [])
+
 
 	return (
 		<div className="NavContainer">

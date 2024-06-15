@@ -13,32 +13,32 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginBackend(email,password)
+    loginBackend(email, password)
   };
 
-  const loginBackend = async(email,password)=>{
+  const loginBackend = async (email, password) => {
     try {
       setIsSubmitting(true)
-      const resp = await hotelAPI.post('/user/loginUser',{
-        mail:email,
-        password:password
+      const resp = await hotelAPI.post('/user/loginUser', {
+        mail: email,
+        password: password
       })
-      
-      handleMessage(resp.data.msg,resp.data.type)
+
+      handleMessage(resp.data.msg, resp.data.type)
       const token = resp.data.token;
-      localStorage.setItem('TokenJWT',token)
-      resp.data.isAdmin ? localStorage.setItem('isAdmin',resp.data.isAdmin) : localStorage.setItem('isAdmin',resp.data.isAdmin)
+      localStorage.setItem('TokenJWT', token)
+      resp.data.isAdmin ? localStorage.setItem('isAdmin', resp.data.isAdmin) : localStorage.setItem('isAdmin', resp.data.isAdmin)
       return location.replace('/')
     } catch (error) {
       setIsSubmitting(false)
-      handleMessage(error.response.data.msg,error.response.data.type)
+      handleMessage(error.response.data.msg, error.response.data.type)
       setEmail('')
       setPassword('')
       setErrors(error)
       return
     }
   }
-  const handleMessage = (msg,type)=>{
+  const handleMessage = (msg, type) => {
     Swal.fire({
       icon: type,
       text: msg
