@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Modal from './Modal'; // Importamos el componente Modal
-import MapContainer from './MapContainer'; // Importamos el componente MapContainer
-import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
-
+import Modal from './Modal';
+import MapContainer from './MapContainer';
+import '../css/Contactos.css';
 function Contactos() {
 	const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
 	const [formData, setFormData] = useState({
@@ -119,7 +118,7 @@ function Contactos() {
 					<MapContainer />
 				</div>
 			</div>
-			{/* Mostrar el modal si showModal es true */}
+			{/* Mostrar el modal s showModal es true */}
 			{showModal && <Modal onClose={closeModal} />}
 		</div>
 	);

@@ -16,12 +16,13 @@ function MapContainer() {
 	};
 
 	useEffect(() => {
-		if (window.google && window.google.maps && window.google.maps.marker) {
-			const { AdvancedMarkerElement } = window.google.maps.marker;
+		if (window.google && window.google.maps) {
+			const { Marker } = window.google.maps;
 			if (mapRef.current && !markerRef.current) {
-				markerRef.current = new AdvancedMarkerElement({
+				markerRef.current = new Marker({
 					position: center,
-					map: mapRef.current.state.map,
+					map: mapRef.current,
+					title: 'Aquí estoy!',
 				});
 			}
 		}
