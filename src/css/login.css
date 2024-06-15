@@ -1,5 +1,41 @@
 .container-login {
-    height: 60vh;
-    justify-content: center !important;
-    align-items: center !important;
+	height: 60vh;
+	justify-content: center !important;
+	align-items: center !important;
+}
+.imglogin {
+	width: 600px;
+	border-radius: 10px;
+	height: 750px;
+}
+.login {
+	width: 500px;
+	margin-left: 50px;
+	padding-top: 150px;
+}
+.contenerdor1 {
+}
+body {
+	font-family: Cardo, 'Cardo Fallback' !important;
+}
+.botonlogin {
+	margin-left: 170px;
+	font-size: 18px;
+	padding: 10px 20px 10px 20px;
+}
+
+.bienve {
+	font-weight: 700;
+}
+@media only screen and (max-width: 768px) {
+	.login {
+		padding-top: 0px;
+		margin-left: 0px;
+	}
+	.botonlogin {
+		margin-left: 110px;
+	}
+	.imgdiv {
+		display: none;
+	}
 }
