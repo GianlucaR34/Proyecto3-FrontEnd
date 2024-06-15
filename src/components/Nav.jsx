@@ -88,7 +88,9 @@ export const Nav = () => {
 				<ol className="NavList">
 					<li>
 						<NavLink className="text-decoration-none text-white" to="/">
+
 							INICIO
+
 						</NavLink>
 					</li>
 					<li>
@@ -122,7 +124,9 @@ export const Nav = () => {
 						)}
 					{isLoggedIn ? (
 						<li>
+
 							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogoutFromButton}>CERRAR SESIÓN</NavLink>
+
 						</li>
 					) : (
 						<React.Fragment>
@@ -133,7 +137,9 @@ export const Nav = () => {
 							</li>
 							<li>
 								<NavLink className="text-decoration-none text-white" to="/login">
+
 									INICIAR SESIÓN
+
 								</NavLink>
 							</li>
 						</React.Fragment>

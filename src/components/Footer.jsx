@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Logo from '../assets/GoldenLux.png';
 
 const Footer = () => {
+
   return (
     <footer className="text-white mt-5 p-6 text-center" style={{ backgroundColor: "black",padding:"3rem" }}>
       <Container className='container-footer'>
@@ -28,6 +29,7 @@ const Footer = () => {
       </Container>
     </footer>
   );
+
 };
 
 export default Footer;

@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
-import '../css/login.css'
+
+import '../css/login.css';
+
 import hotelAPI from '../api/hotelAPI';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [errors, setErrors] = useState({});
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,34 +67,44 @@ const Login = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                isInvalid={!errors.password}
-                disabled={isSubmitting}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback>
-            </Form.Group>
 
-            <Button className='mt-3' variant="primary" type="submit" disabled={isSubmitting}>
-              {isSubmitting ? <Spinner animation="border" size="sm" /> : 'Iniciar Sesión'}
-            </Button>
-          </Form>
-          {Object.keys(errors).length > 0 && (
-            <Alert variant="danger" className="mt-3">
-              Por favor, corrige los errores en el formulario.
-            </Alert>
-          )}
-        </Col>
-      </Row>
-    </Container>
-  );
+						<Form.Group controlId="formBasicPassword">
+							<Form.Label>Contraseña</Form.Label>
+							<Form.Control
+								type="password"
+								placeholder="Contraseña"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								isInvalid={!errors.password}
+								disabled={isSubmitting}
+							/>
+							<Form.Control.Feedback type="invalid">
+								{errors.password}
+							</Form.Control.Feedback>
+						</Form.Group>
+
+						<Button
+							className="mt-3"
+							variant="primary"
+							type="submit"
+							disabled={isSubmitting}
+						>
+							{isSubmitting ? (
+								<Spinner animation="border" size="sm" />
+							) : (
+								'Iniciar Sesión'
+							)}
+						</Button>
+					</Form>
+					{Object.keys(errors).length > 0 && (
+						<Alert variant="danger" className="mt-3">
+							Por favor, corrige los errores en el formulario.
+						</Alert>
+					)}
+				</Col>
+			</Row>
+		</Container>
+	);
 };
 
 export default Login;
