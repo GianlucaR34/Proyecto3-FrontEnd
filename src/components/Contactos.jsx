@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import Modal from './Modal';
 import MapContainer from './MapContainer';
 import '../css/Contactos.css';
+
 function Contactos() {
 	const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
 	const [formData, setFormData] = useState({
