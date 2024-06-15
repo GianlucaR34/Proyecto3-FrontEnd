@@ -6,7 +6,7 @@ const hotelAPI = axios.create({
 
 hotelAPI.interceptors.request.use((config) => {
     config.headers = {
-        "TokenJWT": localStorage.getItem('token')
+        "TokenJWT": localStorage.getItem('TokenJWT')
     }
     return config
 })

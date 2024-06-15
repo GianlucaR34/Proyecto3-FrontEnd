@@ -12,62 +12,61 @@ const Login = () => {
 	const [errors, setErrors] = useState({});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		loginBackend(email, password);
-	};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginBackend(email, password)
+  };
 
-	const loginBackend = async (email, password) => {
-		try {
-			setIsSubmitting(true);
-			const resp = await hotelAPI.post('/user/loginUser', {
-				mail: email,
-				password: password,
-			});
+  const loginBackend = async (email, password) => {
+    try {
+      setIsSubmitting(true)
+      const resp = await hotelAPI.post('/user/loginUser', {
+        mail: email,
+        password: password
+      })
 
-			handleMessage(resp.data.msg, resp.data.type);
-			const token = resp.data.token;
-			localStorage.setItem('TokenJWT', token);
-			resp.data.isAdmin
-				? localStorage.setItem('isAdmin', resp.data.isAdmin)
-				: localStorage.setItem('isAdmin', resp.data.isAdmin);
-			return location.replace('/');
-		} catch (error) {
-			setIsSubmitting(false);
-			handleMessage(error.response.data.msg, error.response.data.type);
-			setEmail('');
-			setPassword('');
-			setErrors(error);
-			return;
-		}
-	};
-	const handleMessage = (msg, type) => {
-		Swal.fire({
-			icon: type,
-			text: msg,
-		});
-	};
+      handleMessage(resp.data.msg, resp.data.type)
+      const token = resp.data.token;
+      localStorage.setItem('TokenJWT', token)
+      resp.data.isAdmin ? localStorage.setItem('isAdmin', resp.data.isAdmin) : localStorage.setItem('isAdmin', resp.data.isAdmin)
+      return location.replace('/')
+    } catch (error) {
+      setIsSubmitting(false)
+      handleMessage(error.response.data.msg, error.response.data.type)
+      setEmail('')
+      setPassword('')
+      setErrors(error)
+      return
+    }
+  }
+  const handleMessage = (msg, type) => {
+    Swal.fire({
+      icon: type,
+      text: msg
+    });
+  };
 
-	return (
-		<Container className="w-50 d-flex p-5 container-login">
-			<Row className="align-items-center justify-content-center w-100">
-				<Col md={6} className="m-auto">
-					<h2 className="text-center">Iniciar Sesión</h2>
-					<Form onSubmit={handleSubmit}>
-						<Form.Group controlId="formBasicEmail">
-							<Form.Label>Email</Form.Label>
-							<Form.Control
-								type="email"
-								placeholder="Enter email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								isInvalid={!!errors.email}
-								disabled={isSubmitting}
-							/>
-							<Form.Control.Feedback type="invalid">
-								{errors.email}
-							</Form.Control.Feedback>
-						</Form.Group>
+  return (
+    <Container className='d-flex p-5 container-login' style={{ minHeight: '100vh' }}>
+      <Row className="align-items-center justify-content-center w-100">
+        <Col xs={12} md={8} lg={6} className='m-auto'>
+          <h2 className="text-center">Iniciar Sesión</h2>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                isInvalid={!!errors.email}
+                disabled={isSubmitting}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
+            </Form.Group>
+
 
 						<Form.Group controlId="formBasicPassword">
 							<Form.Label>Contraseña</Form.Label>

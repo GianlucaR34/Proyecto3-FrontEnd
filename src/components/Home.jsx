@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import '../css/home.css';
 import Carrusel from './Carrusel';
 import { Link } from 'react-router-dom';
+
 import MyCard from './MyCard';
+
 const Home = () => {
 	const [showModal, setShowModal] = useState(false);
 

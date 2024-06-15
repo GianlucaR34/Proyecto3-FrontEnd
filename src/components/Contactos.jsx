@@ -3,6 +3,8 @@ import { useForm, ValidationError, useState } from 'react';
 import Modal from './Modal'; // Importamos el componente Modal
 import MapContainer from './MapContainer'; // Importamos el componente MapContainer
 import '../css/Contactos.css'; // Importamos el archivo de estilos CSS
+import { APIProvider, Map, Marker, AdvancedMarker, useAdvancedMarkerRef, InfoWindow } from '@vis.gl/react-google-maps';
+import { Container } from 'react-bootstrap';
 
 function Contactos() {
 	const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
