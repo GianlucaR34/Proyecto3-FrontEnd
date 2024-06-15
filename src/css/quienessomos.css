@@ -13,3 +13,10 @@ a{
     text-decoration: none !important;
     color: black !important;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container-quien {
+      margin-bottom: 49rem !important; 
+      margin-top: 5rem !important;
+    }
+  }
