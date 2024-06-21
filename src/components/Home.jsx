@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../css/home.css';
 import Carrusel from './Carrusel';
 import { Link } from 'react-router-dom';
+
 import MyCard from './MyCard';
 import fotopalacio1 from '../assets/Staying at the Palacio Duhau _ Travelgal Nicole.jfif';
 import estadia from '../assets/Estadía.jpg';

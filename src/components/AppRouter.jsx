@@ -9,14 +9,16 @@ import AdminPanel from './AdminPanel';
 import Galeria from './Galeria';
 import Contactos from './Contactos';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Reservas from './Reservas';
 import ErrorPage from './ErrorPage';
 
 export const AppRouter = () => {
 	return (
 		<BrowserRouter>
 			<Nav />
-
 			<Routes>
+				<Route path="/404" element={<ErrorPage />} />
+				<Route path="/reserves" element={<Reservas />} />
 				<Route path="/panel-admin" element={<AdminPanel />} />
 				<Route path="/" element={<Home />} />
 				<Route path="/about" element={<QuienesSomos />} />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import hotelAPI from '../api/hotelAPI';
+import '../css/Registro.css'
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
@@ -80,7 +81,7 @@ const RegisterForm = () => {
     })
   }
   return (
-    <Form className='container mt-3' onSubmit={handleSubmit}>
+    <Form className='container mt-3' onSubmit={handleSubmit} style={{}}>
       <Form.Group controlId="formEmail">
         <Form.Label>Correo electrónico</Form.Label>
         <Form.Control

@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react';
 import '../css/Nav.css';
 import Logo from '../assets/GoldenLux.png';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import hotelAPI from '../api/hotelAPI';
+import Swal from 'sweetalert2';
 
 export const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false); // variable de estado para determinar si esta expandido o no el toggle menu
 	const [isLoggedIn, setIsLoggedIn] = useState(false); // Variable de estado para controlar si el usuario está autenticado
 	const [isAdmin, setIsAdmin] = useState(false); // Variable de estado para controlar si el usuario es administrador
-
-	const toggleMenu = () => {
-		setIsOpen(!isOpen);
-	};
 	const handleLogout = () => {
 		// borrar datos del localStorage
+		Swal.fire({
+			title: "Sesión expirada!",
+			text: "La sesión se ha cerrado.",
+			icon: "success"
+		});
 		localStorage.removeItem('TokenJWT');
 		localStorage.removeItem('isAdmin');
+		setIsLoggedIn(false)
 		// Actualizar estados
 		// setIsLoggedIn(false);
 		// setIsAdmin(false);
@@ -23,19 +27,50 @@ export const Nav = () => {
 		window.location.href = '/';
 	};
 
+	const toggleMenu = () => {
+		setIsOpen(!isOpen);
+	};
+	const handleLogoutFromButton = () => {
+		Swal.fire({
+			title: "Estas seguro de querer cerrar sesión?",
+			text: "Tendras que volver a iniciar sesión en caso de que desees continuar",
+			icon: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			cancelButtonText: "Cancelar",
+			confirmButtonText: "Cerrar Sesión"
+		}).then((result) => {
+			if (result.isConfirmed) {
+				handleLogout()
+			}
+			return
+		});
+	}
+
 	// Comprobar el estado de autenticación al cargar la página
 	useEffect(() => {
-		const loggedIn = localStorage.getItem('TokenJWT');
-		const admin = localStorage.getItem('isAdmin');
-		if (loggedIn) {
-			setIsLoggedIn(true);
-			if (admin == 'true') {
-				setIsAdmin(true);
-			} else {
-				setIsAdmin(false);
+		setIsLoggedIn(localStorage.getItem('TokenJWT') ? true : false)
+		if (isLoggedIn) {
+			const checkTokenValidity = async () => {
+				const isValidTokenRequest = await hotelAPI.get('/user/isValidToken')
+				const isValidToken = isValidTokenRequest.data
+				if (!isValidToken) {
+					handleLogout()
+				}
 			}
+
+			// Comprobación periódica del token cada minuto
+			const intervalId = setInterval(checkTokenValidity, 30000);
+
+			// Limpieza del temporizador cuando el componente se desmonta
+			return () => clearInterval(intervalId);
 		}
-	}, []);
+	}, [isLoggedIn]);
+	useEffect(() => {
+		setIsAdmin(localStorage.getItem('isAdmin') == 'true' ? true : false)
+	}, [])
+
 
 	return (
 		<div className="NavContainer">
@@ -64,9 +99,7 @@ export const Nav = () => {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink className="text-decoration-none text-white" to="/404">
-							RESERVA
-						</NavLink>
+						<NavLink className='text-decoration-none text-white' to='/reserves'>RESERVA</NavLink>
 					</li>
 					<li>
 						<NavLink className="text-decoration-none text-white" to="/galery">
@@ -91,15 +124,9 @@ export const Nav = () => {
 						)}
 					{isLoggedIn ? (
 						<li>
-							<NavLink
-								className="text-decoration-none text-white"
-								to="/"
-								onClick={handleLogout}
-							>
 
-								CERRAR SESIÓN
+							<NavLink className='text-decoration-none text-white' to='/' onClick={handleLogoutFromButton}>CERRAR SESIÓN</NavLink>
 
-							</NavLink>
 						</li>
 					) : (
 						<React.Fragment>
