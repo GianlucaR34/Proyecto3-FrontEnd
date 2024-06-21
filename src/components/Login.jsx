@@ -10,7 +10,6 @@ const Login = () => {
 	const [errors, setErrors] = useState({});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		loginBackend(email, password);
@@ -23,7 +22,6 @@ const Login = () => {
 				mail: email,
 				password: password,
 			});
-
 
 			handleMessage(resp.data.msg, resp.data.type);
 			const token = resp.data.token;
@@ -47,7 +45,6 @@ const Login = () => {
 			text: msg,
 		});
 	};
-
 
 	return (
 		<div className="d-flex mt-5 justify-content-center divMayor">
@@ -103,12 +100,11 @@ const Login = () => {
 				</Form>
 				{Object.keys(errors).length > 0 && (
 					<Alert variant="danger" className="mt-3">
-						Correo electrónico o contraseña incorrecto, inténtalo de nuevo.
+						Correo electrónico o contraseña incorrecto! Inténtalo de nuevo.
 					</Alert>
 				)}
 			</div>
 		</div>
-
 	);
 };
 
