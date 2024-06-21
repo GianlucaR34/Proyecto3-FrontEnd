@@ -13,7 +13,7 @@
 	transform: translate(-50%, -50%);
 	padding: 10px;
 	font-size: 2rem;
-	font-family: 'Roboto', sans-serif;
+	font-family: Cardo, 'Cardo Fallback';
 	font-weight: 100;
 	color: white;
 }

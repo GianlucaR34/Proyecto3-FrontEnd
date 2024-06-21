@@ -205,10 +205,10 @@ const Reservas = () => {
 
   //codigo
   return (
-    <Container className='containerTab my-4 rounded p-2'>
-      <Tabs defaultActiveKey="onlyOne" id="uncontrolled-tab-example" className="mb-3 " justify onSelect={handleTabChange}>
+    <Container className='containerTab my-4 rounded p-2 '>
+      <Tabs defaultActiveKey="onlyOne" id="uncontrolled-tab-example" justify onSelect={handleTabChange}>
         <Tab eventKey="onlyOne" title="Reserva Individual" >
-          <Container fluid>
+          <Container fluid >
             <Row>
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
                 <Form className='h-100'>
@@ -246,77 +246,81 @@ const Reservas = () => {
               </Col>
               <Col lg={9} className='text-center rounded datePicker mt-2 position-relative'>
                 <Row lg={3} className='bg-transparent fetchDiv mb-2'>
-
                 </Row>
-                {isSearching && (<Col lg={12} className=''>
-                  <Pagination className='d-flex justify-content-center align-items-center text-center'>
-                    <Pagination.Item active onClick={handlePagination}>
-                      0
-                    </Pagination.Item>
-                    <Pagination.Item onClick={handlePagination}>
-                      1
-                    </Pagination.Item>
-                    <Pagination.Item onClick={handlePagination}>
-                      2
-                    </Pagination.Item>
-                  </Pagination>
-                </Col>)}
-
               </Col>
+              {isSearching && (<Col lg={12} className=''>
+                <Pagination className='d-flex justify-content-center align-items-center text-center'>
+                  <Pagination.Item active onClick={handlePagination}>
+                    0
+                  </Pagination.Item>
+                  <Pagination.Item onClick={handlePagination}>
+                    1
+                  </Pagination.Item>
+                  <Pagination.Item onClick={handlePagination}>
+                    2
+                  </Pagination.Item>
+                </Pagination>
+              </Col>)}
             </Row>
           </Container>
         </Tab>
-        <Tab eventKey="fewOnes" title="Reserva Grupal" className='border-3'>
-          <Container fluid>
-            <Row lg={12} >
-              <Col lg={2} className='text-center rounded datePicker p-2'>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker ref={datePickerForAnyone} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker ref={datePickerForAnyone} onChange={(e) => setFinalDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a finalizar" disabled={isSearching ? true : false} value={dayjs(date)} required />
-                </LocalizationProvider>
-                <Form.Group controlId="nombre">
-                  <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value.trim())} placeholder="Juan" disabled={isSearching ? true : false} value={Nombre} />
-                    <Form.Control.Feedback type="invalid"> Por favor ingrese su nombre. </Form.Control.Feedback>
-                  </FloatingLabel>
-                </Form.Group>
-                <Form.Group controlId="apellido">
-                  <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value.trim())} placeholder="Perez" disabled={isSearching ? true : false} value={Apellido} />
-                  </FloatingLabel>
-                </Form.Group>
-                <Form.Group controlId="dni">
-                  <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
-                    <Form.Control type="text" className='mb-3' onChange={(e) => setDNI(parseInt(e.target.value.trim()))} placeholder="95955955" disabled={isSearching ? true : false} value={DNI} />
-                  </FloatingLabel>
-                </Form.Group>
-                <Form.Group controlId="Quantity">
-                  <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
-                    <Form.Select disabled={isSearching} ref={selectRefTab2}>
-                      <option value="1" disabled>1</option>
-                      <option value="2" >2</option>
-                      <option value="3" >3</option>
-                      <option value="4" >4+</option>
-                    </Form.Select>
-                  </FloatingLabel>
-                </Form.Group>
-                <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} disabled={!formCompletted || isSearching}>Buscar reservas</Button>
+        <Tab eventKey="fewOnes" title="Reserva Grupal" >
+          <Container fluid >
+            <Row>
+              <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
+                <Form className='h-100'>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker ref={datePickerForAnyone} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha inicial" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                  </LocalizationProvider>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker ref={datePickerForAnyone} onChange={(e) => setFinalDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha final" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                  </LocalizationProvider>
+                  <Form.Group controlId="nombre">
+                    <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
+                      <Form.Control type="text" className='mb-3' onChange={(e) => setNombre(e.target.value.trim())} placeholder="Juan" disabled={isSearching ? true : false} value={Nombre} />
+                      <Form.Control.Feedback type="invalid"> Por favor ingrese su nombre. </Form.Control.Feedback>
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group controlId="apellido">
+                    <FloatingLabel controlId="floatingInput" label="Apellido" className="text-secondary">
+                      <Form.Control type="text" className='mb-3' onChange={(e) => setApellido(e.target.value.trim())} placeholder="Perez" disabled={isSearching ? true : false} value={Apellido} />
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group controlId="dni">
+                    <FloatingLabel controlId="floatingInput" label="DNI" className="text-secondary">
+                      <Form.Control type="number" className='mb-3' onChange={(e) => setDNI(parseInt(e.target.value.trim()))} placeholder="95955955" disabled={isSearching ? true : false} value={DNI} />
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group controlId="Quantity">
+                    <FloatingLabel controlId="floatingInput" label="Cantidad de Personas" className="text-secondary mb-3">
+                      <Form.Select ref={selectRefTab2} >
+                        <option value="1" disabled >1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4+</option>
+                      </Form.Select>
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Button className='btn-secondary border border-3 rounded border-secondary' onClick={fetchRooms} disabled={!formCompletted || isSearching}>Buscar reservas</Button>
+                </Form>
               </Col>
-              <Col lg={9} className='text-center rounded datePicker mt-2 mx-2'>
-                <Row lg={3} className='bg-transparent fetchDiv'></Row>
-                <Row lg={12} >
-                  <Pagination className='d-flex justify-content-center'>
-                    <Pagination.Item onClick={handlePagination}>
-                      0
-                    </Pagination.Item>
-                    <Pagination.Item onClick={handlePagination}>
-                      1
-                    </Pagination.Item>
-                  </Pagination>
+              <Col lg={9} className='text-center rounded datePicker mt-2 position-relative'>
+                <Row lg={3} className='bg-transparent fetchDiv mb-2'>
                 </Row>
               </Col>
+              {isSearching && (<Col lg={12} className=''>
+                <Pagination className='d-flex justify-content-center align-items-center text-center'>
+                  <Pagination.Item active onClick={handlePagination}>
+                    0
+                  </Pagination.Item>
+                  <Pagination.Item onClick={handlePagination}>
+                    1
+                  </Pagination.Item>
+                  <Pagination.Item onClick={handlePagination}>
+                    2
+                  </Pagination.Item>
+                </Pagination>
+              </Col>)}
             </Row>
           </Container>
         </Tab>

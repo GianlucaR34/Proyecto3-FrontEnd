@@ -29,7 +29,7 @@ body {
 .NavList {
 	list-style: none;
 	display: flex;
-	font-family: 'Roboto', sans-serif;
+	font-family: Cardo, 'Cardo Fallback';
 	font-weight: 300;
 	font-style: normal;
 	font-size: 1rem;

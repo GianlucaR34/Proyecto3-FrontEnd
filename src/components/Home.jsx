@@ -1,16 +1,21 @@
+import React, { useState } from 'react';
 import '../css/home.css';
-import MyCard from './MyCard';
 import Carrusel from './Carrusel';
 import { Link } from 'react-router-dom';
-import Palacio from '../assets/Staying at the Palacio Duhau _ Travelgal Nicole.jfif';
-import ESTADÍA from '../assets/foto1.png';
-import SPA from '../assets/foto2.png';
-import EVENTOS from '../assets/foto3.png';
-import GASTRONOMÍA from '../assets/foto4.png';
-import SPAA2 from '../assets/SPAA2.png';
-import SEPARADOR from '../assets/Dise-C3-B1o+sin+t-C3-ADtulo+-283-29-3d6934d1-1920w.png';
+
+import MyCard from './MyCard';
 
 const Home = () => {
+	const [showModal, setShowModal] = useState(false);
+
+	const handleShowModal = (type) => {
+		setShowModal(true);
+	};
+
+	const handleCloseModal = () => {
+		setShowModal(false);
+	};
+
 	return (
 		<div>
 			<div className="bienvenida text-center">
@@ -20,18 +25,23 @@ const Home = () => {
 					<h1 className="text-light palacio">Park Hyatt Buenos Aires</h1>
 				</div>
 			</div>
-			<img src={SEPARADOR} alt="" className="w-100" />
-			<div className="">
-				<h2 className="descubra  text-center">Descubra expereciencias memorables</h2>
-				<div className="d-flex justify-content-center ">
+
+			<div className="seccionUno">
+				<h2 className="descubra text-center">Descubra expereciencias memorables</h2>
+				<div className="d-flex justify-content-center divM">
 					<div className="fotopalacio">
-						<img src={Palacio} alt="" width={400} />
+						<img
+							src="src\assets\Staying at the Palacio Duhau _ Travelgal Nicole.jfif"
+							alt=""
+							width={400}
+						/>
 					</div>
-					<div className=" texto1 ms-5">
+					<div className=" texto1 ">
 						<h3 className="parrafo1">
 							Disfrute de un lujoso edificio histórico con elegantes suites en Buenos
 							Aires
 						</h3>
+
 						<br />
 						<p className="parrafo">
 							GoldenLux - Park Hyatt Buenos Aires es un hotel de lujo ubicado en el
@@ -43,41 +53,49 @@ const Home = () => {
 							arte; relájese en el mejor spa de Buenos Aires y deléitese con
 							experiencias memorables en inspiradores jardines.
 						</p>
-						<Link to="/404">
-							<button className="botonConozca">CONOZCA EL HOTEL</button>
-						</Link>
 					</div>
 				</div>
 			</div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
 
 			<div className="d-flex justify-content-around palacio3">
-				<MyCard imageSrc={ESTADÍA} title="ESTADÍA" />
-				<MyCard imageSrc={SPA} title="SPA" />
-				<MyCard imageSrc={EVENTOS} title="EVENTOS " />
-				<MyCard imageSrc={GASTRONOMÍA} title="GASTRONOMÍA" />
+				<MyCard
+					title="ESTADÍA"
+					imageSrc="src\assets\Estadía.jpg"
+					modalTitle="Estadías"
+					description="Nuestros paquetes de estadía son una invitación a crear nuevos recuerdos compartidos, experimentando la hospitalidad, la alta gastronomía y el arte de la atención al detalle de Park Hyatt."
+				/>
+				<MyCard
+					title="SPA"
+					imageSrc="src\assets\Spa.jpg"
+					modalTitle="AhínWellness & Spa"
+					description="Ahín significa “Ceremonia o Ritual de Bienvenida que se ofrece para honrar a un huésped”, según la lengua mapuche.
+					Para una experiencia de verdadero placer, Park Hyatt Buenos Aires le da la bienvenida a Ahín Wellness & Spa, con una combinación de tratamientos, rituales y ceremonias basados ​​en los conocimientos ancestrales de esta milenaria cultura."
+				/>
+				<MyCard
+					title="EVENTOS"
+					imageSrc="src\assets\Eventos.jpg"
+					modalTitle="Eventos"
+					description="Todas las semanas, música en vivo y experiencias gastronómicas en nuestros restaurantes. Cena con Enólogos, Five O'Clock Tea, Martes Botánicos, Viernes de Jazz y mucho más."
+				/>
+				<MyCard
+					title="GASTRONOMÍA"
+					imageSrc="src\assets\Gastronomía.jpg"
+					modalTitle="Restaurantes & Bar"
+					description="Encuentre propuestas gastronómicas deliciosas en nuestros sofisticados ambientes junto a un excelente servicio."
+				/>
 			</div>
 
-			<br />
-			<br />
-			<br />
-			<br />
+			<div className="text-center testimonios ">
+				<h2 className="fs-1 clientes mb-3 ">Lo que dicen nuestros clientes</h2>
 
-			<div className="d-flex flex-column justify-content-center align-items-center  ">
-				<img src={SPAA2} alt="" className="fotoSpa" />
-				<Link to="/404">
-					{' '}
-					<button className="conozca mt-4">CONOZCA LA PROPUESTA</button>
-				</Link>
-			</div>
+				<div className="text-center ">
+					<p className="mb-5 valoramos">
+						Valoramos enormemente las relaciones sólidas y hemos visto los beneficios
+						que nos aportan. La retroalimentacion de los clientes es vital para
+						ayudarnos a hacerlo bien.
+					</p>
+				</div>
 
-			<img src={SEPARADOR} alt="" className="w-100 " />
-			<div className="text-center testimonios mt-5">
-				<h2>Testimonios</h2>
 				<Carrusel />
 			</div>
 		</div>
