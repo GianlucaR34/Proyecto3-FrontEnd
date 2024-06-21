@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstr
 import '../css/login.css';
 import hotelAPI from '../api/hotelAPI';
 import Swal from 'sweetalert2';
-
+import login from '../assets/login.png';
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -49,7 +49,7 @@ const Login = () => {
 	return (
 		<div className="d-flex mt-5 justify-content-center divMayor">
 			<div className=" text-center imgdiv">
-				<img src="src\assets\login.png" alt="" className="imglogin" />
+				<img src={login} alt="" className="imglogin" />
 			</div>
 			<div className="login">
 				<h1 className="text-center mb-5 bienve">¡Bienvenido de vuelta!</h1>
