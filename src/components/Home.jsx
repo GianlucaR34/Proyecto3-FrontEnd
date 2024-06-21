@@ -47,7 +47,7 @@ const Home = () => {
 							tradicional barrio de Recoleta. El complejo de dos edificios combina la
 							elegancia de un palacio aristocrático con un sofisticado diseño
 							contemporáneo. Disfrute la experiencia de una estadía residencial en
-							amplias habitaciones y suites; explore la alta gastronomía argentina de
+							amplias habitaciones y suites, explore la alta gastronomía argentina de
 							la mano de talentosos chefs; contemple una curada colección privada de
 							arte; relájese en el mejor spa de Buenos Aires y deléitese con
 							experiencias memorables en inspiradores jardines.
