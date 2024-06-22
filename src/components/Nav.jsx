@@ -74,9 +74,9 @@ export const Nav = () => {
 
 	return (
 		<div className="NavContainer">
-			<div className="NavIcon">
+			<NavLink className="NavIcon btn" to='/'>
 				<img src={Logo} alt="Golden Lux Icon" />
-			</div>
+			</NavLink>
 
 			{/* Botón de hamburguesa visible en dispositivos móviles */}
 			<div className="menu-icon" onClick={toggleMenu}>

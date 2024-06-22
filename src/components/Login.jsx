@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
+import { Form, Alert, Spinner } from 'react-bootstrap';
 import '../css/login.css';
 import hotelAPI from '../api/hotelAPI';
 import Swal from 'sweetalert2';
@@ -23,13 +23,9 @@ const Login = () => {
 				password: password,
 			});
 
+			localStorage.setItem('TokenJWT', resp.data.token);
+			localStorage.setItem('isAdmin', resp.data.isAdmin)
 			handleMessage(resp.data.msg, resp.data.type);
-			const token = resp.data.token;
-			localStorage.setItem('TokenJWT', token);
-			resp.data.isAdmin
-				? localStorage.setItem('isAdmin', resp.data.isAdmin)
-				: localStorage.setItem('isAdmin', resp.data.isAdmin);
-			return location.replace('/');
 		} catch (error) {
 			setIsSubmitting(false);
 			handleMessage(error.response.data.msg, error.response.data.type);
@@ -43,6 +39,13 @@ const Login = () => {
 		Swal.fire({
 			icon: type,
 			text: msg,
+			timer: 5000,
+			timerProgressBar: true,
+			showConfirmButton: false,
+		}).then((result) => {
+			if (result.dismiss) {
+				location.replace('/')
+			}
 		});
 	};
 

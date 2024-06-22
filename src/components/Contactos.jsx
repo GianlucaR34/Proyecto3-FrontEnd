@@ -32,8 +32,8 @@ function Contactos() {
 
 			if (response.ok) {
 				console.log('Formulario enviado exitosamente');
-				setShowModal(true); // Mostrar el modal en caso de que el envío sea exitoso
-				resetForm(); // Limpiar los campos del formulario después de enviarlo
+				setShowModal(true);
+				resetForm();
 			}
 		} catch (error) {
 			console.error('Error al enviar el formulario:', error);
@@ -120,7 +120,6 @@ function Contactos() {
 					<MapContainer />
 				</div>
 			</div>
-			{/* Mostrar el modal s showModal es true */}
 			{showModal && <Modal onClose={closeModal} />}
 		</div>
 	);

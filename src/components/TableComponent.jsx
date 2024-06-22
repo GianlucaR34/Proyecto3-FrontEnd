@@ -5,8 +5,6 @@ import { faPen, faEye, faCircleXmark, faCirclePlus } from '@fortawesome/free-sol
 import hotelAPI from '../api/hotelAPI';
 import Swal from 'sweetalert2';
 const TableComponent = ({ info, tag }) => {
-    // console.log(info)
-    // console.log(tag)
     const [show, setShow] = useState(false);
     const [isEditable, setIsEditable] = useState(true);
     const [selectedItem, setSelectedItem] = useState(null);

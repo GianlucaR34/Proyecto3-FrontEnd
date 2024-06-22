@@ -10,7 +10,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import hotelAPI from '../api/hotelAPI';
 import Swal from 'sweetalert2';
 import dayjs from 'dayjs';
-import { Style } from '@mui/icons-material';
 
 const Reservas = () => {
   const [initialDate, setInitialDate] = useState(null);
@@ -149,8 +148,19 @@ const Reservas = () => {
     });
     const roomsFetch = (await hotelAPI.get(`/roomReservation/roomList/?page=${active}`).catch((error) => {
       if (error) {
-        Swal.fire({ title: "Debe estar logueado para realizar esa accion", type: "error" })
-        window.location.href = '/'
+        Swal.fire({
+          title: "Debe estar logueado para realizar esa accion",
+          type: "error",
+          timer: 5000,
+          timerProgressBar: true,
+          showConfirmButton: true
+        }).then((result) => {
+          console.log(result)
+          if (result.dismiss || result.isDismissed || result.isConfirmed) {
+            location.replace('/')
+          }
+        })
+        // window.location.href = '/'
       }
     }))
     const rooms = roomsFetch.data
