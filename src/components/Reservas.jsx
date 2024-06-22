@@ -223,7 +223,7 @@ const Reservas = () => {
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
                 <Form className='h-100'>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker ref={datePickerOnlyOne} onChange={(e) => setInitialDate(e.$d)} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                    <DatePicker ref={datePickerOnlyOne} onChange={(e) => { setInitialDate(e.$d); setFinalDate(e.$d) }} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
                   </LocalizationProvider>
                   <Form.Group controlId="nombre">
                     <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
