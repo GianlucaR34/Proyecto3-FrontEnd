@@ -112,10 +112,13 @@ const RegisterForm = () => {
 			const resp = await hotelAPI.post('/user/createUser', {
 				mail: email,
 				password: password,
+				userName: nombre,
+				userSurname: apellido,
+				userIdentification: dni
 			});
 
 			handleMessage(resp.data.msg, resp.data.type);
-			return location.replace('/login');
+			return
 		} catch (error) {
 			handleMessage(error.response.data.msg, error.response.data.type);
 		} finally {
@@ -132,6 +135,13 @@ const RegisterForm = () => {
 		Swal.fire({
 			icon: type,
 			text: msg,
+			timer: 5000,
+			timerProgressBar: true,
+			showConfirmButton: true,
+		}).then((result) => {
+			if (result.dismiss || result.isConfirmed) {
+				location.replace('/')
+			}
 		});
 	};
 

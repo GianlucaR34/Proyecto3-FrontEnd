@@ -13,9 +13,8 @@ import cuatroymedia from '../assets/cuatroymedia.png';
 
 const Carrusel = () => {
 	return (
-		<Carousel fade>
+		<Carousel fade controls={false} indicators={false}>
 			<Carousel.Item>
-
 				<div className="d-flex container justify-content-around">
 					<div>
 						<div className="card0">
