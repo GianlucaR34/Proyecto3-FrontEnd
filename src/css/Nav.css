@@ -1,5 +1,5 @@
 body {
-	margin: 0;
+	margin: 0px;
 }
 
 .NavContainer {
@@ -29,7 +29,7 @@ body {
 .NavList {
 	list-style: none;
 	display: flex;
-	font-family: 'Roboto', sans-serif;
+	font-family: Cardo, 'Cardo Fallback';
 	font-weight: 300;
 	font-style: normal;
 	font-size: 1rem;
@@ -115,7 +115,7 @@ a {
 		height: 2rem;
 	}
 	.NavList li {
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 		margin-right: 0;
 	}
 }

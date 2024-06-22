@@ -1,32 +1,42 @@
 .bienvenida {
-	background-image: url('/src/assets/Celeste/img/3PORTADA.png');
+	background-image: url('/src/assets/3PORTADA.png');
+
 	height: 709px;
 	background-image: cover;
 }
+
 .titulo {
 	padding-top: 200px;
+	margin-top: 0px !important;
 }
+
 .palacio {
 	font-size: 80px;
 	font-family: Cardo, 'Cardo Fallback';
 }
+
 .palacio1 {
 	font-size: 50px;
 	font-family: Cardo, 'Cardo Fallback';
 }
+
 .descubra {
 	/* font-family: 'Cardo', serif; */
 	font-family: Cardo, 'Cardo Fallback';
 
 	font-style: italic;
 	font-size: 50px;
-	margin-top: 20px;
-	margin-bottom: 100px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
+
 .texto1 {
 	font-family: 'Cardo', serif;
+	margin-top: 50px;
 	width: 400px;
+	margin-left: 40px;
 }
+
 .botonConozca {
 	margin-top: 40px;
 	font-size: 16px;
@@ -34,13 +44,17 @@
 	border: solid 0.5px black;
 	width: 250px;
 }
+
 .parrafo {
 	font-size: 18px;
+	margin-top: 10px;
 }
+
 .parrafo1 {
 	font-size: 30px;
 	padding-top: 30px;
 }
+
 .conozca {
 	font-family: 'Cardo', serif;
 	right: 43%;
@@ -52,64 +66,71 @@
 
 .testimonios {
 	font-family: 'Cardo', serif;
+
+	height: 550px;
 }
+
+.seccionUno {
+	padding-bottom: 80px;
+}
+
+.clientes {
+	font-family: 'Cardo', serif;
+	font-weight: 400;
+	font-style: italic;
+	color: rgb(0, 0, 0);
+	padding-top: 80px;
+}
+.valoramos {
+	font-size: 18px;
+}
+.palacio3 {
+}
+
 @media only screen and (max-width: 768px) {
 	.palacio {
 		font-size: 60px;
 		font-family: Cardo, 'Cardo Fallback';
 	}
+
 	.palacio1 {
 		font-size: 30px;
 		font-family: Cardo, 'Cardo Fallback';
 	}
-	.fotopalacio {
-		display: none !important;
+
+	.divM {
+		flex-direction: column !important;
 	}
 	.fotoSpa {
 		width: 350px;
 		height: 150px;
 	}
+
 	.palacio3 {
 		flex-direction: column;
 	}
+
 	.parrafo1 {
 		padding-top: 0px;
-	}
-	.descubra {
-		margin-top: 20px;
-		margin-bottom: 50px;
+		text-align: center;
 	}
 	.texto1 {
-		padding-right: 15px;
+		margin-left: 15px;
+		padding: 0px 0px 0px 0px;
+		width: 350px;
 	}
+
 	.botonConozca {
 		margin-left: 25px;
 	}
+
+	.testimonios {
+		display: none;
+	}
+	.seccionUno {
+		padding-bottom: 30px;
+	}
+	.parrafo {
+		font-size: 16px;
+	}
 }
-/* @media (min-width: 390px) {
-	.bienvenida {
-		background-image: url('/src/assets/Celeste/img/3PORTADA.png');
-	}
-
-	.palacio {
-		font-size: 60px;
-		font-family: Cardo, 'Cardo Fallback';
-	}
-	.palacio1 {
-		font-size: 30px;
-		font-family: Cardo, 'Cardo Fallback';
-	}
-	.descubra {
-		font-family: Cardo, 'Cardo Fallback';
-
-		font-style: italic;
-		font-size: 50px;
-		margin-top: 20px;
-		margin-bottom: 100px;
-	}
-
-	.texto1 {
-		font-family: 'Cardo', serif;
-		width: 400px;
-	}
-} */

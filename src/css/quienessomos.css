@@ -1,4 +1,22 @@
 .image{
-    height: 18rem !important;
+    height: 20rem !important;
     width: 100%;
 }
+.text{
+    font-family: Cardo, 'Cardo Fallback';
+}
+.title{
+    font-family: Cardo, serif;
+    text-decoration: none;
+}
+a{
+    text-decoration: none !important;
+    color: black !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container-quien {
+      margin-bottom: 49rem !important; 
+      margin-top: 5rem !important;
+    }
+  }
