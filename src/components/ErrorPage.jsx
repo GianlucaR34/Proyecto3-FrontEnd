@@ -1,3 +1,4 @@
+
 import React from 'react';
 import '../css/ErrorPage.css';
 
@@ -10,9 +11,12 @@ const PaginaError = () => {
 				<button onClick={() => (window.location.href = '/')}>
 					Regresar a la página principal
 				</button>
+
 			</div>
 		</div>
 	);
 };
 
+
 export default PaginaError;
+
