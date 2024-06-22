@@ -4,7 +4,11 @@ import Carrusel from './Carrusel';
 import { Link } from 'react-router-dom';
 
 import MyCard from './MyCard';
-
+import fotopalacio1 from '../assets/Staying at the Palacio Duhau _ Travelgal Nicole.jfif';
+import estadia from '../assets/Estadía.jpg';
+import spa from '../assets/Spa.jpg';
+import eventos from '../assets/Eventos.jpg';
+import gastronomia from '../assets/Gastronomía.jpg';
 const Home = () => {
 	const [showModal, setShowModal] = useState(false);
 
@@ -30,11 +34,7 @@ const Home = () => {
 				<h2 className="descubra text-center">Descubra expereciencias memorables</h2>
 				<div className="d-flex justify-content-center divM">
 					<div className="fotopalacio">
-						<img
-							src="src\assets\Staying at the Palacio Duhau _ Travelgal Nicole.jfif"
-							alt=""
-							width={400}
-						/>
+						<img src={fotopalacio1} alt="" width={400} />
 					</div>
 					<div className=" texto1 ">
 						<h3 className="parrafo1">
@@ -48,7 +48,7 @@ const Home = () => {
 							tradicional barrio de Recoleta. El complejo de dos edificios combina la
 							elegancia de un palacio aristocrático con un sofisticado diseño
 							contemporáneo. Disfrute la experiencia de una estadía residencial en
-							amplias habitaciones y suites; explore la alta gastronomía argentina de
+							amplias habitaciones y suites, explore la alta gastronomía argentina de
 							la mano de talentosos chefs; contemple una curada colección privada de
 							arte; relájese en el mejor spa de Buenos Aires y deléitese con
 							experiencias memorables en inspiradores jardines.
@@ -60,26 +60,26 @@ const Home = () => {
 			<div className="d-flex justify-content-around palacio3">
 				<MyCard
 					title="ESTADÍA"
-					imageSrc="src\assets\Estadía.jpg"
+					imageSrc={estadia}
 					modalTitle="Estadías"
 					description="Nuestros paquetes de estadía son una invitación a crear nuevos recuerdos compartidos, experimentando la hospitalidad, la alta gastronomía y el arte de la atención al detalle de Park Hyatt."
 				/>
 				<MyCard
 					title="SPA"
-					imageSrc="src\assets\Spa.jpg"
+					imageSrc={spa}
 					modalTitle="AhínWellness & Spa"
 					description="Ahín significa “Ceremonia o Ritual de Bienvenida que se ofrece para honrar a un huésped”, según la lengua mapuche.
 					Para una experiencia de verdadero placer, Park Hyatt Buenos Aires le da la bienvenida a Ahín Wellness & Spa, con una combinación de tratamientos, rituales y ceremonias basados ​​en los conocimientos ancestrales de esta milenaria cultura."
 				/>
 				<MyCard
 					title="EVENTOS"
-					imageSrc="src\assets\Eventos.jpg"
+					imageSrc={eventos}
 					modalTitle="Eventos"
 					description="Todas las semanas, música en vivo y experiencias gastronómicas en nuestros restaurantes. Cena con Enólogos, Five O'Clock Tea, Martes Botánicos, Viernes de Jazz y mucho más."
 				/>
 				<MyCard
 					title="GASTRONOMÍA"
-					imageSrc="src\assets\Gastronomía.jpg"
+					imageSrc={gastronomia}
 					modalTitle="Restaurantes & Bar"
 					description="Encuentre propuestas gastronómicas deliciosas en nuestros sofisticados ambientes junto a un excelente servicio."
 				/>
