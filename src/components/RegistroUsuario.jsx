@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import hotelAPI from '../api/hotelAPI';
 import '../css/Registro.css';
-
+import registro from '../assets/registro2.png';
 const RegisterForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -138,7 +138,7 @@ const RegisterForm = () => {
 	return (
 		<div className="d-flex justify-content-center mt-5">
 			<div className="img1 	">
-				<img src="src\assets\registro2.png" alt="" className="imagenformulario" />
+				<img src={registro} alt="" className="imagenformulario" />
 			</div>
 			<div className="formulario">
 				<h1 className="text-center mb-5 reg">¡Crea una nueva cuenta!</h1>
