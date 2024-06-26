@@ -1,43 +1,46 @@
-@media only screen and (max-width: 768px) {
-	.container {
-		padding: 0 15px;
-	}
-
-	form {
-		margin-bottom: 49rem !important;
-		margin-top: 5rem !important;
-	}
-
-	.img1 {
-		display: none;
-	}
-	.formulario {
-		margin-left: 0px !important;
-		height: 750px;
-	}
-	.botonReg {
-		margin-left: 70px !important;
-	}
-}
-
-.imagenformulario {
-	border-radius: 20px;
-}
-.formulario {
-	padding-top: 70px;
-	margin-left: 50px;
-}
 .reg {
 	font-weight: 700;
+	height: 10vh;
+	align-items: center;
+	justify-content: center;
+	display: flex;
 }
+
 body {
 	font-family: Cardo, 'Cardo Fallback' !important;
 }
-.botonReg {
-	margin-left: 170px;
-	font-size: 18px;
-	padding: 10px 20px 10px 20px;
+
+.spanError {
+	background-color: rgba(255, 255, 255, 0.5);
+	font-size: 1vw;
 }
-.img1 {
-	width: 700px;
+
+.containerForm {
+	width: 70vw !important;
+	padding: 5vh 5vw;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.cardo-regular {
+	font-family: "Cardo", serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+
+
+.cardo-bold {
+	font-family: "Cardo", serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.cardo-regular-italic {
+	font-family: "Cardo", serif;
+	font-weight: 400;
+	font-style: italic;
 }

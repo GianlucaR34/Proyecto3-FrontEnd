@@ -1,4 +1,4 @@
-import { Carousel } from 'react-bootstrap';
+import { Card, Carousel, Col, Image, Row } from 'react-bootstrap';
 
 import '../css/testimonio.css';
 import retrato1 from '../assets/retrato1.jpg';
@@ -15,120 +15,120 @@ const Carrusel = () => {
 	return (
 		<Carousel fade controls={false} indicators={false}>
 			<Carousel.Item>
-				<div className="d-flex container justify-content-around">
-					<div>
-						<div className="card0">
-							<div className="header0">
-								{' '}
-								<img src={retrato1} alt="Testimonio 1" className="image0" />
-								<div className="header1">
-									<img src={cinco} alt="" className="estrellas" width={120} />
-									<p className="name0">Sofía Pérez</p>
-								</div>
-							</div>
-
-							<p className="message0">
+				<div className="d-flex container justify-content-between w-100">
+					<Card className='cardContainer'>
+						<Card.Body className='rounded cardBody'>
+							<Row xs={12} md={4} className='p-3'>
+								<Col xs={12} md={4}>
+									<Image src={retrato1} alt="Testimonio 1" className="img-fluid" />
+								</Col>
+								<Col xs={12} md={8} className='px-1 d-flex flex-column testimonioHeader' >
+									<Image src={cinco} alt="quality stars" className="img-fluid" />
+									<p className="name0 p-0 m-0">Sofía Pérez</p>
+								</Col>
+							</Row>
+							<p className="message0 d-none d-xxl-block">
 								"Mi estadía en Golden Lux fue mágica. El lujo y el servicio impecable
 								hicieron de mi viaje una experiencia inolvidable. Recomiendo este
 								paraíso."
 							</p>
-						</div>
-					</div>
-					<div>
-						<div className="card0">
-							<div className="header0">
-								{' '}
-								<img src={retrato2} alt="Testimonio 1" className="image0" />
-								<div>
-									<img src={cinco} alt="" className="estrellas" width={120} />
-									<p className="name0">Lucía Gómez</p>
-								</div>
-							</div>
-
-							<p className="message0">
+						</Card.Body>
+					</Card>
+					<Card className='cardContainer'>
+						<Card.Body className='rounded cardBody'>
+							<Row xs={12} md={4} className='p-3'>
+								<Col xs={12} md={4}>
+									<Image src={retrato2} alt="Testimonio 2" className="img-fluid" />
+								</Col>
+								<Col xs={12} md={8} className='px-1 d-flex flex-column testimonioHeader' >
+									<Image src={cinco} alt="quality stars" className="img-fluid p-1" />
+									<p className="name0 p-0 m-0">Lucía Gómez</p>
+								</Col>
+							</Row>
+							<p className="message0 d-none d-xxl-block">
 								"Golden Lux es un sueño hecho realidad. Cada momento, desde la
 								entrada hasta el dormir, fue perfecto. Volveré, sin duda, a este
 								oasis de confort."
 							</p>
-						</div>
-					</div>
-					<div>
-						<div className="card0">
-							<div className="header0">
-								{' '}
-								<img src={retrato3} alt="Testimonio 1" className="image0" />
-								<div>
-									<img src={cuatroymedia} alt="" className="estrellas" width={120} />
-									<p className="name0">Santiago Rodríguez</p>
-								</div>
-							</div>
-
-							<p className="message0">
+						</Card.Body>
+					</Card>
+					<Card className='cardContainer'>
+						<Card.Body className='rounded cardBody'>
+							<Row xs={12} md={4} className='p-3'>
+								<Col xs={12} md={4}>
+									<Image src={retrato3} alt="Testimonio 1" className="img-fluid" />
+								</Col>
+								<Col xs={12} md={8} className='px-1 d-flex flex-column testimonioHeader' >
+									<Image src={cuatroymedia} alt="quality stars" className="img-fluid p-1" />
+									<p className="name0 p-0 m-0">Santiago Rodríguez</p>
+								</Col>
+							</Row>
+							<p className="message0 d-none d-xxl-block">
 								"En Golden Lux encontré el equilibrio perfecto entre elegancia y
 								comodidad. El personal es excepcional, las instalaciones, simplemente
 								divinas."
 							</p>
-						</div>
-					</div>
+						</Card.Body>
+					</Card>
 				</div>
 			</Carousel.Item>
 			<Carousel.Item>
-				<div className="d-flex container justify-content-around">
-					<div>
-						<div className="card0">
-							<div className="header0">
-								{' '}
-								<img src={retrato4} alt="Testimonio 1" className="image0" />
-								<div>
-									<img src={cuatroymedia} alt="" className="estrellas" width={120} />
-									<p className="name0">Valentina Martínez</p>
-								</div>
-							</div>
-
-							<p className="message0">
+				<div className="d-flex container justify-content-between w-100">
+					<Card className='cardContainer'>
+						<Card.Body className='rounded cardBody'>
+							<Row xs={12} md={4} className='p-3'>
+								<Col xs={12} md={4}>
+									<Image src={retrato4} alt="Testimonio 1" className="img-fluid" />
+								</Col>
+								<Col xs={12} md={8} className='px-1 d-flex flex-column testimonioHeader' >
+									<Image src={cinco} alt="quality stars" className="img-fluid p-1" />
+									<p className="name0 p-0 m-0">Valentina Martínez</p>
+								</Col>
+							</Row>
+							<p className="message0 d-none d-xxl-block">
 								"El esplendor de Golden Lux es indescriptible. Cada detalle, desde la
 								decoración hasta la gastronomía, me dejó sin palabras. ¡Un lugar
 								sublime!"
 							</p>
-						</div>
-					</div>
-					<div>
-						<div className="card0">
-							<div className="header0">
-								{' '}
-								<img src={retrato5} alt="Testimonio 1" className="image0" />
-								<div>
-									<img src={cuatro} alt="" className="estrellas" width={120} />
-									<p className="name0">Julia Ponce De León</p>
-								</div>
-							</div>
-							<p className="message0">
+						</Card.Body>
+					</Card>
+					<Card className='cardContainer'>
+						<Card.Body className='rounded cardBody'>
+							<Row xs={12} md={4} className='p-3'>
+								<Col xs={12} md={4}>
+									<Image src={retrato5} alt="Testimonio 2" className="img-fluid" />
+								</Col>
+								<Col xs={12} md={8} className='px-1 d-flex flex-column testimonioHeader' >
+									<Image src={cinco} alt="quality stars" className="img-fluid p-1" />
+									<p className="name0 p-0 m-0">Julia Ponce De León</p>
+								</Col>
+							</Row>
+							<p className="message0 d-none d-xxl-block">
 								"En Golden Lux, el tiempo se detiene. Cada instante fue como un
 								sueño. No puedo esperar para regresar a este refugio de lujo y
 								tranquilidad."
 							</p>
-						</div>
-					</div>
-					<div>
-						<div className="card0">
-							<div className="header0">
-								{' '}
-								<img src={retrato6} alt="Testimonio 1" className="image0" />
-								<div>
-									<img src={cinco} alt="" className="estrellas" width={120} />
-									<p className="name0">Anabella Paulí</p>
-								</div>
-							</div>
-
-							<p className="message0">
+						</Card.Body>
+					</Card>
+					<Card className='cardContainer'>
+						<Card.Body className='rounded cardBody'>
+							<Row xs={12} md={4} className='p-3'>
+								<Col xs={12} md={4}>
+									<Image src={retrato6} alt="Testimonio 1" className="img-fluid" />
+								</Col>
+								<Col xs={12} md={8} className='px-1 d-flex flex-column testimonioHeader' >
+									<Image src={cuatroymedia} alt="quality stars" className="img-fluid p-1" />
+									<p className="name0 p-0 m-0">Anabella Paulí</p>
+								</Col>
+							</Row>
+							<p className="message0 d-none d-xxl-block">
 								"Mi estancia en Golden Lux fue la definición del paraíso terrenal. La
 								elegancia, el servicio y la atención a los detalles son
 								incomparables. ¡Una experiencia única!"
 							</p>
-						</div>
-					</div>
+						</Card.Body>
+					</Card>
 				</div>
-
 			</Carousel.Item>
 		</Carousel>
 	);

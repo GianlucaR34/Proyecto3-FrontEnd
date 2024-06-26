@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import "react-datepicker/dist/react-datepicker.css";
 import { createRoot } from 'react-dom/client'
-import { Button, Col, Container, FloatingLabel, Form, Pagination, Row, Tab, Tabs } from 'react-bootstrap';
+import { Button, Col, Container, FloatingLabel, Form, Row, Tab, Tabs } from 'react-bootstrap';
 import '../css/Reservas.css'
 import ReservasCard from './ReservasCard';
 import { DatePicker } from '@mui/x-date-pickers';
@@ -58,10 +58,10 @@ const Reservas = () => {
     });
   }
 
-  const handleDateReserve = async (initialDate, finalDate) => {
-    let newInitialDate = new Date(initialDate)
+  const handleDateReserve = async (e) => {
+    let newInitialDate = new Date(e.$d)
     setInitialDate(newInitialDate)
-    let newFinalDate = new Date(finalDate)
+    let newFinalDate = new Date(e.$d)
     setFinalDate(newFinalDate)
 
 
@@ -223,7 +223,7 @@ const Reservas = () => {
               <Col lg={2} className='text-center rounded datePicker p-2 me-3'>
                 <Form className='h-100'>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker ref={datePickerOnlyOne} onChange={(e) => { setInitialDate(e.$d); setFinalDate(e.$d) }} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
+                    <DatePicker ref={datePickerOnlyOne} onChange={(e) => { handleDateReserve(e) }} disablePast shouldDisableDate={shouldDisableDate} className='bg-white rounded mb-3' label="Fecha a reservar" disabled={isSearching ? true : false} value={dayjs(date)} required />
                   </LocalizationProvider>
                   <Form.Group controlId="nombre">
                     <FloatingLabel controlId="floatingInput" label="Nombre" className="text-secondary">
@@ -258,7 +258,7 @@ const Reservas = () => {
                 <Row lg={3} className='bg-transparent fetchDiv mb-2'>
                 </Row>
               </Col>
-              {isSearching && (<Col lg={12} className=''>
+              {/*isSearching && (<Col lg={12} className=''>
                 <Pagination className='d-flex justify-content-center align-items-center text-center'>
                   <Pagination.Item active onClick={handlePagination}>
                     0
@@ -270,7 +270,7 @@ const Reservas = () => {
                     2
                   </Pagination.Item>
                 </Pagination>
-              </Col>)}
+              </Col>)*/}
             </Row>
           </Container>
         </Tab>
@@ -318,7 +318,7 @@ const Reservas = () => {
                 <Row lg={3} className='bg-transparent fetchDiv mb-2'>
                 </Row>
               </Col>
-              {isSearching && (<Col lg={12} className=''>
+              {/*isSearching && (<Col lg={12} className=''>
                 <Pagination className='d-flex justify-content-center align-items-center text-center'>
                   <Pagination.Item active onClick={handlePagination}>
                     0
@@ -330,7 +330,7 @@ const Reservas = () => {
                     2
                   </Pagination.Item>
                 </Pagination>
-              </Col>)}
+              </Col>)*/}
             </Row>
           </Container>
         </Tab>
