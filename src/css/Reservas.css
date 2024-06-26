@@ -6,17 +6,6 @@
     font-style: normal;
 }
 
-.activeTab:active {
-    background-color: rgba(0, 0, 0, 0.218);
-}
-
-.containerTab {
-    height: auto;
-    border: 0.25vh;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.218);
-}
-
 .cardo-bold {
     font-family: "Cardo", serif;
     font-weight: 700;
@@ -27,6 +16,17 @@
     font-family: "Cardo", serif;
     font-weight: 400;
     font-style: italic;
+}
+
+.activeTab:active {
+    background-color: rgba(0, 0, 0, 0.218);
+}
+
+.containerTab {
+    height: auto;
+    border: 0.25vh;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.218);
 }
 
 .datePicker {
@@ -73,7 +73,7 @@
 }
 
 .bodyCard {
-    background-color: rgba(39, 91, 139, 0.7);
+    background-color: rgba(65, 65, 65, 0.7);
 }
 
 .TitleCard {

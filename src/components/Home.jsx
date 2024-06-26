@@ -61,8 +61,8 @@ const Home = () => {
 				</div>
 			</div>
 
-			<Row md={12} className='px-5'>
-				<Col md={6} style={{ height: '80vh' }} className='mb-3'>
+			<Row md={12} className='w-100'>
+				<Col md={6} style={{ height: '30vw' }} className='mb-3'>
 					<MyCard
 						title="ESTADÍA"
 						imageSrc={estadia}
@@ -73,7 +73,7 @@ const Home = () => {
 						description="Nuestros paquetes de estadía son una invitación a crear nuevos recuerdos compartidos, experimentando la hospitalidad, la alta gastronomía y el arte de la atención al detalle de Park Hyatt."
 					/>
 				</Col>
-				<Col md={6} style={{ height: '80vh' }} className='mb-3'>
+				<Col md={6} style={{ height: '30vw' }} className='mb-3'>
 					<MyCard
 						title="SPA"
 						imageSrc={spa}
@@ -85,7 +85,7 @@ const Home = () => {
 					Para una experiencia de verdadero placer, Park Hyatt Buenos Aires le da la bienvenida a Ahín Wellness & Spa, con una combinación de tratamientos, rituales y ceremonias basados ​​en los conocimientos ancestrales de esta milenaria cultura."
 					/>
 				</Col>
-				<Col md={6} style={{ height: '80vh' }} className='mb-3'>
+				<Col md={6} style={{ height: '30vw' }} className='mb-3'>
 					<MyCard
 						title="EVENTOS"
 						imageSrc={eventos}
@@ -96,7 +96,7 @@ const Home = () => {
 						description="Todas las semanas, música en vivo y experiencias gastronómicas en nuestros restaurantes. Cena con Enólogos, Five O'Clock Tea, Martes Botánicos, Viernes de Jazz y mucho más."
 					/>
 				</Col>
-				<Col md={6} style={{ height: '80vh' }} className='mb-3'>
+				<Col md={6} style={{ height: '30vw' }} className='mb-3'>
 					<MyCard
 						title="GASTRONOMÍA"
 						imageSrc={gastronomia}
@@ -109,9 +109,8 @@ const Home = () => {
 				</Col>
 			</Row>
 
-			<div className="text-center testimonios h-100">
+			<div className="text-center testimonios d-sm-none d-lg-block">
 				<h2 className="fs-1 clientes mb-3 ">Lo que dicen nuestros clientes</h2>
-
 				<div className="text-center ">
 					<p className="mb-5 valoramos">
 						Valoramos enormemente las relaciones sólidas y hemos visto los beneficios

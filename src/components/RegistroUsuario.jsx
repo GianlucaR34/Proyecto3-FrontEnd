@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import hotelAPI from '../api/hotelAPI';
 import '../css/Registro.css';
@@ -146,16 +146,20 @@ const RegisterForm = () => {
 	};
 
 	return (
-		<div className="d-flex justify-content-center mt-5">
-			<div className="img1 	">
-				<img src={registro} alt="" className="imagenformulario" />
-			</div>
-			<div className="formulario">
-				<h1 className="text-center mb-5 reg">¡Crea una nueva cuenta!</h1>
-				<Form className="container mt-3" onSubmit={handleSubmit} style={{}}>
+		<Container className="d-flex justify-content-center mt-5 p-5">
+			{/* <img src={} alt="" className="img-fluid border-1 rounded p-0 mx-0" /> */}
+			<div className="mx-auto align-middle justify-content-center mx-auto text-white my-0 rounded" style={{
+				backgroundImage: `url(${registro})`,
+				backgroundSize: 'cover',
+				backgroundPosition: 'center',
+			}}>
+
+				<Form className="containerForm rounded" onSubmit={handleSubmit} style={{}}>
+					<h1 className="text-center mb-5 reg">¡Crea una nueva cuenta!</h1>
 					<Form.Group controlId="formNombre" className="mb-3">
-						<Form.Label>Nombre</Form.Label>
+						<Form.Label className="fs-5 my-0 cardo-regular-italic">Nombre</Form.Label>
 						<Form.Control
+							className='fs-5 cardo-regular'
 							type="text"
 							placeholder="Introduce tu nombre"
 							value={nombre}
@@ -163,13 +167,14 @@ const RegisterForm = () => {
 							isInvalid={!!nombreError}
 						/>
 						<Form.Control.Feedback type="invalid">
-							{nombreError}
+							<p className='w-100 text-black text-center spanError px-1 rounded'>{nombreError}</p>
 						</Form.Control.Feedback>
 					</Form.Group>
 
 					<Form.Group controlId="formApellido" className="mb-3">
-						<Form.Label>Apellido</Form.Label>
+						<Form.Label className="fs-5 my-0 cardo-regular-italic">Apellido</Form.Label>
 						<Form.Control
+							className='fs-5 cardo-regular'
 							type="text"
 							placeholder="Introduce tu apellido"
 							value={apellido}
@@ -177,25 +182,29 @@ const RegisterForm = () => {
 							isInvalid={!!apellidoError}
 						/>
 						<Form.Control.Feedback type="invalid">
-							{apellidoError}
+							<p className='w-100 text-black text-center spanError px-1 rounded'>{apellidoError}</p>
 						</Form.Control.Feedback>
 					</Form.Group>
 
 					<Form.Group controlId="formDNI" className="mb-3">
-						<Form.Label>DNI</Form.Label>
+						<Form.Label className="fs-5 my-0 cardo-regular-italic">DNI</Form.Label>
 						<Form.Control
+							className='fs-5 cardo-regular'
 							type="text"
 							placeholder="Introduce tu DNI"
 							value={dni}
 							onChange={handleDniChange}
 							isInvalid={!!dniError}
 						/>
-						<Form.Control.Feedback type="invalid">{dniError}</Form.Control.Feedback>
+						<Form.Control.Feedback type="invalid">
+							<p className='w-100 text-black text-center spanError px-1 rounded'>{dniError}</p>
+						</Form.Control.Feedback>
 					</Form.Group>
 
 					<Form.Group controlId="formEmail" className="mb-3">
-						<Form.Label>Correo electrónico</Form.Label>
+						<Form.Label className="fs-5 my-0 cardo-regular-italic">Correo electrónico</Form.Label>
 						<Form.Control
+							className='fs-5 cardo-regular'
 							type="email"
 							placeholder="Introduce tu correo"
 							value={email}
@@ -204,14 +213,15 @@ const RegisterForm = () => {
 						/>
 						{emailError && (
 							<Form.Control.Feedback type="invalid">
-								{emailError}
+								<p className='w-100 text-black text-center spanError px-1 rounded'>{emailError}</p>
 							</Form.Control.Feedback>
 						)}
 					</Form.Group>
 
 					<Form.Group controlId="formPassword" className="mb-3">
-						<Form.Label>Contraseña</Form.Label>
+						<Form.Label className="fs-5 my-0 cardo-regular-italic">Contraseña</Form.Label>
 						<Form.Control
+							className='fs-5 cardo-regular'
 							type="password"
 							placeholder="Introduce tu contraseña"
 							value={password}
@@ -219,15 +229,16 @@ const RegisterForm = () => {
 							isInvalid={!!passwordError}
 						/>
 						{passwordError && (
-							<Form.Control.Feedback type="invalid">
-								{passwordError}
+							<Form.Control.Feedback type="invalid" className='px-3'>
+								<p className='w-100 text-black text-center spanError px-1 rounded'>{passwordError}</p>
 							</Form.Control.Feedback>
 						)}
 					</Form.Group>
 
 					<Form.Group controlId="formConfirmPassword" className="mb-3">
-						<Form.Label>Repite tu contraseña</Form.Label>
+						<Form.Label className="fs-5 my-0 cardo-regular-italic">Repite tu contraseña</Form.Label>
 						<Form.Control
+							className='fs-5 cardo-regular'
 							type="password"
 							placeholder="Repite tu contraseña"
 							value={confirmPassword}
@@ -236,14 +247,14 @@ const RegisterForm = () => {
 						/>
 						{confirmPasswordError && (
 							<Form.Control.Feedback type="invalid">
-								{confirmPasswordError}
+								<p className='w-100 text-black text-center spanError px-1 rounded'>{confirmPasswordError}</p>
 							</Form.Control.Feedback>
 						)}
 					</Form.Group>
 
-					<button
-						className="text-center mt-3 botonReg "
-						variant="primary"
+					<Button
+						className="text-center mt-3 cardo-regular fs-4"
+						variant="outline-primary"
 						type="submit"
 						disabled={
 							!!emailError ||
@@ -255,10 +266,10 @@ const RegisterForm = () => {
 						}
 					>
 						Registrarse
-					</button>
+					</Button>
 				</Form>
 			</div>
-		</div>
+		</Container >
 	);
 };
 
