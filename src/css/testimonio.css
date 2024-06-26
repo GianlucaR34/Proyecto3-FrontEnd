@@ -1,12 +1,13 @@
-.card0 {
+.cardContainer {
+	width: 20vw;
+
+}
+
+.cardBody {
 	background-color: rgba(243, 244, 246, 1);
-	padding: 2rem;
-	max-width: 350px;
-	border-radius: 10px;
+	height: max-content !important;
 }
-.CarouselItem {
-	margin-right: 0px;
-}
+
 .header0 {
 	display: flex;
 	align-items: center;
@@ -17,13 +18,14 @@
 .header0 .image0 {
 	height: 5rem;
 	width: 5rem;
-	border-radius: 9999px;
 	object-fit: cover;
 	/* background-color: rgb(4, 181, 63); */
 }
+
 .header1 {
 	margin-top: 20px;
 }
+
 .estrellas {
 	display: flex;
 	justify-content: center;
@@ -32,12 +34,18 @@
 }
 
 .name0 {
-	margin-top: 0.25rem;
-	font-size: 1.125rem;
+
 	line-height: 1.75rem;
 	font-weight: 600;
 	--tw-text-opacity: 1;
 	color: rgb(55, 65, 81);
+}
+
+.testimonioHeader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	justify-items: center;
 }
 
 .message0 {
