@@ -18,12 +18,12 @@
 }
 
 .contact-form div {
-	margin-bottom: 1.5rem;
+	margin-bottom: 3rem;
 }
 
 .contact-form label {
 	display: block;
-	margin-bottom: 2rem;
+	margin-bottom: 0.5rem;
 	font-family: Cardo, 'Cardo Fallback';
 
 	font-style: italic;
